@@ -1,0 +1,78 @@
+<!--
+<div *ngIf="!basicData.setCategories.value">
+    
+    <div style="padding-top: 150px;">
+        <p style="color: red;">request-register2 page loading</p>
+        <p style="color: blue; font-size: 18px;">{{"basicData.setCategories.value : " + basicData.setCategories.value}}</p>
+    </div>
+
+    <app-loading-fullpage-latti></app-loading-fullpage-latti>
+</div>
+-->
+
+<div class="col-lg-12 col-xl-12 d-none d-lg-block d-xl-block clear">
+    <globalHeader></globalHeader>
+</div>
+
+<div [ngClass]="shared.xWindow.value > 992 ? 'contentPadding' : 'contentNoPadding'"
+    [ngStyle]="shared.xWindow.value > 992 ? {'min-height':shared.yWindow.value-120+'px', 'background-color':'transparent'} : {'min-height':shared.yWindow.value-120+'px', 'background-color':'white'}" >
+    <!----
+    <div class="col-lg-12 col-xl-12 d-none d-lg-block d-xl-block clear" 
+        id="stepMainDiv" 
+        *ngIf="(shared.stepNumber.value > 0) && (shared.stepNumber.value < 7)">
+        <div class="row clear justify-content-md-center justify-content-lg-center justify-content-xl-center">
+            <div class="col-md-2 col-lg-2 col-xl-2 clear d-none d-md-block" 
+                *ngFor="let item of stepsList; index as i; last as lastItem">
+                <div [ngClass]="item.state == 'active' ? 'stepBoxActive' : 'stepBoxDiactive'">
+                    <div>{{item.name}}</div>
+                </div>
+                <div *ngIf="!lastItem" [ngClass]="item.state == 'active' ? 'stepLineActive' : 'stepLineDiactive'"></div>
+            </div>
+        </div>
+    </div>
+    <!---->
+
+    <div class="col-lg-12 col-xl-12 d-none d-lg-block d-xl-block clear" style="height: 20px; width: 100%;"></div>
+
+
+    <!--start menu top mobile-->
+    <div class="col-12 col-sm-12 col-md-12 d-block d-lg-none clear">
+        <div style="width: 100%; overflow: hidden; height: 60px; background-color: #4FC3F7; color: white;">
+            <div style="width: 20%; height: 100%; float: right; text-align: right; padding-top: 5px; padding-right: 3px;">
+                <img (click)="onLogo()" src="assets/image/logo.png" alt="لوگوی وب سایت پالسین" style="width: 50px; height: 50px; outline: none;">
+            </div>
+            <div style="width: 60%; height: 100%; float: right; display: flex; align-items: center; justify-content: center;">
+                <span>
+                    <div style="text-align: center;">ثبت درخواست</div>
+                    <div style="text-align: center;" *ngIf="shared.reqRej_jobcat3Select">  
+                        <span>{{shared.reqRej_jobcat3Select?.name}}</span>
+                    </div>
+                </span>
+            </div>
+            <div style="width: 20%; height: 100%; float: left; text-align: left; padding-top: 15px; padding-left: 3px;">
+                <img (click)="onClose()" src="assets/image/close.png" alt="close" style="width: 30px; height: 30px; outline: none;">
+            </div>
+        </div>
+        <div style="width: 100%; height: 15px;"></div>
+    </div>
+    <!--end menu top mobile-->
+    <!--start steps in mobile view--
+    <div *ngIf="(shared.stepNumberMobile.value > 0) && (shared.stepNumberMobile.value < 5)" 
+        class="col-12 col-sm-12 col-md-12 d-block d-lg-none d-xl-none clear" 
+        style="padding-top: 5px; padding-bottom: 2px; width: 100%;">
+        <div class="row clear" style="border-bottom: 1px solid #ECEFF1;">
+            <div *ngFor="let item of stepsListMobile; index as i;" class="col-3 col-sm-3 col-md-3 clear">
+                <div [ngClass]="item.state == 'active' ? 'stepMobileActive' : 'stepMobileDisabel'">{{item.name}}</div>
+            </div>
+        </div>
+    </div>
+    <!--end steps in mobile view-->
+
+    <router-outlet></router-outlet>
+</div>
+
+<div class="col-lg-12 col-xl-12 d-none d-lg-block d-xl-block clear">
+    <webapp-footer></webapp-footer>
+</div>
+
+

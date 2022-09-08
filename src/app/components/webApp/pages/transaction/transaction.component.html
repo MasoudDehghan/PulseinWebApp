@@ -1,0 +1,102 @@
+<div [ngStyle]="shared.noScroll.value ? {height:shared.yWindow.value+'px', overflow: 'hidden'} : {height:'auto', overflow: 'auto'}">
+    <div *ngIf="shared.xWindow.value >= 620">
+        <globalHeader></globalHeader>
+      </div>
+      <div *ngIf="shared.xWindow.value < 620">
+        <app-drawer-menu></app-drawer-menu>
+      </div>
+      
+      <div (window:resize)="onResize($event)" [ngClass]="shared.xWindow.value > 720 ? 'contentPadding' : 'contentNoPadding'">
+        <div style="position: relative;" [ngStyle]="shared.xWindow.value > 620 ? {'min-height':yWindow-145+'px'} : {'min-height':yWindow-130+'px'}">
+          <div *ngIf="!display">
+            <loading></loading>
+          </div>
+      
+          <div *ngIf="isLoading" 
+            style="z-index: 100; position: absolute; top: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+              <div style="width: 100%; height: 100%; opacity: 0.3; background-color: black; position: absolute; top: 0;"></div>
+              <lottie-animation-view 
+                [options]="lottieConfig"
+                [width]="300"
+                [height]="300"
+                (animCreated)="handleAnimation($event)">
+              </lottie-animation-view>
+          </div>
+      
+          <div *ngIf="display">
+      
+            <div class="styleDivPadding">
+              <div style="width: 100%; max-width: 700px; height: 50px; padding-top: 15px; background-color: white; color: #455A64; text-align: center; border-radius: 30px; margin: 0 auto;">
+                <strong>گردش حساب</strong>
+              </div>
+            </div>
+      
+            <div *ngIf="shared.xWindow.value > 700" class="styleDivPadding">
+              <div class="styleDivTimePeriod">
+                <div *ngFor="let item of timePeriodTextList; index as i" (click)="onClickTimePeriod(i)"
+                  style="width: 20%; text-align: center; display: inline-block; cursor: pointer;">
+                  <span [ngClass]="i+1 == timePeriodValue ? 'customRadioButtonSelect' : 'customRadioButtonUnselect'"></span>
+                  <span style="color: #311B92; font-size: 14px; padding-right: 4px; padding-left: 4px;">{{item}}</span>
+                </div>
+              </div>
+            </div>
+      
+            <div *ngIf="shared.xWindow.value <= 700" class="styleDivPaddingDropDown">
+              <div class="styleDivTimePeriodDropDown">
+                <select (change)="onClickTimePeriodDropDow()" [(ngModel)]="timePeriodSelectedText" 
+                 style="width: 100%; height: 100%; border-radius: 7px;">
+                  <option *ngFor="let item of timePeriodTextList; index as i" [value]="item">{{item}}</option>
+                </select>
+              </div>
+            </div>
+      
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear" style="padding: 7px 0px;">
+              <div class="row clear" style="max-height: 500px; overflow: auto;"
+                [ngClass]="transactionList.length < 4 ? 'justify-content-md-center' : 'clear'">
+                <div *ngFor="let transaction of transactionList" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3" 
+                  style="padding: 3px;">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" 
+                    style="border: 1px solid #B0BEC5; background-color: white; border-radius: 7px; padding: 3px 0px;">
+                    <div [ngClass]="transaction?.cash ? 'stylePaymentCash' : 'stylePaymentOnline'">
+                      <span *ngIf="!transaction?.cash">{{textPaymentOnline}}</span>
+                      <span *ngIf="transaction?.cash">{{textPaymentCash}}</span>
+                    </div>
+                    <div style="padding: 5px;">
+                      
+                        <div class="divStyleRowInfo">
+                          <span class="styleRowTitr">نوع:</span>
+                          <span class="styleRowValue">{{transaction?.type?.name}}</span>
+                        </div>
+      
+                        <div class="divStyleRowInfo">
+                          <span class="styleRowTitr">مبلغ:</span>
+                          <span class="styleRowValue">{{customFunction.formatAmountMoney(transaction?.amount.toString())}}</span>
+                          <span class="styleToman">تومان</span>
+                        </div>
+      
+                        <div class="divStyleRowInfo">
+                          <span class="styleRowTitr">اعتبار:</span>
+                          <span class="styleRowValue">{{customFunction.formatAmountMoney(transaction?.balance.toString())}}</span>
+                          <span class="styleToman">تومان</span>
+                        </div>
+      
+                        <div class="divStyleRowInfo">
+                          <span class="styleRowTitr">تاریخ:</span>
+                          <span dir="ltr" class="styleRowValue">{{transaction?.registerTimeS}}</span>
+                        </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <webapp-footer></webapp-footer>
+      </div>
+      
+</div>

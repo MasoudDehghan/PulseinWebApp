@@ -1,0 +1,195 @@
+.divBoxWhiteFooter{
+    width: 100%; 
+    height: 50px; 
+    overflow: hidden; 
+    background-color: white;
+}
+
+.floatleft{
+    cursor: pointer;
+    float: left; 
+    width: 50%; 
+    height: 100%; 
+    border: none; 
+    outline: none; 
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.divStyleLeft{
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-end; 
+    width: 100%; 
+    height: 100%; 
+    padding-left: 10px;
+}
+
+.divStyleBtnLeft{
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 130px; 
+    height: 45px; 
+    border-radius: 7px; 
+    color: white; 
+    font-size: 14px; 
+    background-color: #4FC3F7;
+}
+
+.floatRight{
+    cursor: pointer;
+    float: right; 
+    width: 50%; 
+    height: 100%; 
+    border: none; 
+    outline: none; 
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.divStyleRight{
+    width: 100%; 
+    height: 100%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start; 
+    padding-right: 20px;
+}
+
+.btnReturn{
+    color: #4FC3F7; 
+    font-size: 14px; 
+    border-bottom: 1px solid #4FC3F7;
+}
+
+/*=============start new style==========*/
+.chevronDiv{
+    cursor: pointer;
+    box-sizing: border-box;
+    padding-top: 5px; 
+    padding-bottom: 5px;
+}
+
+.questionDiv{
+    cursor: pointer; 
+    box-sizing: border-box;
+    padding-top: 5px; 
+    padding-bottom: 5px;
+}
+
+.pResponse{
+    font-size: 12px; 
+    color: #0D47A1; 
+    height: 0px; 
+    border: none; 
+    padding-right: 15px;
+    font-weight: bold;
+    border-bottom: silver 1px solid; 
+    overflow: hidden;
+}
+
+.questionStyleNoSelect{
+    display: inline; 
+    padding-right: 5px; 
+    font-size: 14px; 
+    font-weight: bold; 
+    color: #546E7A;
+}
+
+.questionStyleSelected{
+    display: inline; 
+    padding-right: 5px; 
+    font-size: 14px; 
+    font-weight: normal; 
+    color: black;
+}
+
+/*============end new style=============*/
+
+
+.blackText{
+    color: black;
+    font-size: 14px;
+}
+
+.divBtnOffCode{
+    width: 100%; 
+    border: 1px solid #2196F3; 
+    border-radius: 5px; 
+    text-align: center; 
+    background-color: #2196F3; 
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+}
+.divBtnOffCode:hover{
+    background-color: #0D47A1;
+}
+
+.divSlid{
+    width: 95%; 
+    margin: 0 auto; 
+    text-align: center; 
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+}
+
+
+.imgSlid{
+    width: 100%;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.divTextSlid{
+    text-align: center; 
+    width: 100%; 
+    color: white;
+    font-size: 16px;
+    padding: 7px;
+    background-color: #2196F3; 
+    border-bottom-right-radius:7px; 
+    border-bottom-left-radius: 7px;
+}
+
+.leftDivComment{
+    text-align: left; 
+    font-size: 14px; 
+    color: #546E7A;
+}
+
+.textAreaStyle{
+    width: 100%;
+    border-radius: 5px; 
+    height: 110px; 
+    border: 1px solid #CFD8DC; 
+    padding: 7px 5px;
+    color: #455A64;
+    font-size: 14px;
+}
+
+.textInputUserInfo{
+    width: 100%; 
+    max-width: 450px; 
+    height: 40px; 
+    border-radius: 5px; 
+    padding: 0px 5px;
+    color: #455A64;
+    border: 1px solid #CFD8DC;
+    font-size: 14px;
+}
+
+.btnSendComment{
+    width: 100%; 
+    height: 40px; 
+    border-radius: 5px; 
+    padding: 0px 5px; 
+    background-color: #00796B;
+    color: white;
+    cursor: pointer;
+    outline: none;
+}

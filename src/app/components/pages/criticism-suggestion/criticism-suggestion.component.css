@@ -1,0 +1,149 @@
+#mainDiv{
+    box-sizing: border-box;
+    background-color: #f7f8f5;
+    margin-top: 5px;
+    padding-bottom: 10px;
+}
+
+.clear{
+    padding: 0;
+    margin: 0;
+}
+
+
+.underLineDiv{
+    border: none; 
+    border-bottom: 2px solid green; 
+    width: 100%;
+}
+
+.txtInput{
+    border-radius: 20px; 
+    width: 100%; 
+    line-height: 35px; 
+    box-sizing: border-box; 
+    padding-right: 10px; 
+    padding-left: 20px;
+    color: #455A64;
+    border: 1px solid #B0BEC5;
+}
+
+input:focus{
+    outline-offset: 0;
+    outline: -webkit-focus-ring-color auto 0px;
+    border: 1px solid dodgerblue;
+}
+
+.selectInput{
+    border-radius: 20px; 
+    width: 100%; 
+    height: 40px; 
+    box-sizing: border-box; 
+    padding-right: 10px; 
+    padding-left: 10px;
+    color: #455A64;
+}
+
+select option{
+    color: #455A64;
+}
+
+select:focus {
+    outline: -webkit-focus-ring-color auto 0px;
+}
+
+.txtareaInput{
+    border-radius: 10px; 
+    width: 100%; 
+    height: 200px; 
+    box-sizing: border-box; 
+    padding: 10px;
+    padding-left: 15px;
+    color: #455A64;
+}
+
+textarea:focus {
+    outline: -webkit-focus-ring-color auto 0px;
+    border: 1px solid dodgerblue;
+}
+
+.btnStyle{
+    width: 200px;
+    border-radius: 20px;
+}
+
+.paddDiv1{
+    position: relative;
+    box-sizing: border-box;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.captchaDiv{
+    position: relative;
+    box-sizing: border-box;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    min-height: 70px;
+}
+
+.coverCaptchaTimer{
+    position: absolute; 
+    top: 0px; 
+    padding-top: 30px; 
+    padding-bottom: 10px; 
+    width: 100%;  
+    color: tomato; 
+    text-align: center;
+    font-size: 12px;
+}
+
+
+#contant{
+    box-sizing: border-box;
+    margin-top: 5px;
+    background-color: white;
+    padding-top: 20px;
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.4);
+}
+
+
+
+#btnSendDiv{
+    box-sizing: border-box;
+    padding-bottom: 20px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.yesError{
+    border: 1px solid red;
+}
+
+.noError{
+    border: 1px solid #B0BEC5;
+}
+
+.messageDiv{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.msgSuccess{
+    font-size: 14px;
+    color: green;
+}
+
+.msgerror{
+    font-size: 14px;
+    color: tomato;
+}
+
+
+.star{
+    position: absolute; 
+    color: red; 
+    top: 24px; 
+    left: 20px;
+}

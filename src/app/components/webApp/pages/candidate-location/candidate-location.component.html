@@ -1,0 +1,170 @@
+<div *ngIf="isLoading">
+    <app-loading-fullpage-latti></app-loading-fullpage-latti>
+</div>
+
+
+<div *ngIf="!isLoading" 
+  class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+    <div *ngIf="shared.xWindow.value >= 620">
+      <globalHeader></globalHeader>
+    </div>
+    <div *ngIf="shared.xWindow.value < 620">
+      <app-drawer-menu></app-drawer-menu>
+    </div>
+
+<div class="row clear justify-content-md-center justify-content-lg-center justify-content-xl-center divItemPadding">
+
+
+  <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 clear" style="background-color: white; border-radius: 7px; padding: 7px;">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+      <div style="padding: 5px;">
+        <i class="fas fa-plus-circle iconFont"></i>
+        <span>افزودن مکان جدید</span>
+      </div>
+      <div style="padding-bottom: 7px;">
+
+        <!--Start map--> 
+        <div class="divMap" style="position: relative;">
+          <agm-map [zoom]="17" 
+            [gestureHandling]="'greedy'"
+            [latitude]="lat" 
+            [longitude]="lng" 
+            [mapDraggable]="true" 
+            [streetViewControl]="false"
+            [zoomControl]="false"
+            [showDefaultInfoWindow]="false"
+            (centerChange)="agmCenterChange($event)">
+          </agm-map>
+          <div style="position: absolute; top: 100px; width: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.4); height: 0px;">
+            <img src="assets/image/marker.png" style="width: 60px; height: 60px; z-index: 2;">
+          </div>
+        </div>
+        <!--End map-->
+
+
+        <div style="padding-right: 10px; padding-left: 20px; padding-bottom: 10px; padding-top: 10px;">
+          <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6 clear">
+            <input type="text" [maxlength]="constVal.maxCandidateLocationName" 
+              placeholder="نام آدرس (الزامی)" [(ngModel)]="newLocationName" (input)="onNewLocationName($event.target.value)" 
+              style="width: 100%; height: 40px; padding-right: 5px; padding-left: 5px; border: 1px solid #CFD8DC; border-radius: 5px;">
+          </div>
+        </div>
+      
+        <div style="padding-right: 10px;">
+<!--Start Select City and area-->  
+<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+  <div class="row clear">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 clear">
+        <div class="selectedPlaceDiv">
+          <div class="selectedPlacePositionDiv">
+            <input type="text" readonly="true" placeholder="انتخاب شهر" 
+              [(ngModel)]="city"
+              (focus)="onCityFocus()" (blur)="onCityBlur()" class="selectedPlaceInput"
+              [maxlength]="constVal.maxCity">
+            <ul *ngIf="isCityFocus" class="selectedPlaceUl">
+              <div>
+                  <li *ngFor="let cityItem of cityList">
+                      <input type="button" class="inputBtnSelectPlace" [value]="cityItem?.name" (click)="onCityClick(cityItem)">
+                  </li>
+              </div>
+            </ul>
+            <i *ngIf="!isCityFocus" class="fas fa-chevron-down selectedPlaceChevron"></i>
+          </div>
+        </div>
+    </div>
+  
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 clear">
+          <div *ngIf="city != ''" class="selectedPlaceDiv">
+              <div class="selectedPlacePositionDiv">
+                <input type="text" placeholder="انتخاب محله" [(ngModel)]="areaName" (input)="onAreaSearch($event.target.value)"
+                  (focus)="onAreaFocus()" (blur)="onAreaBlur()" class="selectedPlaceInput"
+                  [maxlength]="constVal.maxArea">
+                <ul *ngIf="isAreaFocus" class="selectedPlaceUl">
+                  <div *ngIf="searchAreaList.length == 0 && areaName == ''">
+                      <li *ngFor="let areaItem of areaList; index as i">
+                          <input type="button" class="inputBtnSelectPlace" [value]="areaItem.name" (click)="onAreaClick(areaItem)">
+                      </li>
+                  </div>
+                  <div *ngIf="searchAreaList.length != 0">
+                      <li *ngFor="let areaItem of searchAreaList; index as i">
+                          <input type="button" class="inputBtnSelectPlace" [value]="areaItem.name" (click)="onAreaClick(areaItem)">
+                      </li>
+                  </div>
+                </ul>
+                <i *ngIf="!isAreaFocus" class="fas fa-chevron-down selectedPlaceChevron"></i>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!--end Select City and area-->
+        </div>
+      
+        <div style="padding: 5px 10px;">
+          <textarea placeholder="جزئیات آدرس (الزامی) خیابان، کوچه، پلاک و ..." [(ngModel)]="newLocationAddress" 
+          (input)="onNewLocationAddress($event.target.value)" 
+          style="width: 100%; height: 80px; border: 1px solid #CFD8DC; border-radius: 5px;"></textarea>
+        </div>
+        <div style="padding: 0 10px; text-align: center;">
+          <input type="button" class="btn btnBlue" value="ثبت آدرس جدید" 
+          (click)="onAddNewCandidateLocation()" [disabled]="checkEnableButtonAddNewLocation()">
+        </div>
+
+      </div>
+
+    </div>
+    <div *ngIf="!hasCandidateLocation" style="width: 100%; height: 100px; padding-top: 20px; border: 1px solid #CFD8DC; border-radius: 5px; text-align: center;">
+      {{msgNoCandidateLocation}}
+    </div>
+    <div style="padding-top: 15px;" *ngIf="hasCandidateLocation">
+        <div style="padding: 5px;">
+          <i class="fas fa-map-marker-alt iconFont"></i>
+          <span>مکان های منتخب شما</span>
+        </div>
+        <div style="width: 100%; border: 1px solid #CFD8DC; padding: 3px; border-radius: 7px;">
+            <div style="width: 100%;" *ngFor="let location of candidateLocationList; index as i">
+                <div class="row clear" [ngClass]="i%2 == 0 ? 'locationRowEven' : 'locationRowOdd'">
+                  <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 clear">
+                    <div style="padding-top: 10px;">{{i+1}}</div>
+                  </div>
+                  <div class="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7 clear">
+                    <div style="padding-top: 10px;">{{location?.title}}</div>
+                  </div>
+                  <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 clear">
+                    <button value="ویرایش" class="btn btn-warning" 
+                    (click)="onEditCandidateLocation(location)"><i class="fas fa-edit"></i></button>
+                  </div>
+                  <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 clear">
+                    <button value="حذف" class="btn btn-danger" (click)="onDeleteCandidateLocation(location?.id, location?.title)"><i class="fas fa-trash-alt"></i></button>
+                  </div>
+                </div>
+            </div> 
+        </div>
+    </div>      
+  </div>
+
+</div>
+
+<div>
+  <webapp-footer></webapp-footer>
+</div>
+
+</div>
+  
+  <!--start modal question Delete-->
+  <div [ngClass]="isShowDeleteModal ? 'divModalFullPageShow' : 'divModalFullPageHide'">
+    <div [ngClass]="isShowDeleteModal ? 'showCoverModal' : 'hideCoverModal'"></div>
+    <div class="modalBoxContent" [ngStyle]="isShowDeleteModal ? showModalStyle(2) : hideModalStyle()">
+      <input type="button" style="width: 30px; height: 30px; color: white; background-color: tomato; text-align: center; border: 1px solid red; cursor: pointer;" 
+      value="X" (click)="onCloseModalDeleteCandidateLocation()">
+      <div style="text-align: center; color: #546E7A; padding-top: 10px; padding-bottom: 10px;">
+        <span>{{"نام مکان منتخب: " + deleteCandidateLocationName}}</span></div>
+      <div style="text-align: center; color: #546E7A; padding-top: 10px; padding-bottom: 10px;"><span>{{questionDeleteCandidateLocation}}</span></div>
+      <div style="text-align: center;">
+        <input type="button" value="حذف شود" class="btn btn-danger" (click)="onDeleteModal()">
+      </div>
+    </div>
+  </div>
+  <!--end modal question Delete-->
+  
+  

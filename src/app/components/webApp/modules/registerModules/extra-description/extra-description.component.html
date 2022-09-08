@@ -1,0 +1,160 @@
+<div *ngIf="isLoading">
+  <app-loading-fullpage-latti></app-loading-fullpage-latti>
+</div>
+
+<!----start Insert Description pc---->
+<div class="col-lg-12 col-xl-12 d-none d-lg-block clear">
+  <div class="row clear justify-content-md-center justify-content-lg-center justify-content-xl-center" 
+    style="padding-bottom: 7px;">
+
+    <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 clear whiteBoxStyle" style="min-height: 450px;">
+
+      <div style="padding-bottom: 7px;">
+        <div id="divJobcat3InfoStyle">
+          <img [src]="jobcat3Icon" 
+            [alt]="jobcat3Name" style="width: 50px; height: 50px;">
+          <span class="jobCat3StaticTerm">سرویس</span>
+          <span id="jobCat3Title">{{" " + jobcat3Name + " "}}</span>
+          <span class="jobCat3StaticTerm">پالسین</span>
+        </div>
+      </div>
+
+
+      <div class="divInsertTitr">
+        <input *ngIf="!haveQuestion" type="text" [maxlength]="constVal.maxRequestTitle" placeholder="عنوان درخواست"
+          class="inputTextStyle" [(ngModel)]="reqTitle">
+      </div>
+          
+      <div class="divInsertTitr">
+        <textarea [maxlength]="constVal.maxRequestDescription" placeholder="شرح درخواست (اختیاری)"
+          class="textAreaStyle" [(ngModel)]="reqDescription"></textarea>
+      </div>
+  
+      <!----Start Images upload---->
+      <div style="border: 1px solid #CFD8DC; padding: 5px; border-radius: 4px;">
+        <div class="divInsertTitr">{{requestStaticTermImages}}</div>
+        <form method="POST" enctype="multipart/form-data" name="demo">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+            <div class="row clear">
+              <div *ngFor="let imgItem of shared.imgUrlsList; index as i" class="imageUploadDivPaddingBox">
+                <div class="imageUploadDivBox">
+                  <div *ngIf="imgItem.isShow" class="imageUploadDivShow">
+                    <img [src]="sanitizer.bypassSecurityTrustUrl(imgItem.url)" class="imageUploadStyle">
+                      <div class="imageUploadDeleteDiv"> 
+                        <img src="assets/webappPics/x-button.png" 
+                          alt="deleteImage" 
+                          class="imageUploadRecycleBinStyle" 
+                          (click)="onDeleteImg(i)">
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="isLoadingImage" class="imageLoadingDiv">
+                <img src="assets/webappPics/loadimage.gif" class="imageLoadingStyle">
+              </div>
+                          
+              <div *ngIf="numberOfImages < 5 && !isLoadingImage" class="imageUploadDivSelectImage">
+                <input accept="image/x-png,image/jpg,image/jpeg" type="file" name="photo"
+                  (change)="readUrl($event)" class="imageUploadInputFile"/>
+                <img src="assets/webappPics/upload.jpg" alt="upload" class="imageUploadStyle">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!----End Images upload---->
+
+      <div style="position: absolute; bottom: 0; right: 0; width: 100%; height: 50px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; overflow: hidden;">
+        <div (click)="onInsertDescription()"
+          [eventTracker]="{'category':jobcat3EName+'_InsertDescription','action':'click'}" 
+          [ngClass]="(isLoadingImage) ? 'disableNextStep' : 'activeNextStep'">
+          <span>مرحله بعدی</span>
+        </div>
+        <div class="previousStep"
+          (click)="onBack()">
+          <span>مرحله قبلی</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!----end InsertDescription pc---->
+
+<!--start extra info Mobile-->
+<div class="col-12 col-sm-12 col-md-12 d-block d-lg-none d-xl-none" style="background-color: white;">
+  <div class="divInsertTitrMobile" *ngIf="!haveQuestion">
+    <div style="text-align: center;">
+      <span>عنوان درخواست</span>
+    </div>
+    <input type="text" [maxlength]="constVal.maxRequestTitle"
+      class="inputTextStyle" [(ngModel)]="reqTitle">
+  </div>
+          
+  <div class="divInsertTitrMobile">
+    <div style="text-align: center;">
+      <span>شرح درخواست (اختیاری)</span>
+    </div>
+    <textarea [maxlength]="constVal.maxRequestDescription"
+      class="textAreaStyle" [(ngModel)]="reqDescription"></textarea>
+  </div>
+<!----Start Images upload---->
+<div style="border: 1px solid #CFD8DC; padding: 5px; border-radius: 4px;">
+    <div class="divInsertTitrMobile" style="text-align: center;">{{requestStaticTermImages}}</div>
+    <form method="POST" enctype="multipart/form-data" name="demo">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+        <div class="row clear">
+          <div *ngFor="let imgItem of shared.imgUrlsList; index as i" class="imageUploadDivPaddingBox">
+            <div class="imageUploadDivBoxMobile">
+              <div *ngIf="imgItem.isShow" class="imageUploadDivShow">
+                <img [src]="sanitizer.bypassSecurityTrustUrl(imgItem.url)" class="imageUploadStyle">
+                  <div class="imageUploadDeleteDiv">
+                    <img src="assets/webappPics/x-button.png" 
+                      alt="deleteImage" 
+                      class="imageUploadRecycleBinStyle" 
+                      (click)="onDeleteImg(i)">
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="isLoadingImage" class="imageLoadingDivMobile">
+            <img src="assets/webappPics/loadimage.gif" class="imageLoadingStyle">
+          </div>
+                      
+          <div *ngIf="numberOfImages < 5 && !isLoadingImage" class="imageUploadDivSelectImageMobile"> 
+            <input accept="image/x-png,image/jpg,image/jpeg" type="file" name="photo"
+              (change)="readUrl($event)" class="imageUploadInputFile"/>
+            <img src="assets/webappPics/upload.jpg" alt="upload" class="imageUploadStyle">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!----End Images upload---->
+  <div class="divBoxWhiteFooter"></div>
+  <!----start btn mobile---->
+  <div style="position: fixed; bottom: 0px; right: 0; height: auto; width: 100%;">
+    <div class="divBoxWhiteFooter">
+        <div class="floatleft">
+          <div class="divStyleLeft">
+            <div (click)="onInsertDescription()"
+              [ngClass]="(isLoadingImage) ? 'divStyleBtnLeftDisable' : 'divStyleBtnLeft'"
+              [eventTracker]="{'category':jobcat3EName+'_InsertDescription','action':'click'}">
+              <span>ادامه</span>
+            </div>
+          </div>
+        </div>
+        <div class="floatRight">
+          <div class="divStyleRight">
+            <span (click)="onBack()" class="btnReturn">بازگشت</span>
+          </div>
+        </div>
+    </div>
+  </div>
+  <!----end btn mobile---->
+
+</div>
+<!--end extra info Mobile-->

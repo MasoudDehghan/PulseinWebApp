@@ -1,0 +1,473 @@
+.clear{
+    padding: 0;
+    margin: 0;
+}
+
+
+#divHeaderText{
+    width: 100%;
+    padding: 0px 15px;
+    padding-top: 10px;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+
+#divHeaderText h1{
+    color: #039BE5;
+    font-size: 28px;
+    font-weight: bolder;
+}
+
+.headerLinkCats{
+    cursor: pointer; 
+    color: #039BE5;
+}
+
+.headerLinkCats:hover{
+    cursor: pointer; 
+    color: #039BE0;
+}
+
+#pText{
+    color: #039BEE;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#expertPulsien{
+    position: relative;
+    background-image: url('../../../assets/image/mobileHome/pulsExpert.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+}
+
+.btnUserPulsienDiv{
+    width: 200px; 
+    height: 60px; 
+    position: absolute; 
+    top: 210px; 
+    right: 60px; 
+    cursor: pointer;
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.6);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.6);
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.6);
+}
+
+.btnUserPulsienDiv:hover{
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.4);
+}
+
+#btnExpertDiv{
+    position: absolute; 
+    top: 170px; 
+    background-color: gray; 
+    color: white; 
+    left: 15%; 
+    right: 15%; 
+    height: 80px; 
+    width: 70%; 
+    text-align: center; 
+    padding-top: 30px; 
+    border-radius: 5px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+#btnExpert{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#btnExpertDiv:hover{
+    opacity: 1;
+}
+
+#mobHeader{
+    position: relative;
+    background-color: #039BE5;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+}
+
+#blackLayer{
+    position: absolute;
+    top: 0px;
+    opacity: 0.7;
+    background-color: #37474F;
+    width: 100%;
+    height: 100%;
+}
+
+#headerText{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    text-align: center;
+    padding-top: 50px;
+}
+
+#divTitleHeaderMobile{
+    color: white;
+    padding-top: 10px;
+}
+
+#divTitleHeaderMobile h1{
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+#headerText span{
+    padding-top: 7px;
+    font-size: 14px;
+    color: white;
+    padding-bottom: 10px;
+}
+
+#headerBtnDiv{
+    padding-top: 30px;
+    width: 100%;
+}
+
+#headerBtnDiv input{
+    border-radius: 5px;
+    width: 160px;
+}
+
+
+/*--------search-----------*/
+.serchDiv{
+    width: 100%; 
+    padding: 0px 10px;
+    padding-top: 30px;
+    background-color: transparent;
+    position: relative;
+    margin: 0 auto;
+}
+
+.serchDiv input{
+    background-color:white;
+    height: 55px;
+    border: 1px solid white;
+    border-radius: 7px;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    color: #455A64;
+    padding-right: 40px;
+    outline: none;
+}
+
+.serchDiv i{
+    position: absolute;
+    top: 37px;
+    right: 15px;
+    color: #B0BEC5;
+}
+
+/*----start half header search------*/
+.halfHeaderDivSearch{
+    width: 100%; 
+    max-width: 550px;
+    padding: 0px;
+    padding-top: 20px;
+    background-color: transparent;
+    position: relative;
+}
+
+.halfHeaderDivSearch input{
+    background-color:white;
+    height: 75px;
+    border: 1px solid #ECEFF1;
+    border-radius: 7px;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    color: #455A64;
+    padding-right: 47px;
+    outline: none;
+    -webkit-box-shadow: 0px -2px 9px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px -2px 9px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px -2px 9px 0px rgba(0,0,0,0.2);
+}
+
+.halfHeaderDivSearch i{
+    position: absolute;
+    top: 37px;
+    right: 15px;
+    color: rgb(184, 226, 248);
+}
+
+.headerHalf_resultSerchBoxDiv{
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    width: 99.5%; 
+    padding: 0px; 
+    position: absolute; 
+    top: 86px; 
+    right: 1px; 
+    z-index: 100;
+    background-color: transparent;
+    overflow: hidden;
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
+    max-height: 300px;
+}
+
+/*---end half header search----*/
+
+.serchDivMobile{
+    width: 100%; 
+    padding: 0px 10px;
+    padding-top: 30px;
+    background-color: transparent;
+    position: relative;
+    margin: 0 auto;
+}
+
+.serchDivMobile input{
+    background-color:white;
+    height: 55px;
+    border: 1px solid white;
+    border-radius: 7px;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    color: #455A64;
+    padding-right: 40px;
+    outline: none;
+}
+
+.serchDivMobile i{
+    position: absolute;
+    top: 38px;
+    right: 15px;
+    color: #B0BEC5;
+}
+
+.resultSerchBoxDiv{
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    width: 100%; 
+    padding: 0px 10px; 
+    position: absolute; 
+    top: 75px; 
+    left: 0px; 
+    z-index: 0;
+}
+
+#resultSerchBoxUl{
+    background-color:white;
+    width: 100%; 
+    padding: 0px;
+    padding-bottom: 7px;
+    margin: 0px; 
+    padding-right: 7px; 
+    padding-left: 7px; 
+    max-height: 200px;
+    min-height: 0px;
+    overflow: auto;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.resultSerchBoxLi{
+    padding: 0px; 
+    margin: 0px; 
+    width: 100%;
+    display: block;
+    padding-top: 3px;
+}
+
+.resultSerchBoxLiDiv{
+    cursor: pointer; 
+    width: 100%;
+    background-color: #E1F5FE; 
+    font-size: 14px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+}
+
+.resultSerchBoxLiDiv:hover{
+    background-color: #0288D1; 
+    color: white;
+}
+
+
+.resultSerchBoxDivMobile{
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    width: 100%; 
+    padding: 0px 10px; 
+    position: absolute; 
+    top: 70px; 
+    left: 0px; 
+    z-index: 100; 
+    background-color: transparent;
+}
+
+#resultSerchBoxUlMobile{
+    background-color:white;
+    width: 100%; 
+    padding: 0px;
+    padding-bottom: 7px;
+    margin: 0px; 
+    padding-right: 7px; 
+    padding-left: 7px; 
+    max-height: 150px;
+    min-height: 0px;
+    overflow: auto;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+
+.resultSerchBoxLiDivMobile{
+    cursor: pointer; 
+    width: 100%;
+    background-color: #E1F5FE; 
+    font-size: 12px;
+    min-height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+}
+
+.resultSerchBoxLiDivMobile:hover{
+    background-color: #0288D1; 
+    color: white;
+}
+
+
+.slid0Show{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    transform: translateX(0px);
+    transition-duration: 1.5s;
+}
+
+.slid0Hide{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 4;
+    transform: translateX(-450px);
+    transition-duration: 1.5s;
+}
+
+.slid1Show{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    transform: translateX(0px);
+    transition-duration: 1.5s;
+}
+
+.slid1Hide{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 450px;
+    z-index: 3;
+    transform: translateX(-450px);
+    transition-duration: 1.5s;
+}
+
+.slid2Show{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    transform: translateX(0px);
+    transition-duration: 1.5s;
+}
+
+.slid2Hide{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 2;
+    transform: translateX(-450px);
+    transition-duration: 1.5s;
+}
+
+.slid3Show{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transform: translateX(0px);
+    transition-duration: 1.5s;
+}
+
+.slid3Hide{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 450px;
+    z-index: 1;
+    transform: translateX(-450px);
+    transition-duration: 1.5s;
+}
+
+.slid4Show{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transform: translateX(0px);
+    transition-duration: 1.5s;
+}
+
+.slid4Hide{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 450px;
+    z-index: 1;
+    transform: translateX(-450px);
+    transition-duration: 1.5s;
+}

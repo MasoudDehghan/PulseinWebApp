@@ -1,0 +1,115 @@
+#mainDiv{
+  box-sizing: border-box; 
+  padding: 0px;
+}
+
+.clear{
+  padding: 0;
+  margin: 0;
+}
+
+#divMainTile{
+  box-sizing: border-box; 
+  padding: 0px; 
+  padding-bottom: 10px;
+  margin: 0;
+  padding-bottom: 10px;
+  min-height: 350px;
+}
+
+.tile{
+  box-sizing: border-box;
+  margin: 0; 
+  padding: 4px;
+}
+
+.btnBorder{
+  border-radius: 4px;
+}
+
+.btnStyle{
+  border-radius: 15px; 
+  padding-top: 9px; 
+  outline: none; 
+  cursor: pointer; 
+  border: 1px solid #B0BEC5; 
+  background-color: #E1F5FE; 
+  color: #607D8B;
+}
+
+.btnStyle:hover{
+  border-radius: 15px; 
+  padding-top: 9px; 
+  outline: none; 
+  cursor: pointer; 
+  border: 1px solid #B0BEC5; 
+  background-color: #4FC3F7; 
+  color:white;
+}
+
+.mycontainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border-radius: 4px;
+  }
+  
+  .image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+  }
+
+.overlay{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    width: 100%;
+    height:0;
+    transition: .5s ease;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.mycontainer:hover .overlay{
+    bottom: 0;
+    height: 70%;
+}
+
+.textStyle {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.buton {
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    top: 60%;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+
+/*=======start slider style===========*/
+.divSlid{
+  width: 95%; 
+  margin: 0 auto; 
+  text-align: center; 
+  cursor: pointer;
+}
+
+.imgSlid{
+  border-radius: 7px;
+}

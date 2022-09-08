@@ -1,0 +1,487 @@
+<div [ngStyle]="{'min-height': shared.yWindow.value+'px'}" id="mainDiv">
+    <div style="position: absolute; top:10px; right: 10px; width: 45px; height: 45px; z-index: 1;">
+        <img src="assets/image/game/iqBaz/home.png" 
+        style="outline: none; cursor: pointer; height: 100%; width: 100%;"
+        [routerLink]="['/Home']">
+    </div>
+  <div class="row justify-content-md-center justify-content-lg-center justify-content-xl-center clear" style="height: 100%;">
+    <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-9 clear" id="divCenterBox">
+
+      <div *ngIf="shared.yWindow.value >= 620" style="width: 100%; text-align: center;">
+        <img src="assets/image/game/iqBaz/pcHeader.png" class="img-fluid" style="width: 100%;">
+      </div>
+
+      <div *ngIf="shared.yWindow.value < 620" style="width: 100%; text-align: center;">
+        <img src="assets/image/game/iqBaz/mobileHeader.png" class="img-fluid" style="width: 100%;">
+      </div>
+
+      <div class="row clear"  *ngIf="!isLoading"
+        style="padding: 10px; background-color: rgb(244,81,30, 0.7); border-radius: 15px; box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" 
+          style="text-align: center; padding-top: 5px; padding-bottom: 15px;">
+          <strong style="font-size: 40px; color: white">نتیجه مسابقه</strong>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 clear">
+          <!---->
+          <div style="width: 100%; padding-top: 35px;">
+              <span style="color: white; font-size: 14px; font-weight: bold;">{{descriptionGiftCodes}}</span>
+          </div>
+          <!---->
+          <!--start aparat--
+          <app-aparat></app-aparat>
+          <!--end aparat-->
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+          <!--start input phone number-->
+          <!--<div *ngIf="((step == 1 || step == 3) && !isLoading && isMinLoading) || isTimeOut" style="position: relative;">-->
+          <div *ngIf="((step == 1 || step == 3) && !isLoading) || isTimeOut" style="position: relative;">
+            <div style="text-align: center; font-size: 20px; color: white;">
+              <strong>ورود به صفحه نتایج</strong>
+              <!--
+              <div style="font-size: 14px;">
+                <span>ثبت نام و شرکت در مسابقه کاملاْ رایگان است.</span>
+              </div>
+              -->
+            </div>
+
+            <div class="whiteBox">
+  
+            <div style="width: 100%; text-align: center;">
+  
+            <form [formGroup]="phoneNumber" (ngSubmit)="onSubmitPhoneNumber()">
+            <div *ngIf="shared.xWindow.value >= 350 && step == 1" style="width: 100%; padding: 0; margin: 0; min-height: 50px;">
+              <div style="display: inline-block; height: 50px; width: 50px; overflow: hidden; padding-top: 2px;">
+                <button type="submit" class="btn btnLogin" [eventTracker]="{'category':googleAnalyticsSendMobile,'action':'click'}"
+                  [disabled]="!phoneNumber.valid || !isMobile"
+                  [ngStyle]="(phoneNumber.valid && isMobile) ? {backgroundColor:'#22B573', color: 'white'} : {backgroundColor:'#B0BEC5', color: '#78909C'}">
+                  <i class="fas fa-chevron-right fa-2x"></i>
+                </button>  
+              </div>
+              <div style="display: inline-block; width: 80%; min-width: 200px; max-width: 300px;  height: 50px; overflow: hidden;">
+                <input type="text" dir="ltr" (input)="onMobileInput($event.target.value)"
+                  [ngClass]="(phoneNumber.valid && isMobile) ? 'inputComplete' : 'inputUnComplete'"
+                  formControlName="mobileNumber" 
+                  placeholder="شماره موبایل"
+                  style="letter-spacing: 4px;" 
+                  maxlength="11">
+              </div>
+            </div>
+            </form>
+  
+            <form [formGroup]="phoneNumberlittlewindow" (ngSubmit)="onSubmitPhoneNumberLittleWindow()">
+            <div *ngIf="shared.xWindow.value < 350 && step == 1" style="width: 100%; padding: 10px;">
+              <div style="height: 60px; width: 100%; display: flex; align-items: center; justify-content: center;">
+                <input type="text" dir="ltr" (input)="onMobileInput($event.target.value)"
+                  [ngClass]="(phoneNumberlittlewindow.valid && isMobile) ? 'inputOnLittleWindowComplete' : 'inputOnLittleWindowUnComplete'"
+                  formControlName="mobileNumber" 
+                  placeholder="شماره موبایل" 
+                  class="inputStyleLittleMobile" 
+                  style="letter-spacing: 4px;" 
+                  maxlength="11">
+              </div>
+              <div style="height: 60px; width: 100%; display: flex; align-items: center; justify-content: center;">
+                <button type="submit" class="btn btnLogin" 
+                  [eventTracker]="{'category':googleAnalyticsSendMobile,'action':'click'}"
+                  [disabled]="!phoneNumberlittlewindow.valid || !isMobile"
+                  [ngStyle]="(phoneNumberlittlewindow.valid && isMobile) ? {backgroundColor:'#22B573', color: 'white'} : {backgroundColor:'#B0BEC5', color: '#78909C'}">
+                    <i class="fas fa-chevron-right fa-2x"></i>
+                </button> 
+              </div>
+            </div>
+            </form>  
+  
+            <form [formGroup]="loginFinal" (ngSubmit)="onSubmitLogin()">
+              <div *ngIf="shared.xWindow.value >= 350 && step == 3" style="width: 100%; padding: 5px 10px;">
+                <!----
+                <div style="display: inline-block; height: 60px; width: 55px; overflow: hidden; padding-top: 2px;">
+                  <button type="submit" class="btn btnLogin" 
+                    [disabled]="!loginFinal.valid"
+                    [ngStyle]="(loginFinal.valid) ? {backgroundColor:'#22B573', color: 'white'} : {backgroundColor:'#B0BEC5', color: '#78909C'}">
+                    <i class="fas fa-chevron-right fa-2x"></i>
+                  </button>  
+                </div>
+                <!---->
+                <div style="display: inline-block; width: 80%; min-width: 200px; max-width: 300px;  height: 60px; overflow: hidden;">
+                  <input type="text" dir="ltr" id="smsCode" (input)="inputSmsCode($event.target.value)"
+                    [ngClass]="(loginFinal.valid) ? 'inputComplete' : 'inputUnComplete'"
+                    formControlName="smsCode" 
+                    placeholder="-----"
+                    style="letter-spacing: 9px;" 
+                    maxlength="5">
+                </div>
+              </div>
+            </form>
+  
+            <form [formGroup]="loginFinalLittelWindow" (ngSubmit)="onSubmitLittleWindowLogin()">
+              <div *ngIf="shared.xWindow.value < 350 && step == 3" style="width: 100%; padding: 0px 10px;">
+                <div style="height: 50px; width: 100%; display: flex; align-items: center; justify-content: center;">
+                  <input type="text" dir="ltr" id="smsCode" (input)="inputSmsCodeLittleWindow($event.target.value)"
+                    [ngClass]="(loginFinalLittelWindow.valid) ? 'inputComplete' : 'inputUnComplete'"
+                    formControlName="smsCode" 
+                    placeholder="-----"
+                    style="letter-spacing: 9px;" 
+                    maxlength="5">
+                </div>
+                <!----
+                <div style="height: 50px; width: 100%; display: flex; align-items: center; justify-content: center;">
+                  <button type="submit" class="btn btnLogin" 
+                    [disabled]="!loginFinalLittelWindow.valid"
+                    [ngStyle]="(loginFinalLittelWindow.valid) ? {backgroundColor:'#22B573', color: 'white'} : {backgroundColor:'#B0BEC5', color: '#78909C'}">
+                    <i class="fas fa-chevron-right fa-2x"></i>
+                  </button>  
+                  
+                </div>
+                <!---->
+              </div>
+            </form>
+  
+            <div *ngIf="step == 3" style="padding-top: 20px; font-size: 16px; color: #546E7A; text-align: center; height: 60px; position: relative;">
+              <strong>{{timeCountMin+ ":"+timeCountSec}}</strong>
+              <div *ngIf="shared.xWindow.value > 350" [ngClass]="shared.xWindow.value >=350 ? 'timerDiv' : 'timerDivLittleWindow'">
+                <lottie-animation-view
+                  [options]="lottieConfig"
+                  [width]="70"
+                  [height]="70"
+                  (animCreated)="handleAnimation($event)">
+                </lottie-animation-view>
+              </div>
+            </div>
+          </div>
+  
+          </div>
+          </div> 
+          <!--end input phone number-->
+          <!--start inputs name , fammily and smsCode-->
+          <!--
+            <div *ngIf="(step == 2 && !isLoading && isMinLoading) && !isTimeOut" style="position: relative;">
+          -->
+          <div *ngIf="(step == 2 && !isLoading) && !isTimeOut" style="position: relative;">
+          <div [ngClass]="shared.xWindow.value >= 350 ? 'whiteBox' : 'witheBoxLittleWindow'">
+            <div style="width: 100%; text-align: center;">
+            <div class="divTitle">
+              <strong>ثبت اطلاعات کاربری و تأیید موبایل</strong>
+            </div>
+    
+            <form [formGroup]="userInfo" (ngSubmit)="onSubmitUserInfo()">
+              <div *ngIf="shared.xWindow.value >= 350" style="width: 100%; padding: 0px 10px;">
+                <!-- start Fname-->
+                <div style="padding: 0px; height: 55px;">
+                  <div class="divSignUPItem">
+                    <input type="text"
+                      [ngClass]="(userInfo.controls.fName.valid) ? 'inputComplete' : 'inputUnComplete'"
+                      formControlName="fName" 
+                      placeholder="نام خود را وارد کنید"
+                      maxlength="40">
+                  </div>
+                </div>
+                <!--end Fname-->
+                <!-- start Lname-->
+                <div style="padding: 0px; height: 55px;">
+                  <div class="divSignUPItem">
+                    <input type="text"
+                      [ngClass]="(userInfo.controls.lName.valid) ? 'inputComplete' : 'inputUnComplete'"
+                      formControlName="lName" 
+                      placeholder="نام خانوادگی خود را وارد کنید"
+                      maxlength="40">
+                  </div>
+                </div>
+                <!--end Lname-->
+                <!--start smsCode-->
+                <div style="padding: 0px; height: 55px;">
+                  <!----
+                  <div style="display: inline-block; height: 55px; width: 55px; overflow: hidden; padding-top: 2px;">
+                    <button type="submit" class="btn btnLogin" 
+                      [disabled]="!userInfo.valid"
+                      [ngStyle]="(userInfo.valid) ? {backgroundColor:'#22B573', color:'white'} : {backgroundColor:'#B0BEC5', color:'#78909C'}">
+                      <i class="fas fa-chevron-right fa-2x"></i>
+                    </button>  
+                  </div>
+                  <!---->
+                  <div class="divSignUPItem">
+                    <input type="text" dir="ltr" id="smsCode" (input)="inputSmsSignup($event.target.value)"
+                      [ngClass]="(userInfo.controls.smsCode.valid) ? 'inputComplete' : 'inputUnComplete'"
+                      formControlName="smsCode" 
+                      placeholder="-----"
+                      style="letter-spacing: 9px;" 
+                      maxlength="5">
+                  </div>
+                </div>
+                <!--end smsCode-->
+              </div>
+            </form>
+    
+            <form [formGroup]="userInfoLittlewindow" (ngSubmit)="onSubmitUserInfoLittleWindow()">
+              <div *ngIf="shared.xWindow.value < 350" style="width: 100%; padding: 0px 10px;">
+  
+                <!-- start Fname-->
+                <div class="divSignUpItemLittleWindow">
+                  <input type="text" class="NameSignUpLittleWindow"
+                    [ngClass]="(userInfoLittlewindow.controls.fName.valid) ? 'inputComplete' : 'inputUnComplete'"
+                    formControlName="fName" 
+                    placeholder="نام خود را وارد کنید"
+                    maxlength="40">
+                </div>
+                <!--end Fname-->
+                <!-- start Lname-->
+                <div class="divSignUpItemLittleWindow">
+                  <input type="text" class="NameSignUpLittleWindow"
+                    [ngClass]="(userInfoLittlewindow.controls.lName.valid) ? 'inputComplete' : 'inputUnComplete'"
+                    formControlName="lName" 
+                    placeholder="نام خانوادگی خود را وارد کنید"
+                    maxlength="40">
+                </div>
+                <!--end Lname-->
+  
+                <div class="divSignUpItemLittleWindow">
+                  <input type="text" dir="ltr" (input)="inputSmsSignupLittleWindow($event.target.value)"
+                    [ngClass]="(userInfoLittlewindow.controls.smsCode.valid) ? 'inputOnLittleWindowComplete' : 'inputOnLittleWindowUnComplete'"
+                    formControlName="smsCode" 
+                    placeholder="-----" 
+                    class="inputStyleLittleMobile" 
+                    style="letter-spacing: 6px;" 
+                    maxlength="5">
+                </div>
+                <!----
+                <div style="height: 55px; width: 100%; display: flex; align-items: center; justify-content: center;">
+                  <button type="submit" class="btn btnLogin" 
+                    [disabled]="!userInfoLittlewindow.valid"
+                    [ngStyle]="(userInfoLittlewindow.valid) ? {backgroundColor:'#22B573', color: 'white'} : {backgroundColor:'#B0BEC5', color: '#78909C'}">
+                      <i class="fas fa-chevron-right fa-2x"></i>
+                  </button> 
+                </div>
+                <!---->
+              </div>
+            </form>  
+  
+            <div style="padding-top: 20px; font-size: 16px; color: #546E7A; text-align: center; height: 60px; position: relative;">
+              <strong>{{timeCountMin+ ":"+timeCountSec}}</strong>
+              <div *ngIf="shared.xWindow.value > 350" [ngClass]="shared.xWindow.value >=350 ? 'timerDiv' : 'timerDivLittleWindow'">
+                <lottie-animation-view
+                  [options]="lottieConfig"
+                  [width]="70"
+                  [height]="70"
+                  (animCreated)="handleAnimation($event)">
+                </lottie-animation-view>
+              </div>
+            </div>
+            </div>
+          </div>
+          </div> 
+          <!--end inputs name , fammily and smsCode-->
+        </div>
+      </div>
+
+      <!--start gifts--
+      <div class="row clear">
+        <div class="col-md-4 col-lg-4 col-xl-4 d-none d-md-block">
+          <img src="assets/image/game/iqBaz/bomb.png" style="width: 150px; height: 150px;">
+        </div>
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+          <div style="text-align: center; margin: 0; padding: 0; position: relative; min-height: 150px; display: flex; align-items: flex-end; justify-content: center;">
+            <strong class="textTitr">برندگان جشنواره</strong>
+          </div>
+        </div>
+      </div>
+        <div class="row clear" style="width: 100%; max-width: 600px; margin: 0 auto;">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" style="padding: 10px 5px;">
+            <div style="text-align: center;">
+              <img src="assets/image/game/iqBaz/award/ps4.png" style="width: 80%; max-width: 200px;" class="img-fluid">
+            </div>
+            <div style="padding-top: 5px;">
+              <div class="giftBoxWhite">
+                <div style="text-align: center;">
+                  <img src="assets/image/game/iqBaz/prize.png" style="width: 100%; max-width: 200px; border-top-right-radius: 15px; border-top-left-radius: 15px;" class="img-fluid">
+                </div>
+                <div style="padding: 10px 5px; font-size: 14px;">
+                  <div style="padding-bottom: 5px; color: tomato; font-size: 14px; font-weight: bold;">
+                    <span>نفر اول</span>
+                  </div>
+                  <div style="padding-bottom: 5px;">
+                    <span style="padding-left: 5px;">نام:</span>
+                    <span style="font-size: 16px; font-weight: bold;">محمد جواد</span>
+                  </div>
+                  <div style="padding-bottom: 5px;">
+                    <span style="padding-left: 5px;">نام خانوادگی:</span>
+                    <span style="font-size: 16px; font-weight: bold;">صابری</span>
+                  </div>
+                  <div>
+                    <span style="padding-left: 5px;"> امتیاز:</span>
+                    <span style="font-size: 16px; font-weight: bold;">1200</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" style="padding: 10px 5px;">
+              <div style="text-align: center;">
+                <img src="assets/image/game/iqBaz/award/tv.png" style="width: 80%; max-width: 200px;" class="img-fluid">
+              </div>
+              <div style="padding-top: 5px;">
+                <div class="giftBoxWhite">
+                    <div style="text-align: center;">
+                      <img src="assets/image/game/iqBaz/prize.png" style="width: 100%; max-width: 200px; border-top-right-radius: 15px; border-top-left-radius: 15px;" class="img-fluid">
+                    </div>
+                    <div style="padding: 10px 5px; font-size: 14px;">
+                      <div style="padding-bottom: 5px; color: tomato; font-size: 14px; font-weight: bold;">
+                        <span>برنده قرعه کشی</span>
+                      </div>
+                      <div style="padding-bottom: 5px;">
+                        <span style="padding-left: 5px;">نام:</span>
+                        <span style="font-size: 16px; font-weight: bold;">محمد جواد</span>
+                      </div>
+                      <div style="padding-bottom: 5px;">
+                        <span style="padding-left: 5px;">نام خانوادگی:</span>
+                        <span style="font-size: 16px; font-weight: bold;">صابری</span>
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      <!--end gifts-->
+
+      <!--start points-->
+      <div class="row clear">
+        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+          <div style="text-align: center; margin: 0; padding: 0; min-height: 100px; display: flex; align-items: flex-end; justify-content: flex-end;">
+            <strong id="textPoints">امتیازات مسابقه</strong>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-4 col-xl-4 d-none d-md-block">
+          <img src="assets/image/game/iqBaz/1bomb.png" style="width: 100px; height: 100px;">
+        </div>
+      </div>
+      <div class="row clear justify-content-md-center">
+        <div *ngFor="let item of listPointsTxt" class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl-2 clear" style="padding: 10px 4px;">
+          <div style="text-align: center; font-size: 14px; font-weight: bold; color: white;">{{item.name}}</div>
+          <div class="gamePointsBoxWhite">
+            <span class="gamePoints">{{item.value}}</span>
+            <span>امتیاز</span>
+          </div>
+        </div>
+      </div>
+      <!--end points-->
+
+      <!--
+      <div style="width: 90%; padding: 15px 0px; border-bottom: 2px solid white; margin: 0 auto;">
+        <div id="btnAddOrder" [routerLink]="['/Home']">
+          <span>سفارش دهید و</span>
+          <span style="padding: 0px 6px; font-size: 24px; font-weight: bold;">۵۰</span>
+          <span>امتیاز بگیرید</span>
+        </div>
+      </div>
+      -->
+
+      <!--
+      <div style="padding: 10px 5px; width: 100%;">
+        <div class="row clear">
+          <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear" style="padding: 2px">
+            <div style="width: 100%; height: 70px; display: flex; align-items: center; justify-content: center;">
+              <img src="assets/image/game/iqBaz/logos/chilivery.png" style="width: 100%; max-width: 250px;">
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear" style="padding: 2px">
+            <div style="width: 100%; height: 70px; display: flex; align-items: center; justify-content: center;">
+              <img src="assets/image/game/iqBaz/logos/iranrenter.png" style="width: 100%; max-width: 250px;">
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear" style="padding: 2px">
+            <div style="width: 100%; height: 70px; display: flex; align-items: center; justify-content: center;">
+              <img src="assets/image/game/iqBaz/logos/tik8.png" style="width: 100%; max-width: 250px;">
+            </div>
+          </div>
+        </div>
+      </div>
+      -->
+
+      <!--start report--
+      <div *ngIf="showReport" style="width: 100%;">
+        <div style="text-align: center; width: 100%; padding: 15px 0px;">
+          <strong class="textTitr">جـدول نتایج</strong>
+        </div>
+        <div style="width: 100%; max-width: 800px; background-color: white; border-radius: 7px; max-height: 550px; overflow: auto; padding: 0px 10px; padding-top: 10px; padding-bottom: 5px; margin: 0 auto;">
+          <div style="height: 50px; width: 100%; overflow: hidden;">
+            <div style="float: right; width: 15%; height: 100%; display: flex; align-items: center; justify-content: center">
+              <span>رتبه</span>
+            </div>
+            <div style="float: right; width: 55%; height: 100%; display: flex; align-items: center; justify-content: center">
+              <span>نام کاربر</span>
+            </div>
+            <div style="float: right; width: 10%; height: 100%; display: flex; align-items: center; justify-content: center">
+            </div>
+            <div style="float: right; width: 20%; height: 100%; display: flex; align-items: center; justify-content: center">
+              <span>امتیاز</span>
+            </div>
+          </div>
+          <div style="padding-top: 5px;" *ngFor="let item of ranking">
+            <div style="height: 50px; width: 100%; overflow: hidden; border: 1px solid #CFD8DC;">
+              <div style="float: right; width: 15%; height: 100%; display: flex; align-items: center; justify-content: center">
+                <span class="text-truncate">{{item?.grade}}</span>
+              </div>
+              <div style="float: right; width: 55%; height: 100%; display: flex; align-items: center; justify-content: center">
+                <span class="text-truncate">{{item?.firstName + " " + item?.lastName}}</span>
+              </div>
+              <div style="float: right; width: 10%; height: 100%; display: flex; align-items: center; justify-content: center">
+                <img src="{{gradeIcon(item?.grade)}}" style="width: 30px; height: 30px;">
+              </div>
+              <div style="float: right; width: 20%; height: 100%; display: flex; align-items: center; justify-content: center">
+                <span class="text-truncate">{{item?.totalScore}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end report-->
+
+
+      <!--start rules-->
+      <div style="padding: 15px 10px; text-align: center;">
+        <div style="text-align: center; width: 100%; padding-bottom: 5px;">
+          <strong class="textTitr">قـوانیـن</strong>
+        </div>
+        <div id="divRules">
+          <div *ngFor="let rule of rulesList" style="padding: 0px 5px; padding-top: 3px;">
+            <div  class="text-justify" 
+              style="text-align: right; color: white; background-color: rgba(0, 0, 0, 0.5); border-radius: 7px; padding: 5px;">
+              <span style="padding-left: 5px;">
+                <i class="fas fa-circle"></i>
+              </span>
+              <span>{{rule.text}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end rules-->
+      
+      <!--start loading box-->
+      <!--
+        <div *ngIf="isLoading || !isMinLoading" style="position: relative">
+      -->
+      <div *ngIf="isLoading" style="position: relative">
+        <div class="whiteBox">
+          <div style="width: 100%; height: 100%; padding-top: 30px;">
+            <lottie-animation-view
+              [options]="lottieConfig"
+              [width]="200"
+              [height]="200"
+              (animCreated)="handleAnimation($event)">
+            </lottie-animation-view>
+          </div>
+        </div>
+      </div>
+      <!--end loading box-->
+
+      <!--start footer--
+      <div style="width: 100%; text-align: center;">
+        <img src="assets/image/game/iqBaz/omg.png" class="img-fluid" style="width: 100%;">
+      </div>
+      <!--end footer-->
+    </div>
+  </div>
+  <!----start footer---->
+  <app-footer-iqbaz></app-footer-iqbaz>
+  <!----end footer---->
+</div>

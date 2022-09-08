@@ -1,0 +1,35 @@
+<!--start modal invite freind-->
+<div (window:resize)="onResize($event)" [ngClass]="showModal ? 'mainDivModalShow' : 'mainDivModalHide'" 
+  [ngStyle]="{height:ySizeModalInvite, width:xSizeModalInvite}" 
+  style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+  <div (click)="onCloseModal()" class="modalCover"></div>
+    <div style="width: 100%; max-width: 400px; height: 100%; max-height: 500px; overflow: auto; background-color: white; border: 2px solid #FFFDE7; border-radius: 7px; padding: 7px; z-index: 10;">
+      <div (click)="onCloseModal()"
+        style="cursor: pointer; text-align: center; height: 25px; width: 25px; background-color: tomato; color: white; border-radius: 7px; padding-top: 2px;">
+        <span style="font-size: 16px; font-weight: bold">X</span>
+      </div>
+      <div style="padding-top: 10px; width: 100%; text-align: center; position: relative;">
+        <lottie-animation-view 
+          [options]="lottieConfig"
+          [width]="150"
+          [height]="150"
+          (animCreated)="handleAnimation($event)">
+        </lottie-animation-view>
+        
+        <div class="text-justify" style="padding: 5px; position: absolute; top: 160px;">
+          <div *ngFor="let txt of inviteLinkSplit; let lastTxt = last; let firstTxt = first">
+            <span *ngIf="!lastTxt" [ngStyle]="firstTxt ? {color:'#009688', 'font-weight':'bold', 'line-height':'35px'} : {color:'#607D8B', 'line-height':'30px'}">{{txt}}</span>
+            <span *ngIf="lastTxt" [ngStyle]="lastTxt ? {color:'#FF5722', 'font-weight':'bold', 'line-height':'35px'} : {color:'#607D8B', 'line-height':'30px'}">{{txt}}</span>
+            <span style="padding-right: 5px;">
+              <span *ngIf="lastTxt" (click)="onCopy()" class="copyBtn">
+                  <i class="fas fa-copy"></i>
+              </span>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+<!--end modal invite freind-->
+

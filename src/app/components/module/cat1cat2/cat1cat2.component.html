@@ -1,0 +1,67 @@
+<div [ngStyle]="{background: color}" id="mainDiv">
+
+    <!--------start fix background image-------->
+    <div id="jobcat1" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+         style.backgroundImage = "{{'url(' + path + serviceCat1?.image + ')'}}">
+         <div class="col-11 col-sm-11 col-md-10 col-lg-7 col-xl-5 whiteBox">
+           <div class="text-center">
+              <h1 class="h1Font text-truncate">{{cat1Name}}</h1>
+           </div>
+            <div class="text-right" id="jobCat1Description">
+                <h2 class="h2Font text-justify">{{description}}</h2>
+            </div>
+
+         </div>
+    </div>
+    <!--------end fix background image-------->
+
+  
+  <div id="jobCat2Div">
+      
+      <div class="row clear" 
+           *ngIf="!showMore; else blockAll">
+          <div *ngFor="let item of serviceCat1?.cat2CoList; index as i"
+               class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 boxJobCat2">
+              <div class="mycontainer" *ngIf="i < 3">
+                  <img [src]="path + item?.tumbnail" [alt]="item?.name" class="image">
+                  <div class="overlay1"></div>
+                  <div class="overlay2">
+                      <div class="text1 text-truncate">{{item?.name}}</div>
+                      <div class="text2 text-truncate">{{item?.topInfo}}</div>
+                      <div class="butonDiv">
+                          <input type="button" value="اطلاعات بیشتر"
+                          class="btn btn-success btnStyle" [routerLink]="['/', cat1Ename, item?.ename]">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+      <div *ngIf="leng > 3 && !showMore" style="width: 100%;" class="text-center">
+          <input type="button" value="مشاهده بیشتر" class="btn btn-info btnMore" (click)="onMore()">
+      </div>
+  
+      <ng-template #blockAll>
+          <div class="row clear">
+         <div *ngFor="let item of serviceCat1.cat2CoList; index as i"
+         class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 boxJobCat2">
+             <div class="mycontainer">
+                 <img [src]="path + item?.tumbnail" [alt]="item?.name" class="image">
+                 <div class="overlay1"></div>
+                 <div class="overlay2">
+                     <div class="text1 text-truncate">{{item?.name}}</div>
+                     <div class="text2 text-truncate">{{item?.topInfo}}</div>
+                     <div class="butonDiv">
+                         <input type="button" value="اطلاعات بیشتر"
+                         class="btn btn-success btnStyle" [routerLink]="['/', cat1Ename, item?.ename]">
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+    </ng-template>
+  
+  </div>
+
+</div>

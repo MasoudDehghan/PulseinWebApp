@@ -1,0 +1,97 @@
+.styleDivPadding{
+    width: 100%; 
+    padding-top: 10px;
+}
+
+.styleDivPaddingDropDown{
+    width: 100%; 
+    padding-top: 10px;
+    padding-right: 3px;
+    padding-left: 3px;
+}
+
+.customRadioButtonSelect{
+    display: inline-block; 
+    width: 15px; 
+    height: 15px; 
+    border-radius: 50%; 
+    background-color: black; 
+    border: 1px solid #B0BEC5;
+}
+
+.customRadioButtonUnselect{
+    display: inline-block; 
+    width: 15px; 
+    height: 15px; 
+    border-radius: 50%; 
+    background-color: white; 
+    border: 1px solid black;
+}
+
+.stylePaymentOnline{
+    background-color: #03A9F4; 
+    color: white; 
+    font-size: 14px; 
+    font-weight: bold; 
+    border-radius: 30px; 
+    width: 200px; 
+    height: 40px; 
+    padding-top: 10px; 
+    text-align: center; 
+    margin: 0 auto;
+}
+
+.stylePaymentCash{
+    background-color: #FF9800; 
+    color: white; 
+    font-size: 14px; 
+    font-weight: bold; 
+    border-radius: 30px; 
+    width: 200px; 
+    height: 40px; 
+    padding-top: 10px; 
+    text-align: center; 
+    margin: 0 auto;
+}
+
+.divStyleRowInfo{
+    padding-top: 5px; 
+    font-size: 14px;
+}
+
+.styleRowTitr{
+    color:#455A64; 
+    padding-left: 4px;
+}
+
+.styleRowValue{
+    color:#311B92; 
+    font-weight: bold;
+}
+
+.styleToman{
+    color:#311B92; 
+    font-weight: bold;
+    font-size: 12px;
+    padding-right: 4px;
+}
+
+.styleDivTimePeriod{
+    width: 100%; 
+    max-width: 700px; 
+    height: 50px; 
+    padding-top: 15px; 
+    background-color: white; 
+    text-align: center; 
+    border-radius: 10px; 
+    margin: 0 auto;
+}
+
+.styleDivTimePeriodDropDown{
+    width: 100%; 
+    height: 50px; 
+    background-color: white; 
+    text-align: center; 
+    border-radius: 7px; 
+    margin: 0 auto;
+}

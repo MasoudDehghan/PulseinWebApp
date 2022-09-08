@@ -1,0 +1,75 @@
+<!--start modal for userMenuModal-->
+<div (window:resize)="onResize($event)">
+  <div [ngClass]="showModal ? 'mainDivShow' : 'mainDivHide'">
+      <div class="boxModalShow" [ngClass]="showModal ? 'boxModalShow' : 'boxModalHide'"
+          [ngStyle]="{top: modalBoxPositionTop, left: modalBoxPositionLeft}">
+          
+          <div style="height: 40px; overflow: hidden; background-image: linear-gradient(to bottom right, #78b8e5, #1d8db5);">
+              <div style="float: right; width: 70%; padding-right: 10px; font-size: 14px; font-weight: bold; display: flex;
+              align-items: center; height: 100%; color: white;">
+                <span>جستجوی سرویس</span>
+              </div>
+              <div class="btnCloseShow" (click)="onCloseModal()">X</div>
+          </div>
+          
+          <div style="padding: 0px 10px; padding-top: 7px;">
+            <input type="text" 
+              id="inputTxtSerach"
+              placeholder="دنبال چه سرویسی می گردید؟"
+              (input)="onChange($event.target.value)">
+          </div>
+
+          <div *ngIf="!hasSearchValue">
+            <div class="titrInContent">
+              <span>سرویس های محبوب</span>
+            </div>
+            <div style="text-align: center; overflow: hidden;">
+              <div style="float: right; width: 50%; text-align: center; padding-bottom: 7px;" *ngFor="let item of topCategories">
+                <div (click)="onkeySearch(item, item?.ename, item?.id)" class="btnItemSearch">
+                  <div class="text-truncate" style="float: right; text-align: center; height: 100%; width: 180px; padding-top: 12px; font-size: 14px;">
+                    <span>{{item.name}}</span>
+                  </div>
+                  <div style="float: left; height: 100%; width: 40px;">
+                    <img src="{{imagePath + item.icon}}" style="height: 100%; width: 100%;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="hasSearchValue">
+            <div class="titrInContent">
+              <span>نتیجه جستجو</span>
+            </div>
+
+            <div *ngIf="listSearch.length > 0" style="text-align: center; overflow: hidden;">
+              <div style="float: right; width: 50%; text-align: center; padding-bottom: 7px;" *ngFor="let item of listSearchLimit">
+                <div (click)="onkeySearch(item, item?.ename, item?.id)" class="btnItemSearch">
+                  <div class="text-truncate" style="float: right; text-align: center; height: 100%; width: 180px; padding-top: 12px; font-size: 14px;">
+                    <span>{{item.name}}</span>
+                  </div>
+                  <div style="float: left; height: 100%; width: 40px;">
+                    <img src="{{imagePath + item.icon}}" style="height: 100%; width: 100%;">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="listSearch.length == 0" id="notFoundText">
+              <span>موردی یافت نشد</span>
+            </div>
+
+          </div>
+
+          <div *ngIf="listSearch.length > sizeInPage" style="position: absolute; bottom: 10px; width: 100%;">
+            <div (click)="onShowMoreRes()" style="text-align: center;">
+              <input type="button" class="btn btn-success" 
+              style="border-radius: 7px; padding-top: 9px; height: 40px; width: 200px;" 
+              value="مشاهده تمام نتایج">
+            </div>
+          </div>
+          
+      </div>
+  </div>
+</div>
+<!--end modal for userMenuModal-->

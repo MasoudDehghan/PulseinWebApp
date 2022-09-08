@@ -1,0 +1,39 @@
+<div id="mainDiv">
+        <div *ngFor="let item of jobCats1;" class="cat1Div"> 
+
+            <div class="boxJobcat1">
+                <img [src]="path + item?.icon" [alt]="item?.name"
+                    class="img-fluid imageSize" (click)="clickOnjobCat1(item?.ename)">
+
+                <div><h2 class="h2FontMenu text-truncate">{{item?.name}}</h2></div>
+            </div>
+
+            <div  class="mega"> 
+                <div *ngFor="let ite of item?.jobCat2List">
+                    <div class="cat2Div">
+                        <div class="cat2Padding" dir="ltr">
+                            
+                            <span class="ah4 text-truncate" (click)="onkeySearch(ite?.jobCat3List, ite?.ename, ite?.id)">
+                                {{ite?.name}}
+                            </span>
+                            <i class="fas fa-chevron-circle-left"></i>
+                        </div>
+                        <div *ngFor="let it of ite?.jobCat3List">
+                            <h6>
+                                <span class="ah6 text-truncate" (click)="onkeySearch(it?.jobCat3List, it?.ename, it?.id)">
+                                    {{it?.name}}
+                                </span>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+</div>
+            
+    
+    
+    
+    
+    

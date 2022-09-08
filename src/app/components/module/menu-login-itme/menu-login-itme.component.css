@@ -1,0 +1,95 @@
+.userInfoStyle{
+    height: 40px; 
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right; 
+    padding-right: 5px;
+}
+
+.paddingBoxBtnUserMenu{
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 4px;
+}
+
+.styleBtnUserMenu{  
+    color: black; 
+    height: 30px;
+    font-size: 16px; 
+    font-weight: bold; 
+    cursor: pointer;
+    overflow: hidden;
+}
+
+
+.styleBtnUserMenu:hover{
+    background-color: #B0BEC5;
+    color: white;
+}
+
+#styleBtnExit{
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    color: white; 
+    height: 40px;
+    font-size: 16px; 
+    font-weight: bold;
+    background-image: linear-gradient(to bottom right, #78b8e5, #1d8db5); 
+    width: 150px;
+    margin: 0 auto;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+#styleBtnExit:hover{
+    background-image: linear-gradient(to bottom right, #FFEB3B, #f4b011);
+    color: black;
+}
+
+.divCharNameForClick{
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    background-color: #1d8db5; 
+    color: white; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.spanUserName{
+    font-size: 16px; 
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.divimgUserForClick{
+    width: 50px; 
+    height: 50px;
+    margin: 0 auto;
+}
+
+.divInfoFloat{
+    float: right; 
+    width: 25%; 
+    min-height: 50px; 
+    padding-top: 10px;
+}
+
+.itemFLeft{
+    float: left; 
+    width: 75%; 
+    text-align: right; 
+    height: 100%; 
+    padding-top: 3px;
+}
+
+.itemFRight{
+    float: right; 
+    width: 25%; 
+    text-align: center; 
+    height: 100%; 
+    padding-top: 5px;
+}

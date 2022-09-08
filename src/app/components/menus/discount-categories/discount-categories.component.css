@@ -1,0 +1,34 @@
+#mainDiv{
+    box-sizing: border-box; 
+    padding: 0px;
+    padding-bottom: 15px;
+    padding-top: 20px;
+}
+
+
+/*=======start slider style===========*/
+.divSlid{
+  width: 95%; 
+  margin: 0 auto; 
+  text-align: center; 
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+}
+
+.imgSlid{
+  width: 100%;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.divTextSlid{
+  text-align: center; 
+  width: 100%; 
+  color: white;
+  font-size: 16px;
+  background-color: #2196F3; 
+  padding: 7px 0px;
+  border-bottom-right-radius:7px; 
+  border-bottom-left-radius: 7px;
+}

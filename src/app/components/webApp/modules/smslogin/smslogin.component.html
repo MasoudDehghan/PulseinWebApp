@@ -1,0 +1,174 @@
+
+<div [ngClass]="displayModalLogin ? 'visibleDivModal' : 'hideDivModal'">
+  
+  <div class="modalBoxContent" [ngStyle]="displayModal ? showModalStyle() : hideModalStyle()">
+    <!--start header modal-->
+    <div style="height: 50px; width: 100%; overflow: hidden; border-bottom: 1px solid #CFD8DC;">
+      <div style="float: right; width: 75%; height: 100%; text-align: right; padding-right: 10px; display: flex; align-items: center; font-weight: bold; color: #004D40;">
+        <span>ورود | ثبت نام</span>
+      </div>
+      <div style="float: left; width: 25%; height: 100%; direction: ltr">
+        <div (click)="onClose()" id="closeBtn">
+          <span>X</span>
+        </div>
+      </div>
+    </div>
+    <!--end header modal-->
+    <!--start body modal-->
+    <div style="min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;">
+        <div *ngIf="showStateGetMobile" style="padding: 3px;overflow: hidden;">
+          <div style="width: 100%; text-align: center; padding: 10px 0px;">
+            <img src="assets/image/logo.png" alt="لوگوی پالسین">
+          </div>
+          <form [formGroup]="loginFormStep1" (ngSubmit)="onSubmitStep1()">
+            <div style="padding-top: 4px; text-align: center; overflow: auto;">
+              <div style="float: right; padding-left: 4px; text-align: right; width: 40%; padding-top: 10px;">
+                <i class="fas fa-mobile-alt" style="padding: 0px 3px;"></i>
+                <span>شماره موبایل:</span>
+              </div>
+              <div style="float: left; text-align: right; width: 60%;">
+                <input type="tel" (input)="onMobileInput($event.target.value)"
+                  formControlName="userMobile" [maxlength]="constVal.maxMobile" (keyup)="onKeyupStep1($event)"
+                  class="inputText" dir="ltr" placeholder="09..." id="inputMobile" [value]="mobileNumber">
+              </div>
+            </div>
+            <div *ngIf="!isloginLoading" style="padding:0px; padding-top: 35px; text-align: center; ">
+              <input type="submit" value="ورود" class="btn btn-info btnStyle" [disabled]="!loginFormStep1.valid ||!isMobile">
+            </div>
+              
+            <div *ngIf="isloginLoading" 
+              style="position: relative; padding:0px; padding-top: 35px; text-align: center; overflow: hidden;">
+              <input [disabled] = "true" value="" type="submit" class="btn btn-info btnStyle">
+              <div style="position: absolute; top: 5px; text-align: center; width: 100%;">
+                <lottie-animation-view
+                  [options]="lottieConfig"
+                  [width]="100"
+                  [height]="60"
+                  (animCreated)="handleAnimation($event)">
+                </lottie-animation-view>
+              </div>
+            </div>
+                 
+          </form>
+        </div>
+      
+        <div *ngIf="showStateLoginSmsmCode">
+          <form [formGroup]="loginFormStep2" (ngSubmit)="onSubmitStep2()">
+            <div style="padding-top: 25px; padding-bottom: 10px; text-align: center; font-size: 14px;">
+              <div style="width: 100%; text-align: center; padding: 0px 5px;">
+                <span>پیامک دریافت شده را به منظور تأیید شماره موبایل، در کادر زیر وارد نمایید</span>
+              </div>
+              <div style="padding-top: 7px;">
+                <input dir="ltr" type="text" placeholder="-----" class="smsInputText" 
+                  (keyup)="onKeyupSignup($event)" [maxlength]="constVal.maxVerifySMS"
+                  (input)="onInputSms($event.target.value)" [value]="smsCode"
+                  formControlName="userloginSms" id="loginSmsCode">
+              </div>
+              <div *ngIf="isWrongSmsCode" style="padding: 5px; font-size: 14px; color: tomato;">
+                <span>{{txtErrorMsg}}</span>
+              </div>
+            </div>
+            <div *ngIf="!isTimeOut" style="padding: 7px 0px; font-size: 12px; color: #004D40; text-align: center;">
+              <strong>{{timeCountMin+ ":"+timeCountSec}}</strong>
+              <span style="padding: 0px 3px; color: #1A237E;">تا ارسال کد تأیید</span>
+            </div>
+            <div *ngIf="!isloginLoading && loginFormStep2.valid" 
+              style="text-align: center; padding: 0px 15px; padding-top: 25px;">
+              <input type="submit" 
+              [eventTracker]="{'category':googleAnalyticsCategory,'action':'click'}"
+              value="ارسال کد تأیید" 
+              class="btn btn-info btnStyleSmsSend" 
+              [disabled]="!loginFormStep2.valid">
+            </div>
+            
+            
+            <div style="position: relative; padding-top: 25px; text-align: center;" *ngIf="isloginLoading">
+              <input [disabled] = "true" value="" type="submit" class="btn btn-info btnStyleSmsSend">
+              <div style="position: absolute; top: 5px; text-align: center; width: 100%;">
+                <lottie-animation-view
+                  [options]="lottieConfig"
+                  [width]="100"
+                  [height]="60"
+                  (animCreated)="handleAnimation($event)">
+                </lottie-animation-view>
+              </div>
+            </div>
+            
+            <div *ngIf="isTimeOut && smsCode.length == 0">
+              <div style="padding: 0px 15px; padding-top: 20px; text-align: center;">
+                <input type="button" class="btn btn-info btnStyle" 
+                  value="تغییر شماره موبایل" (click)="onNewMobile()">
+              </div>
+              <div style="padding: 0px 15px; padding-top: 15px; text-align: center;">
+                <input type="button" class="btn btn-info btnStyle" 
+                  value="دریافت کد تأیید جدید" (click)="onLoginStep1()">
+              </div>
+            </div>
+            
+          </form>
+        </div>
+      
+        <div *ngIf="showSignupState" style="width: 100%; padding: 10px;">
+          <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignup()">
+            <div style="padding-top: 10px; text-align: center; width: 100%;">
+              <input type="text" placeholder="نام" class="inputText" 
+                (keyup)="onKeyupSignup($event)" [maxlength]="constVal.maxFirstName"
+                (input)="onInputFirstName($event.target.value)" [value]="firstName"
+                formControlName="userFirstName" id="firstNameInput">
+            </div>
+            <div style="padding-top: 10px; text-align: center; width: 100%;">
+              <input type="text" placeholder="نام خانوادگی" class="inputText" 
+                (keyup)="onKeyupSignup($event)" [maxlength]="constVal.maxLastName"
+                (input)="onInputlastName($event.target.value)" [value]="lastName"
+                formControlName="userLastName" id="lastNameInput">
+            </div>
+            <div style="padding-top: 10px; text-align: center; width: 100%;">
+              <input type="text" placeholder="پیامک تأیید شماره موبایل" class="inputText" 
+                (keyup)="onKeyupSignup($event)" [maxlength]="constVal.maxVerifySMS"
+                (input)="onInputSms($event.target.value)" [value]="smsCode"
+                formControlName="userSms" id="smsCode">
+            </div>
+            <div *ngIf="!isTimeOut" style="padding: 7px 0px; font-size: 12px; color: #004D40; text-align: center;">
+              <strong>{{timeCountMin+ ":"+timeCountSec}}</strong>
+              <span style="padding: 0px 3px; color: #1A237E;">تا ارسال کد تأیید</span>
+            </div>
+            <div *ngIf="!isloginLoading" style="padding-top: 10px; text-align: center; width: 100%;">
+              <input type="submit" value="ثبت نام" class="btn btn-info btnStyle" [disabled]="!signupForm.valid">
+            </div>
+      
+            <div style="position: relative; padding-top: 10px; text-align: center;" *ngIf="isloginLoading">
+              <input [disabled] = "true" value="" type="submit" class="btn btn-info btnStyle">
+              <div style="position: absolute; top: 5px; text-align: center; width: 100%;">
+                <lottie-animation-view
+                  [options]="lottieConfig"
+                  [width]="100"
+                  [height]="60"
+                  (animCreated)="handleAnimation($event)">
+                </lottie-animation-view>
+              </div>
+            </div>
+
+            <div *ngIf="isTimeOut && smsCode.length == 0">
+              <div style="overflow: hidden; width: 100%; padding: 10px 0px;">
+                  <div style="float: right; width: 50%; padding: 0px; padding-left: 5px; text-align: center;">
+                      <input type="button" class="btn btn-info btnStyle" 
+                      value="تغییر شماره موبایل" (click)="onNewMobile()">
+                  </div>
+                  <div style="float: left; width: 50%; padding: 0px; padding-right: 5px; text-align: center;">
+                      <input type="button" class="btn btn-info btnStyle" 
+                      value="دریافت کد تأیید جدید" (click)="onLoginStep1()">
+                  </div>
+              </div>
+            </div>
+       
+          </form>
+        </div>
+      
+        <div *ngIf="isLoginOk" style="text-align: center; padding: 5px;">
+          <img src="assets/webappPics/login.gif">
+        </div>
+      
+      </div>
+    <!--end body modal-->
+  </div>
+</div>

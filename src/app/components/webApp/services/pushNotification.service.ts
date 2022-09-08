@@ -1,0 +1,95 @@
+
+import { Injectable, Inject, PLATFORM_ID} from '@angular/core';
+import { Observable} from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
+
+@Injectable({
+    providedIn: 'root'
+})
+
+export class PushNotificationsService {
+    public permission: Permission;
+    public requestPermissionStatus:string = '';
+    constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+        this.permission = this.isSupported() ? 'default' : 'denied';
+        this.requestPermissionStatus = 'default';
+    }
+    public isSupported(): boolean {
+        if (isPlatformBrowser(this.platformId)){
+            return 'Notification' in window;
+        }
+    }
+    requestPermission(): void {
+        let self = this;
+        if (isPlatformBrowser(this.platformId)){
+            if ('Notification' in window) {
+                Notification.requestPermission(function(status) {                
+                    self.requestPermissionStatus = status;
+                    return self.permission = status;
+                });
+            }
+        }
+    }
+    create(title: string, options ? : PushNotification): any {
+        let self = this;
+        if (isPlatformBrowser(this.platformId)){
+            return new Observable(function(obs) {
+                if (!('Notification' in window)) {
+                    obs.complete();
+                }
+                if (self.permission !== 'granted') {
+                    obs.complete();
+                }
+                let _notify = new Notification(title, options);
+                _notify.onshow = function(e) {
+                    return obs.next({
+                        notification: _notify,
+                        event: e
+                    });
+                };
+                _notify.onclick = function(e) {
+                    return obs.next({
+                        notification: _notify,
+                        event: e
+                    });
+                };
+                _notify.onerror = function(e) {
+                    self.requestPermissionStatus = 'default';
+                    return obs.error({
+                        notification: _notify,
+                        event: e
+                    });
+                };
+                _notify.onclose = function() {
+                    return obs.complete();
+                };
+            });     
+        }
+    }
+    generateNotification(source: Array < any > ): void {
+        let self = this;
+        source.forEach((item) => {
+            let options = {
+                body: item.alertContent,
+                icon: "../../assets/webappPics/lowLogo.png"
+
+            };
+            let notify = self.create(item.title, options).subscribe();
+        })
+    }
+}
+export declare type Permission = 'denied' | 'granted' | 'default';
+export interface PushNotification {
+    body ? : string;
+    icon ? : string;
+    tag ? : string;
+    data ? : any;
+    renotify ? : boolean;
+    silent ? : boolean;
+    sound ? : string;
+    noscreen ? : boolean;
+    sticky ? : boolean;
+    dir ? : 'auto' | 'ltr' | 'rtl';
+    lang ? : string;
+    vibrate ? : number[];
+}

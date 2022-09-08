@@ -1,0 +1,78 @@
+.mainDivFooter4PC{
+    box-sizing: border-box;
+    color: #607D8B;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    padding-top: 10px;
+}
+
+.mainDivFooter4Mobile{
+    box-sizing: border-box; 
+    color: #607D8B;
+    padding: 0;
+    margin: 0; 
+    background-color: transparent;
+    padding-top: 10px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+ul li{
+    display: inline-block; 
+}
+
+#divTextOwner{
+    padding-right: 30px;
+    padding-top: 7px;
+}
+
+.fontSmall{
+    font-size: 12px;
+}
+
+#tell{
+    color: #FF9800;
+    padding-right: 4px;
+}
+
+#divCountactUs{
+    padding-left: 30px;
+    padding-top: 7px;
+}
+
+#liMobile{
+    width: auto;
+    text-align: left;
+}
+
+.liSocial{
+    box-sizing: border-box;
+    width: auto;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.seprateLi{
+    box-sizing: border-box;
+    padding-right: 5px;
+    padding-left: 10px;
+}
+
+.txtLink:hover{
+    color: #FFF59D;
+}
+
+.socialIcon{
+    cursor: pointer;
+}
+
+.socialIcon:hover{
+    color: tomato;
+}
+
+.socialLink{
+    color: #607D8B;
+}

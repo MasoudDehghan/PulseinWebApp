@@ -1,0 +1,41 @@
+<!------Start mainDivFooter------>
+<div [ngClass]="xWindow > 620 ? 'mainDivFooter4PC' : 'mainDivFooter4Mobile'" 
+    (window:resize)="onResize($event)">
+    
+    <!--Start mainDiv for PC-->
+    <div class="col-md-12 col-lg-12 col-xl-12 clear d-none d-md-block" style="padding-top: 10px; min-height: 40px; height: 100%; background-color: white;">
+    <div class="row clear">
+        <div class="col-md-6 col-lg-8 col-xl-8 clear" id="divTextOwner">
+            <p class="fontSmall">{{txtOwnr}}</p>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-4 clear text-left" id="divCountactUs">
+            <ul>
+                <li class="liSocial">
+                    <a [href]="telegram" target="_blank" class="socialLink">
+                        <i class="fab fa-telegram-plane socialIcon"></i>
+                    </a>
+                </li>
+                <li class="liSocial">
+                    <a [href]="instagram" target="_blank" class="socialLink">
+                        <i class="fab fa-instagram socialIcon"></i>
+                    </a>
+                </li>
+                <li class="seprateLi">|</li>
+                <li id="liMobile"><span class="fontSmall">{{txtTel}}<span id="tell">{{telNumber}}</span></span></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+    <!--End mainDiv for PC-->
+
+    <!--Start mainDiv for mobile-->
+    <div class="row clear d-block d-md-none d-lg-none d-xl-none" 
+        style="padding-top: 10px; min-height: 40px; height: 100%; background-color: white;">
+        <div class="col-12 col-sm-12 clear text-center">
+            <p class="fontSmall">{{txtOwnr}}</p>
+        </div>
+    </div>
+    <!--End mainDiv for mobile-->
+
+</div>
+<!------End mainDivFooter------>

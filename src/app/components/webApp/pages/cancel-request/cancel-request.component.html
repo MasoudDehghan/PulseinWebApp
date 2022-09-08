@@ -1,0 +1,96 @@
+<div *ngIf="isLoading">
+  <app-loading-fullpage-latti></app-loading-fullpage-latti>
+</div>
+
+<div [ngStyle]="shared.noScroll.value ? {height:shared.yWindow.value+'px', overflow: 'hidden'} : {height:'auto', overflow: 'auto'}">
+    <div *ngIf="shared.xWindow.value >= 620">
+        <globalHeader></globalHeader>
+      </div>
+      <div *ngIf="shared.xWindow.value < 620">
+        <app-drawer-menu></app-drawer-menu>
+      </div>
+      
+      <div *ngIf="!isLoading" style="display: flex; align-items: center; justify-content: center;"
+        [ngClass]="shared.xWindow.value > 620 ? 'contentPadding' : 'contentNoPadding'" 
+        [ngStyle]="shared.xWindow.value > 620 ? {'min-height':shared.yWindow.value-120+'px'} : {'min-height':shared.yWindow.value-120+'px'}" >
+      
+        <div style="min-height: 400px; width: 100%; max-width: 900px; padding: 15px 7px;">
+          <div style="font-size: 14px; padding-bottom: 3px; border-bottom: 1px solid white;">
+            <strong>لغو درخواست</strong>
+          </div>
+          <div style="padding-top: 10px; padding-bottom: 5px; font-size: 14px;">
+            <span>درصورت تأیید شما، درخواست زیر لغو خواهد شد.</span>
+          </div>
+          <div style="padding-bottom: 3px; border-bottom: 1px solid white; font-size: 14px; color: #607D8B;">
+            <div>
+              <span>{{"سرویس "}}</span>
+              <strong style="padding: 0px 4px; color: #455A64;">{{jobcat3Name}}</strong>
+              <span style="padding-right: 5px;">
+                <img [src]="jobcat3Img" style="width: 55px; height: 55px;">
+              </span>
+            </div>
+            <div style="padding: 10px 0px;">
+              <span>عنوان درخواست:</span>
+              <strong style="padding: 0px 4px; color: #455A64;">{{reqTitle}}</strong>
+            </div>
+            <div style="padding-bottom: 5px;">
+              <span>کد درخواست:</span>
+              <strong style="padding: 0px 4px; color: #455A64;">{{reqCode}}</strong>
+            </div>
+          </div>
+          <div style="padding-top: 15px;">
+            <div style="font-size: 14px;">
+              <span>درصورت اطمینان از لغو درخواست، لطفا دلایل خود را انتخاب کنید.</span>
+            </div>
+      
+            <div *ngIf="listCancelCause.length > 0" class="row clear">
+              <div *ngFor="let item of listCancelCause; index as i" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 clear">
+                <div style="padding: 5px; padding-bottom: 0px; padding-left: 0px;">
+                  <div (click)="onCause(item, i)" 
+                  style="cursor: pointer; width: 100%; font-size: 14px; height: 60px; overflow: hidden; border-radius: 7px; border: 1px solid #CFD8DC; background-color: white;">
+                    <div style="float: right; height: 100%; width: 10%; max-width: 30px; display: flex; align-items: center; justify-content: center;">
+                      <input type="checkbox" [checked]="listIdCancelCause[i] == item.id" style="width: 20px; height: 20px;">
+                    </div>
+                    <div style="float: right; height: 100%; width: 90%; display: flex; align-items: center;">
+                      <span>{{item.name}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear" 
+              style="padding: 7px 0px; padding-right: 5px;">
+              <textarea placeholder="توضیح بیشتر ..." maxlength="700" [(ngModel)] ="description"
+                style="width: 100%; height: 90px; border-radius: 7px; border: 1px solid #CFD8DC; padding: 7px; font-size: 12px;"></textarea>
+            </div>
+          </div>
+      
+          <div *ngIf="showTextNoSelectCheckBox" style="padding: 10px; width: 100%;">
+            <div style="padding: 10px; text-align: center; width: 100%; max-width: 500px; margin: 0 auto; border-radius: 7px; background-color: pink; border: 1px solid palevioletred; color: white; font-size: 14px">
+              <span>{{textNoSelectCheckBox}}</span>
+            </div>
+          </div>
+      
+          <div style="overflow: hidden; height: 60px; width: 100%;">
+            <div style="padding: 0px 5px; float: left; width: 50%; text-align: left;">
+              <input type="button" (click)="onCancelRequest()" [disabled]="showTextNoSelectCheckBox"
+                style="width: 120px; height: 40px; border: 1px solid #F50057; background-color: #FF4081; color: white; border-radius: 7px; cursor: pointer;" 
+                value="لغو درخواست">
+            </div>
+            <div style="padding: 0px 5px; float: right; width: 50%; text-align: right; padding-top: 10px;">
+              <span [routerLink]="[address_currentRequest]" 
+                style="padding: 0px 5px; font-size: 14px; color:green; cursor: pointer; border-bottom: 2px solid green;">
+                لغو نشود
+              </span>
+            </div>
+          </div>
+      
+        </div>
+      
+      </div>
+      
+      <div>
+        <webapp-footer></webapp-footer>
+      </div>
+</div>

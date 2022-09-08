@@ -1,0 +1,29 @@
+<div *ngIf="shared.showDiscountModal.value" 
+    [ngStyle]="{height: shared.yWindow.value+'px', width: shared.xWindow.value+'px'}" 
+    class="divLoadingPage">
+
+    <div id="divWhiteBox">
+        <div id="divClose">
+            <img src="assets/webappPics/x-button.png" alt="close" (click)="closeModal()" id="imgClose">
+        </div>
+        <div id="imgIcon">
+            <img src="{{imgPath + imgDiscount}}" style="width: 100%; max-width: 300px; border-radius: 7px;" class="img-fluid">
+        </div>
+        <div class="textDiv">
+            <span id="textTitr">{{"سرویس ویژه " + jobcat3FarsiName}}</span>
+            <div>
+                <span>{{"کد تخفیف: " + discountCode}}</span>
+            </div>
+            <div>
+                <span>{{txtDiscount}}</span>
+            </div>
+        </div>
+        <div class="textDiv">
+            <span id="subText">برای شروع مراحل ثبت درخواست کلیک کنید</span>
+        </div>
+        <div class="textDiv">
+            <input type="button" class="btn" value="شروع ثبت درخواست" id="btnStartRequest" (click)="onStartRequest()">
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,166 @@
+<div style="background-color: rgba(33,150,243, 0.1); color: black;">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+        <!--
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 clear" style="text-align: center; font-size: 12px; padding: 15px 0px;">
+            <span style="padding: 0px 7px;">{{txtOwnr}}</span>
+        </div>
+        -->
+        <div style="width: 100%; height: 15px;"></div>
+        <div class="row clear">
+            <!--start text description and about--
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 clear">
+                <div class="text-justify" style="padding: 0px 7px; padding-bottom: 15px; text-align: center;">
+                    <span style="font-size: 12px; font-weight: bold; line-height: 20px;">{{txtSeo1}}</span>
+                    <span *ngFor="let item of seoLinkList, last as lastIndex">
+                        <span [routerLink]="[item.link]" style="font-weight: bold; padding: 0px 3px; font-size: 14px; cursor: pointer;">{{item.text}}</span>
+                        <span *ngIf="!lastIndex">{{' ، '}}</span>
+                    </span>
+                    <span style="font-size: 12px; font-weight: bold; line-height: 20px;">{{txtSeo2}}</span>
+                </div>
+            </div>
+            <!--end text description and about-->
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 clear">
+                <div style="padding: 0px 7px; padding-bottom: 15px; text-align: center;">
+                    <div style="font-size: 12px; text-align: center; padding: 10px; padding-top: 0px; width: 100%;">
+                        <strong>پالسین را در شبکه های اجتماعی دنبال کنید</strong>
+                    </div>
+                    <div class="row clear" 
+                        style="width: 100%; display: flex; justify-content: center;">
+                        <span *ngFor="let itemSocial of socialList;">
+                            <span style="padding: 15px 7px;">
+                                <a [href]="itemSocial.link" target="_blank">
+                                    <img [src]="itemSocial.icon" class="socialIcon">
+                                </a>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 clear">
+                <div style="padding: 0px 7px; text-align: right;">
+                    <span style="font-size: 14px; font-weight: bold; padding-left: 7px;">آدرس شرکت:</span>
+                    <span style="font-size: 14px;">{{addressPulsein}}</span>
+                </div>
+
+
+                <div style="padding: 0px 7px; text-align: right;">
+                    <span style="font-size: 14px; font-weight: bold; padding-left: 7px;">تماس با پشتیبانی:</span>
+                    <span style="font-size: 14px;">{{textCallOperators}}</span>
+                    <div style="width: 100%; text-align: center; font-size: 14px;">
+                        <span>{{telNumber1}}</span>
+                        <div><span>{{mobileNumber1}}</span></div>
+                    </div>
+                </div>
+
+<!--
+                <div class="row clear">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 clear" style="text-align: center;">
+                        <span style="font-size: 14px; font-weight: bold; padding-left: 7px;">تماس با پشتیبانی:</span>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 clear">
+                        <div style="width: 100%; text-align: center;">
+                            <span style="font-size: 14px;">{{telNumber1 + "  -  " + mobileNumber1}}</span>
+                        </div>
+                    </div>
+                </div>
+-->
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 clear">
+                <div style="padding: 0px 7px; padding-bottom: 15px; width: 100%; text-align: center;">
+                    <div style="width: 80px; height: 80px; display: inline-block; padding: 5px; background-color: transparent;">
+                        <a href="https://pub.daneshbonyan.ir" target="_blank">
+                            <img src="assets/image/daneshBonyan.png" alt="دانش بنیان" style="width: 100%; height: 100%; cursor: pointer;">
+                        </a>
+                    </div>
+                    <div style="width: 80px; height: 80px; display: inline-block; padding: 5px; background-color: transparent;">
+                        <img src="assets/image/logoSenfyJob.png" 
+                            alt="سازمان صنفی کارفرمایی و فروشگاهی اینترنتی تهران" 
+                            style="width: 100%; height: 100%;">
+                    </div>
+                    <div style="width: 80px; height: 80px; display: inline-block; padding: 5px; background-color: transparent;">
+                        <a href="#">
+                            <img src="assets/image/logoSenfyIT.png" 
+                                alt="سازمان نظام صنفی رایانه‌ای کشور" 
+                                style="width: 100%; height: 100%; cursor: pointer;">
+                        </a>
+                    </div>
+                    <div style="width: 80px; height: 80px; text-align: center; display: inline-block; padding: 5px; background-color: transparent;">
+                        <img id = 'jxlzwlaowlaooeukfukzjzpe' 
+                            style = 'cursor:pointer; width: 100%; height: 100%;' 
+                            onclick = 'window.open("https://logo.samandehi.ir/Verify.aspx?id=144867&p=rfthaodsaodsmcsigvkajyoe", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' 
+                            alt = 'logo-samandehi' 
+                            src = 'https://logo.samandehi.ir/logo.aspx?id=144867&p=nbpdshwlshwlaqgwwlbqyndt' />
+                    </div>
+                    <div style="width: 80px; height: 80px; display: inline-block; padding: 5px; background-color: transparent;">
+                        <img id="S3NRit95SOa0XMIV"
+                             style = 'cursor:pointer; width: 100%; height: 100%;' 
+                             src="https://trustseal.enamad.ir/logo.aspx?id=118582&p=S3NRit95SOa0XMIV"
+                             alt='logo-enamd'
+                             onclick='window.open("https://trustseal.enamad.ir/Verify.aspx?id=118582&p=S3NRit95SOa0XMIV", "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")' >
+                    </div>
+                    <div style="width: 80px; height: 80px; display: inline-block; padding: 5px; background-color: transparent;">
+                        <img src="assets/image/logoEtehadyeKar.png" 
+                            alt="اتحادیه کسب و کار" 
+                            onclick="window.open('https://ecunion.ir/verify/pulsein.app?token=27879775f6f39b009476', 'Popup','toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30')" 
+                            style="cursor:pointer; width: 100%; height: 100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!--start socials icons--
+    <div style="padding: 10px;">
+        <div style="font-size: 12px; text-align: center; padding: 10px; border-top: 1px solid white; width: 100%; max-width: 500px; margin: 0 auto;">
+            <strong>پالسین را در شبکه های اجتماعی دنبال کنید</strong>
+        </div>
+        <div class="row clear" style="width: 100%; max-width: 500px; margin: 0 auto; display: flex; justify-content: center;">
+            <span *ngFor="let itemSocial of socialList;">
+                <span style="padding: 15px 7px;">
+                    <a [href]="itemSocial.link" target="_blank">
+                        <img [src]="itemSocial.icon" class="socialIcon">
+                    </a>
+                </span>
+            </span>
+        </div>
+    </div>
+<!--end socials icons-->
+
+    
+    <div class="container-fluid mainDiv">
+            <div class="row clear">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 text-center">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 titr">{{txtPulsinName}}</div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 txtLink linkFooterLayer3" 
+                         *ngFor="let item of links1">
+                        <div *ngIf="item.title != 'وبلاگ'" [routerLink]="['/' , item.route]">{{item.title}}</div>
+                        <div *ngIf="item.title == 'وبلاگ'" (click)="goToBlog()">{{item.title}}</div>
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 text-center">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 titr">{{contactUs}}</div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 txtLink"
+                         *ngFor="let item of links2" [routerLink]="['/' , item.route]">{{item.title}}</div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 text-center">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 titr">{{moreKnow}}</div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 txtLink" 
+                         *ngFor="let item of links3" [routerLink]="['/' , item.route]">{{item.title}}</div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 text-center">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 titr">{{entertaiment}}</div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 txtLink" 
+                        *ngFor="let item of links4" [routerLink]="[item.route]">{{item.title}}</div>
+                </div>
+            </div>
+    </div>
+
+    <div style="width: 100%; text-align: center; font-size: 12px; padding: 15px">
+        <span>{{txtOwnr}}</span>
+    </div>
+
+</div>
+    
+    

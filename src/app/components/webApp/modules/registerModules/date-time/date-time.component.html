@@ -1,0 +1,211 @@
+<div *ngIf="isLoading">
+  <app-loading-fullpage-latti></app-loading-fullpage-latti>
+</div>
+
+<!----Start Time pc---->
+<div class="col-lg-12 col-xl-12 d-none d-lg-block clear">
+  <div class="row clear justify-content-md-center justify-content-lg-center justify-content-xl-center" 
+    style="padding-bottom: 7px;">
+      
+    <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 clear whiteBoxStyle" style="min-height: 450px;">
+
+      <div style="padding-bottom: 7px;">
+        <div id="divJobcat3InfoStyle">
+          <img [src]="jobcat3Icon" 
+            [alt]="jobcat3Name" style="width: 50px; height: 50px;">
+          <span class="jobCat3StaticTerm">سرویس</span>
+          <span id="jobCat3Title">{{" " + jobcat3Name + " "}}</span>
+          <span class="jobCat3StaticTerm">پالسین</span>
+        </div>
+      </div>
+
+      <!--start emergency-->
+      <div id="divEmergancy" *ngIf="emergencyEnable">
+        <div style="height: 55px; padding-top: 5px;">
+          <div style="overflow: auto; height: 45px; padding-top: 4px; background-color: #78909C; width: 300px; margin: 0 auto; border-radius: 20px;">
+            <div style="float: left; width: 35%; text-align: right; padding-right: 5px; padding-top: 5px;">
+              <input type="checkbox" style="width: 25px; height: 25px;" 
+              (click)="onEmergency()" [checked]="shared.reqRej_emergancy">
+            </div>
+            <div style="float: right; width: 65%; text-align: left">
+              <div id="emergancyQuestion">{{emergancyQuestion}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="divEmergancyAnswer" *ngIf="shared.reqRej_emergancy">
+          <p>{{emergancyAnswer}}</p>
+        </div>   
+      </div>
+      <!--end emergency-->
+
+      <!--start No emergency-->
+      <div *ngIf="!shared.reqRej_emergancy" class="row clear justify-content-center datePlaceMainDiv">
+        <div *ngFor="let date of shared.dateList; index as i" class="divPaddingDate">
+          <div (click)="onSelectDate(i)" [ngClass]="date.disable ? 'divDateDisable' : 'divDate'">
+            <p>{{date.dayInWeak}}</p>
+            <p>{{date.dayInMonth}}</p>
+            <p>{{date.monthName}}</p>
+            <div class="divTikDate" *ngIf="date.isSelected">
+               <img src="assets/webappPics/tik.png" alt="tik image" class="imgTikStyle">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!shared.reqRej_emergancy" id="timeLineDiv">
+        <div class="timeLineStyle">
+          <div style="width: 100%; text-align: center; background-color: white; height: 25px;">
+            <span class="timeTitr">{{timeLineTitr}}</span>
+          </div>
+          <div class="row clear">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" 
+              style="padding: 3px;" *ngFor="let itemTime of shared.listTimesPeriodBox; index as i"> 
+              <div style="width: 100%; text-align: center; padding: 2px 5px;" *ngIf="shared.selectedIndexOfDateList == 0">
+                <div (click)="itemTime.activeToday ? onPeriodTimeBox(itemTime.id) : noPeriodTimeBox()" 
+                  [ngClass]="itemTime.activeToday ? 'activeBoxStyle' : 'diactiveBoxStyle'">
+                  <input type="checkbox" class="styleCheckBoxTime" 
+                    [disabled]="!itemTime.activeToday" [checked]="shared.arrCheckBoxTimePeriod[i]">
+                  <span style="padding-right: 4px;">{{itemTime.start + " - " + itemTime.end}}</span>
+                </div>
+              </div>
+              <div style="width: 100%; text-align: center; padding: 2px 5px;" *ngIf="shared.selectedIndexOfDateList != 0">
+                <div (click)="onPeriodTimeBox(itemTime.id)" class="activeBoxStyle">
+                  <input type="checkbox" class="styleCheckBoxTime" [checked]="shared.arrCheckBoxTimePeriod[i]">
+                  <span style="padding-right: 4px;">{{itemTime.start + " - " + itemTime.end}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>        
+      </div>
+      <!--end No emergency-->
+
+      <div style="position: absolute; bottom: 0; right: 0; width: 100%; height: 50px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; overflow: hidden;">
+        <div (click)="onRegDate()"
+          [eventTracker]="{'category':jobcat3EName+'_InsertTime','action':'click'}" 
+          class="activeNextStep">
+          <span>مرحله بعدی</span>
+        </div>
+        <div class="previousStep"
+          (click)="onBack()">
+          <span>مرحله قبلی</span>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+<!----End Time pc---->
+
+<!----start Time date in mobile---->
+<div class="col-12 col-sm-12 col-md-12 d-block d-lg-none d-xl-none clear" style="background-color: white;">
+
+<!--start emergency-->
+<div class="divEmergancyMobile" *ngIf="emergencyEnable"> 
+  <div style="height: 60px; padding: 5px 15px; overflow: hidden; border: 1px solid #B0BEC5; border-radius: 7px;">
+    <div style="float: left; width: 33%; height: 100%; display: flex; align-items: center; justify-content: flex-end;">
+      <span style="padding-top: 10px;">
+        <label class="switch">
+          <input type="checkbox" (click)="onEmergency()" [checked]="shared.reqRej_emergancy">
+          <span class="slider round"></span>
+        </label>
+      </span>
+    </div>
+    <div style="float: left; width: 34%; height: 100%; display: flex; align-items: center; justify-content: center;">
+      <img src="assets/webappPics/ambulance.png" style="height: 50px; width: 50px;">
+    </div>
+    <div style="float: left; width: 33%; height: 100%; display: flex; align-items: center; justify-content: flex-start">
+      <span style="font-size: 14px; font-weight: bold; color: #78909C;">فوری</span>
+    </div>
+  </div>
+
+  <div class="divEmergancyAnswerMobile" *ngIf="shared.reqRej_emergancy">
+    <p>{{emergancyAnswer}}</p>
+  </div> 
+
+  <div *ngIf="shared.reqRej_emergancy" style="padding-top: 15px; text-align: center;">
+    <lottie-animation-view
+      [options]="lottieConfig"
+      [width]="200"
+      [height]="200"
+      (animCreated)="handleAnimation($event)">
+    </lottie-animation-view>
+  </div>
+</div>
+<!--end emergency-->
+
+  <!--start No emergency-->
+  <div *ngIf="!shared.reqRej_emergancy" class="row clear justify-content-center datePlaceMainDiv">
+      <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 clear" 
+        *ngFor="let date of shared.dateList; index as i; last as lastItem">
+        <div *ngIf="!date.isSelected" (click)="onSelectDate(i)" 
+          [ngClass]="date.disable ? 'divDateMobileDisable' : 'divDateMobile'"
+          [ngStyle]="!lastItem ? {'border-left': '1px solid #78909C'} : {'border-left': 'none'}">
+          <p>{{date.dayInWeak}}</p>
+          <p>{{date.dayInMonth}}</p>
+          <p>{{date.monthName}}</p>
+        </div>
+        <div *ngIf="date.isSelected" 
+        class="divDateMobileSelected"
+        [ngStyle]="!lastItem ? {'border-left': '1px solid #78909C'} : {'border-left': 'none'}">
+          <p>{{date.dayInWeak}}</p>
+          <p>{{date.dayInMonth}}</p>
+          <p>{{date.monthName}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!shared.reqRej_emergancy" id="timeLineDiv">
+      <div class="timeLineStyle">
+        <div style="width: 100%; text-align: center; background-color: white; min-height: 30px; padding-top: 15px;">
+          <span class="timeTitr">{{timeLineTitr}}</span>
+        </div>
+        <div class="row clear">
+          <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" 
+            style="padding: 3px;" *ngFor="let itemTime of shared.listTimesPeriodBox; index as i"> 
+            <div style="width: 100%; text-align: center; padding: 2px 5px;" *ngIf="shared.selectedIndexOfDateList == 0">
+              <div (click)="itemTime.activeToday ? onPeriodTimeBox(itemTime.id) : noPeriodTimeBox()" 
+                [ngClass]="itemTime.activeToday ? 'activeMobileBoxStyle' : 'diactiveMobileBoxStyle'">
+                <input type="checkbox" class="styleCheckBoxTime" 
+                  [disabled]="!itemTime.activeToday" [checked]="shared.arrCheckBoxTimePeriod[i]">
+                <span style="padding-right: 4px;">{{itemTime.start + " - " + itemTime.end}}</span>
+              </div>
+            </div>
+            <div style="width: 100%; text-align: center; padding: 2px 5px;" *ngIf="shared.selectedIndexOfDateList != 0">
+              <div (click)="onPeriodTimeBox(itemTime.id)" class="activeMobileBoxStyle">
+                <input type="checkbox" class="styleCheckBoxTime" [checked]="shared.arrCheckBoxTimePeriod[i]">
+                <span style="padding-right: 4px;">{{itemTime.start + " - " + itemTime.end}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>        
+    </div>
+  <!--end No emergency-->
+  <div class="divBoxWhiteFooter"></div>
+  <!----start btn mobile---->
+  <div style="position: fixed; bottom: 0px; right: 0; height: auto; width: 100%;">
+    <div class="divBoxWhiteFooter">
+        <div class="floatleft">
+          <div class="divStyleLeft">
+            <div (click)="onRegDate()"
+              class="divStyleBtnLeft"
+              [eventTracker]="{'category':jobcat3EName+'_InsertTime','action':'click'}">
+              <span>ادامه</span>
+            </div>
+          </div>
+        </div>
+        <div class="floatRight">
+          <div class="divStyleRight">
+            <span (click)="onBack()" class="btnReturn">بازگشت</span>
+          </div>
+        </div>
+    </div>
+  </div>
+  <!----end btn mobile---->
+
+</div>
+<!----end Time date in mobile---->
+

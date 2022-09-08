@@ -1,0 +1,128 @@
+.divBoxPadding{
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.divBoxStyle{
+    width: 100%;
+    border: 1px solid #CFD8DC;
+    background-color: white;
+    padding: 5px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    overflow: auto;
+    position: relative;
+}
+
+.borderTitle{
+    border-bottom: 1px solid #CFD8DC;
+}
+
+.jobCatPicStyle{
+    width: 50px;
+    height: 50px;
+}
+
+.mainTitleInBox{
+    color: green;
+    font-size: 14px;
+    font-weight: bold;
+    padding-right: 7px;
+}
+
+.divTableStyleEvenRow{
+    padding: 5px;
+    background-color: #FFFFFF;
+    color: #0D47A1;
+    font-size: 12px;
+    overflow: hidden;
+}
+
+.titleStyle{
+    padding-left: 4px;
+}
+
+.requestInfoStyle{
+    color: #004D40;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.divTableStyleOddRow{
+    padding: 5px;
+    background-color: #ECEFF1;
+    color: #0D47A1;
+    font-size: 12px;
+    overflow: hidden;
+}
+
+.divPhotosShow{
+    width: 100%; 
+    padding: 4px 10px; 
+    text-align: center;
+    height: auto;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    position: relative;
+}
+
+.spanPhoto{
+    cursor: pointer; 
+    padding: 3px;
+}
+
+.photoStyle{
+    width: 100px; 
+    height: 100px; 
+    border-radius: 4px;
+}
+
+.divStyle4BoxInPaymentStep{
+    width: 100%; 
+    border: 1px solid #CFD8DC; 
+    border-radius: 7px; 
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); 
+    padding: 5px; 
+    color: #546E7A; 
+    font-size: 14px; 
+    background-color: white;
+}
+
+.divStyleWorkerInfo{
+    padding: 3px 5px;
+    padding-bottom: 0px;
+    background-color: #FFFFFF;
+    color: #0D47A1;
+    font-size: 12px;
+    overflow: hidden;
+}
+
+.styleBtnTabs{
+    padding: 5px 0px;
+    font-size: 12px;
+    border: none;
+    text-align: center;
+    width: 120px;
+    border-right: 1px solid #90A4AE;
+    height: 35px;
+    border-radius: 0px;
+}
+
+.styleDivPaddingDropDown{
+    width: 100%; 
+    padding-top: 5px;
+    padding-right: 3px;
+    padding-left: 3px;
+    padding-bottom: 5px;
+    overflow: auto;
+}
+
+.styleDivDropDown{
+    float: right;
+    width: 60%; 
+    height: 35px; 
+    border-radius: 7px; 
+}

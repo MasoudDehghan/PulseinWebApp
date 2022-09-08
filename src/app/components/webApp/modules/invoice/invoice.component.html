@@ -1,0 +1,68 @@
+<div class="mainDivInvoice">
+  <div class="tblBill">
+    <div class="trHeaderBill">
+      <div class="trHeaderText" style="width: 7%;"><span>ردیف</span></div>
+      <div class="trHeaderText" style="width: 60%;"><span>کالا / خدمت</span></div>
+      <div class="trHeaderText" style="width: 5%;"><span>تعداد</span></div>
+      <div class="trHeaderText" style="width: 27%; text-align: left;"><span>مجموع (تومان)</span></div>
+    </div>
+
+    <div *ngIf="invoice?.items.length > 0">
+    <div *ngFor="let bill of invoice?.items; index as i" [ngClass]="i%2 == 1 ? 'darkTr' : 'lightTr'">
+      <div class="tdBill" style="width: 7%; max-height: 300px; overflow: hidden;">
+        <div class="tdBill2">{{i+1}}</div>
+      </div>
+      <div class="tdBill" style="width: 60%; max-height: 300px; overflow: hidden;">
+        <div class="tdBill2">{{bill.title}}</div>
+      </div> 
+      <div class="tdBill" style="width: 8%; max-height: 300px; overflow: hidden;">
+        <div class="tdBill2">{{bill.quantity}}</div>
+      </div>
+      <div class="tdBill" style="width: 25%; max-height: 300px; overflow: hidden;">
+        <div class="tdBill3">
+          <span>{{bill.totalPrice | currency:'AFN':''}}</span>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div *ngIf="invoice?.items.length == 0 || !invoice?.items" style="padding: 7px 0px;">
+      <div class="tdBill" style="width: 7%;">
+        <div class="tdBill2">{{blank}}</div>
+      </div>
+      <div class="tdBill" style="width: 60%;">
+        <div class="tdBill2">{{blank}}</div>
+      </div> 
+      <div class="tdBill" style="width: 8%;">
+        <div class="tdBill2">{{blank}}</div>
+      </div>
+      <div class="tdBill" style="width: 25%;">
+        <div class="tdBill3">
+          <span>{{zeroPrice | currency:'AFN':''}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="divCost1">
+    <div class="divCostSeparator"></div>
+    <div class="divCost3" style="background-color: #FFF9C4;">
+      <div class="textBill text-truncate">هزینه رفت و آمد</div>
+      <div class="costText text-truncate">{{invoice?.transfer | currency:'AFN':''}}</div>
+    </div>
+  </div>
+  
+  <div class="divCost2">
+    <div class="divCost3" style="background-color: #DCEDC8;">
+      <div class="textBill text-truncate">دستمزد</div>
+      <div class="costText text-truncate">{{invoice?.wage | currency:'AFN':''}}</div>
+    </div>
+  </div>
+  
+  <div class="divCost1">
+    <div class="divCostSeparator"></div>
+    <div class="divCost3" style="background-color: #C5CAE9;">
+      <span id="textBillFinal" class="text-truncate">جمع کل (تومان)</span>
+      <span id="costTextFinal" class="text-truncate">{{invoice?.totalPrice | currency:'AFN':''}}</span>
+    </div>
+  </div>
+</div>

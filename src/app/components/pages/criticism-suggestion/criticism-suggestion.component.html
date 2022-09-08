@@ -1,0 +1,109 @@
+<div (window:resize)="onResize($event)">
+
+  <div *ngIf="isPC ; else mobileView">
+      <!-------start fixed top menu----
+      <app-top-fix-menu [jobCats1]="categories1"></app-top-fix-menu>
+      <!------end fixed top menu------->
+      
+      <!--------start top menu------
+      <app-top-menu [jobCats1]="categories1" [jobCats2]="categories2" [jobCats3]="categories3" [state]='0'></app-top-menu>-->
+      <!--------end top menu-------->
+      
+      <!--------start job cat menu------
+      <app-job-cat-menu [jobCats1]="categories1"></app-job-cat-menu>-->
+      <!-----end job cat menu-------->
+  </div>
+  <ng-template #mobileView>
+      <!--------start mob top menu------
+      <app-mob-top-menu [jobCats1]="categories1" [jobCats2]="categories2" [jobCats3]="categories3"></app-mob-top-menu>
+      <!--------end mob top menu-------->
+  </ng-template>
+
+
+<div id="mainDiv" class="contentPadding">
+
+<div class="row justify-content-md-center clear">
+<div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8" id="contant">
+  <div>
+    <img src="assets/image/enteghadat.png" class="img-fluid">
+  </div>
+
+<div class="underLineDiv"></div>
+
+    <div class="row clear">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 paddDiv1">
+        <input [(ngModel)]="firstNameModel" type="text" class="txtInput" placeholder="نام" maxlength="30">
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 paddDiv1">
+          <input [(ngModel)]="lastNameModel" type="text" class="txtInput" placeholder="نام خانوادگی" maxlength="30">
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 paddDiv1">
+      <input [(ngModel)]="emailModel" type="text" class="txtInput" placeholder="ایمیل" maxlength="50"
+      (focus)="onFocus('email')" (blur)="onBlur('email')"
+      [ngClass]="emailfilled ? 'noError' : 'yesError'">
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 paddDiv1">
+      <input [(ngModel)]="mobileModel" type="text" class="txtInput" placeholder="موبایل" maxlength="11" 
+      (focus)="onFocus('mobile')" (blur)="onBlur('mobile')" (input)="onChange('mobile')"
+      [ngClass]="mobilefilled ? 'noError' : 'yesError'">
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 paddDiv1">
+      <select class="selectInput" [(ngModel)]="selectType">
+        <option [ngValue]="false">{{option1}}</option>
+        <option [ngValue]="true">{{option2}}</option>
+      </select>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 paddDiv1">
+      <textarea [(ngModel)]="msgModel" type="text" class="txtareaInput" placeholder="پیام شما" maxlength="500"
+      (focus)="onFocus('userMsg')" (blur)="onBlur('userMsg')"
+      [ngClass]="msgfilled ? 'noError' : 'yesError'"></textarea>
+      <div class="star">*</div>
+    </div> 
+    
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 captchaDiv">
+      <div *ngIf = "showCaptcha" style="margin: 0 auto; text-align: center; width: 310px;">
+        <!--
+          <p-captcha #captcha siteKey="{{capchaKey}}" (onResponse)="showResponse($event)"></p-captcha>
+        -->
+        <re-captcha (resolved)="resolved($event)" siteKey="{{capchaKey}}"></re-captcha>
+      </div>
+
+      <div *ngIf = "!showCaptcha" class="coverCaptchaTimer">
+        {{ "تا " + countSecond + " دیگر قادر به ارسال پیام مجدد می باشید"}}
+      </div>        
+    </div>
+  
+    
+    <div id="btnSendDiv">
+      <input type="submit" class="btn btn-success btnStyle" value="ارسال" 
+       (click)="onSend()" [disabled]="checkForm()">
+    </div>
+
+    <div *ngIf="msg.code == 0 && showMessageDiv" 
+          class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 messageDiv">
+      <P class="msgSuccess">پیام شما ارسال شد</P>
+    </div>
+
+    <div *ngIf="msgError.code == 4 && showMessageDiv" 
+          class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 messageDiv">
+      <P class="msgerror">خطایی در فرم ارسالی شما وجود دارد</P>
+    </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+<!----start footer---->
+<app-footer></app-footer>
+<!----end footer---->
+
+
+</div>

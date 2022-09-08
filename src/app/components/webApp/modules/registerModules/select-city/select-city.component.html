@@ -1,0 +1,122 @@
+<!----start in mobile---->
+<div class="col-12 col-sm-12 col-md-12 d-block d-lg-none d-xl-none clear">
+    <!--start Question Items mobile-->
+    <div *ngIf="1"> 
+      <div style="padding: 10px 5px;">
+        <div style="font-size: 16px; font-weight: bold; color: #546E7A; padding-bottom: 3px; border-bottom: 1px dashed #CFD8DC;">
+          <span>{{titleText}}</span>
+        </div>
+      </div>
+
+      <div *ngIf="numberOfCities > 1">
+          <div *ngFor="let province of provinceList">
+              <div class="divProvince">{{province.name}}</div>
+              <div *ngFor="let city of province.cityList">
+                <div (click)="onCity(city)" 
+                    [ngClass]="(city.id == selectedCity?.id && city.name == selectedCity?.name) ? 'box2' : 'box1'">
+                    <span>{{city.name}}</span>
+                </div>
+              </div>
+          </div>
+      </div>
+      <div *ngIf="numberOfCities == 1">
+          <div class="divTextOneCity">
+              <span>{{textServiceInOnCityPart1}}</span>
+              <span style="font-size: 16px; font-weight: bold; color: #2196F3;">{{selectedCity?.name}}</span>
+              <span>{{textServiceInOnCityPart2}}</span>
+          </div>
+          <div class="divTextOneCity">
+              <span>{{textServiceInOnCityPart3}}</span>
+          </div>
+      </div>
+
+      <div class="divBoxWhiteFooter"></div>
+    </div>
+    <!--end Question Items mobile-->
+  
+    <!----start btn mobile---->
+    <div style="position: fixed; bottom: 0px; right: 0; height: auto; width: 100%;">  
+      <div class="divBoxWhiteFooter">
+        <div class="floatleft">
+          <div class="divStyleLeft">
+            <div (click)="onNext()" [ngClass]="isCitySelected ? 'divStyleBtnLeft' : 'divStyleBtnLeftDisable'">
+              <span>ادامه</span>
+            </div>
+          </div>
+        </div>
+        <div class="floatRight">
+          <div class="divStyleRight">
+            <span (click)="onBackStep()" class="btnReturn">بازگشت</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!----end btn mobile---->
+</div>
+<!----end in mobile---->
+
+
+
+<!----start Insert Questions PC---->
+<div class="col-lg-12 col-xl-12 d-none d-lg-block clear">
+    <div class="row clear justify-content-md-center justify-content-lg-center justify-content-xl-center"
+        style="padding-bottom: 7px;">
+      
+        <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 clear whiteBoxStyle" style="min-height: 500px;">
+      
+            <div style="padding-bottom: 7px;">
+              <div id="divJobcat3InfoStyle">
+                <img [src]="jobcat3Icon" 
+                  [alt]="jobcat3Name" style="width: 50px; height: 50px;">
+                <span class="jobCat3StaticTerm">سرویس</span>
+                <span id="jobCat3Title">{{" " + jobcat3Name + " "}}</span>
+                <span class="jobCat3StaticTerm">پالسین</span>
+              </div>
+            </div>      
+      
+      <!--start Question Items-->
+      <div style="min-height: 300px; max-height: 400px; overflow: auto;"> 
+        <div style="padding: 10px 5px;">
+          <div style="font-size: 16px; font-weight: bold; color: #546E7A; padding-bottom: 3px; border-bottom: 1px dashed #CFD8DC;">
+            <span>{{titleText}}</span>
+          </div>
+        </div>
+        
+            <div *ngIf="numberOfCities > 1">
+                <div *ngFor="let province of provinceList">
+                    <div class="divProvince">{{province.name}}</div>
+                    <div *ngFor="let city of province.cityList">
+                      <div (click)="onCity(city)" 
+                          [ngClass]="(city.id == selectedCity?.id && city.name == selectedCity?.name) ? 'box2' : 'box1'">
+                          <span>{{city.name}}</span>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="numberOfCities == 1">
+                <div class="divTextOneCity">
+                    <span>{{textServiceInOnCityPart1}}</span>
+                    <span style="font-size: 16px; font-weight: bold; color: #2196F3;">{{selectedCity?.name}}</span>
+                    <span>{{textServiceInOnCityPart2}}</span>
+                </div>
+                <div class="divTextOneCity">
+                    <span>{{textServiceInOnCityPart3}}</span>
+                </div>
+            </div>  
+      </div>
+      <!--end Question Items-->
+      
+            <div style="position: absolute; bottom: 0; right: 0; width: 100%; height: 50px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; overflow: hidden;">
+              <div (click)="onNext()" [ngClass]="isCitySelected ? 'activeNextBtn' : 'disableNextBtn'">
+                <span>ادامه</span>
+              </div>
+              <div class="backBtn" (click)="onBackStep()">
+                <span>بازگشت</span>
+              </div>
+            </div>
+
+        </div>
+      
+    </div>
+</div>
+<!----end Insert Questions Pc---->

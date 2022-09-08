@@ -1,0 +1,44 @@
+#mainDiv{
+    box-sizing: border-box; 
+    width: 100%; 
+    margin: 0; 
+    padding: 0; 
+    padding-bottom: 20px;
+    padding-top: 30px;
+}
+
+.fontBold{
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: bold;
+    color: #455A64;
+}
+
+.font{
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: 300;
+    color: #546E7A; 
+}
+
+#mainDescriptDiv{
+    text-align: center;
+}
+
+.imgStyle{
+    width: 70px; 
+    height: 70px;
+}
+
+.subTitleDiv{
+    box-sizing: border-box;
+    padding-top: 12px;
+    text-align: center;
+}
+
+.mainDivSubInfo{
+    box-sizing: border-box; 
+    margin: 0;
+    padding: 0;
+    padding-top: 20px;
+}

@@ -1,0 +1,104 @@
+#stepMainDiv{
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.stepBoxActive{
+    position: relative;
+    display: inline-block; 
+    width: 90%; 
+    border-radius: 4px; 
+    background-color: green; 
+    font-size: 14px; 
+    color: white; 
+    text-align: center; 
+    padding-top: 10px; 
+    padding-bottom: 10px;
+}
+
+.stepBoxDiactive{
+    display: inline-block; 
+    width: 80%; 
+    border-radius: 4px; 
+    background-color: #CFD8DC; 
+    font-size: 12px; 
+    color: #546E7A; 
+    text-align: center; 
+    padding-top: 10px; 
+    padding-bottom: 10px;
+}
+
+.stepLineActive{
+    display: inline-block; 
+    width: 10%; 
+    background-color: green;
+    height: 5px;
+}
+
+.stepLineDiactive{
+    display: inline-block; 
+    width: 20%; 
+    background-color: #CFD8DC;
+    height: 5px;
+}
+
+.stepBoxActiveMobile{
+    display: inline-block; 
+    width: 90%; 
+    border-radius: 4px; 
+    background-color: green; 
+    font-size: 14px; 
+    color: white; 
+    text-align: center; 
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 100%;
+}
+
+.stepBoxDiactiveMobile{
+    display: inline-block; 
+    width: 50%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #78909C;
+    font-size: 14px; 
+    text-align: center;
+}
+
+.stepLineActiveMobile{
+    display: inline-block; 
+    width: 10%; 
+    background-color: green;
+    height: 2px;
+}
+
+.stepLineDiactiveMobile{
+    display: inline-block; 
+    width: 50%; 
+    background-color: #78909C;
+    height: 2px;
+}
+
+.stepMobileActive{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #039BE5;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.stepMobileDisabel{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #B0BEC5;
+    font-size: 24px;
+    font-weight: bold;
+}

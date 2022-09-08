@@ -1,0 +1,97 @@
+<div style="overflow: hidden; height: 70px;">
+  <div *ngIf="isProfileImage" class="divInfoFloat">
+    <div class="divimgUserForClick" (click)="onProfile()">
+      <img [src]="profileImageAddress" style="width: 100%; height: 100%; border-radius: 50%; cursor: pointer;">
+    </div>
+  </div>
+  <div *ngIf="!isProfileImage" class="divInfoFloat">
+    <div class="divCharNameForClick" (click)="onProfile()">
+      <span class="spanUserName">{{charFirstName + ' . ' + charLastName}}</span>
+    </div>
+  </div>
+
+  <div style="float: left; width: 75%;">
+      <div class="userInfoStyle text-truncate">
+        <span>{{userName}}</span>
+      </div>
+        <div class="userInfoStyle">
+            <span style="padding-left: 4px;">اعتبار</span>
+            <span>{{userCredit}}</span>
+        </div>
+  </div>
+
+</div>
+
+<div style="width: 100%; height: 2px; background-color: #B0BEC5;"></div>
+
+<div class="paddingBoxBtnUserMenu">
+  <div class="styleBtnUserMenu" (click)="onAddCredit()">
+    <div class="itemFRight">
+      <i class="fas fa-wallet"></i>
+    </div>
+    <div class="itemFLeft">
+      <span>افزایش اعتبار</span>
+    </div>
+  </div>
+</div>
+
+<div class="paddingBoxBtnUserMenu">
+  <div class="styleBtnUserMenu" (click)="onInvite()">
+      <div class="itemFRight">
+        <i class="fas fa-handshake"></i>
+      </div>
+      <div class="itemFLeft">
+        <span>دعوت از دوستان</span>
+      </div>
+  </div>
+</div>
+
+<div class="paddingBoxBtnUserMenu">
+    <div class="styleBtnUserMenu" (click)="onCandidateLocations()">
+      <div class="itemFRight">
+        <i class="fas fa-map-marked"></i>
+      </div>
+      <div class="itemFLeft">
+        <span>مکان های منتخب</span>
+      </div>
+    </div>
+</div>
+
+<div class="paddingBoxBtnUserMenu">
+    <div class="styleBtnUserMenu" (click)="onProfile()">
+      <div class="itemFRight">
+        <i class="fas fa-user-alt"></i>
+      </div>
+      <div class="itemFLeft">
+        <span>حساب کاربری</span>
+      </div>
+    </div>
+</div>
+
+<div class="paddingBoxBtnUserMenu">
+  <div class="styleBtnUserMenu" (click)="onTransactions()">
+    <div class="itemFRight">
+      <i class="fas fa-file-invoice-dollar"></i>
+    </div>
+    <div class="itemFLeft">
+      <span>گردش حساب</span>
+    </div>
+  </div>
+</div>
+
+<div class="paddingBoxBtnUserMenu">
+  <div class="styleBtnUserMenu" (click)="onFinishedRequest()">
+    <div class="itemFRight">
+      <i class="fas fa-calendar-check"></i>
+    </div>
+    <div class="itemFLeft">
+      <span>درخواست های اتمام یافته</span>
+    </div>
+  </div>
+</div>
+  
+<div class="paddingBoxBtnUserMenu">
+    <div id="styleBtnExit" (click)="onExit()">
+      <span>خروج</span>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div id="mobFixedFooter" *ngIf="!closeFixedBottomMenu">
+    <div style="float: right; height: 100%; width: 20%; display: flex; align-items: center; justify-content: flex-start;">
+      <img src="assets/image/userLogo.png" alt="logo" id="mobFixedFooterLogo">
+    </div>
+
+    <div *ngIf="!shared.hasActiveRequest.value"
+      style="float: right; height: 100%; width: 60%; display: flex; align-items: center; justify-content: center;">
+      <a [href]="webAppAddress">
+        <input type="button" class="btn btnAction" value="وب اپلیکیشن">
+      </a>
+    </div>
+
+    <div *ngIf="shared.hasActiveRequest.value"
+      style="float: right; height: 100%; width: 60%; display: flex; align-items: center; justify-content: center;">
+      <input (click)="onFollowRequest()" type="button" class="btn btnAction" value="پیگیری درخواست">
+    </div>
+    
+    <div style="float: left; height: 100%; width: 20%; display: flex; align-items: center; justify-content: flex-end;">
+      <img src="assets/image/close.png" id="close" (click)="onClose()">
+    </div>
+</div>

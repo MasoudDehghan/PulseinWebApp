@@ -1,0 +1,122 @@
+<div [ngStyle]="shared.noScroll.value ? {height:shared.yWindow.value+'px', overflow: 'hidden'} : {height:'auto', overflow: 'auto'}">
+    <div *ngIf="shared.xWindow.value >= 620">
+        <globalHeader></globalHeader>
+      </div>
+      <div *ngIf="shared.xWindow.value < 620">
+        <app-drawer-menu></app-drawer-menu>
+      </div>
+      
+      <div [ngClass]="shared.xWindow.value > 720 ? 'contentPadding' : 'contentNoPadding'">
+        <div style="position: relative;" [ngStyle]="shared.xWindow.value > 620 ? {'min-height':shared.yWindow.value-145+'px'} : {'min-height':shared.yWindow.value-130+'px'}">
+          <div *ngIf="!display">
+            <loading></loading>
+          </div>
+          <!--start content-->
+          <div *ngIf="display && showAllRequest">
+       
+            <div class="styleDivPadding">
+              <div style="width: 100%; max-width: 700px; height: 50px; padding-top: 15px; background-color: white; color: #455A64; text-align: center; border-radius: 30px; margin: 0 auto;">
+                <strong>درخواست های اتمام یافته</strong>
+              </div>
+            </div>
+      
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear" style="padding: 7px 0px;">
+              <div class="row clear" style="max-height: 500px; overflow: auto;"
+                [ngClass]="listRequests.length < 4 ? 'justify-content-md-center' : 'clear'">
+                <div *ngFor="let requestItem of listRequests" 
+                  class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3" 
+                  style="padding: 3px;">
+                  <!--start white box-->
+                  <div style="background-color: white; width: 100%; padding: 3px 5px; box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.4); border-radius: 7px;">
+                    
+                    <!--start header box-->
+                    <div style="overflow: auto; padding: 3px 0px; border-bottom: 1px solid #B0BEC5; background-color: #FFF59D; border-radius: 5px;">
+                      <div style="float: right; width: 25%; padding-right: 3px;">
+                        <img [src]="urlRest.imagePath + mapJobcat3Icon.get(requestItem?.request?.cat3Id)" alt="آیکون دسته" style="max-width: 50px; max-height: 50px;">
+                      </div>
+                      <div style="float: left; width: 75%; min-height: 50px; color: #BF360C; font-size: 14px; display: flex; flex-direction: column; justify-content: center;">
+                        {{mapJobcat3Name.get(requestItem?.request?.cat3Id)}}
+                      </div>
+                    </div>
+                    <!--end header box-->
+      
+                    <div class="row1">
+                      <div class="floatRightBox">
+                        <span>وضعیت:</span>
+                      </div>
+                      <div class="floatLeftBox">
+                        <span>{{requestItem?.state?.name}}</span>
+                      </div>
+                    </div>
+      
+                    <div class="row2">
+                      <div class="floatRightBox">
+                        <span>عنوان درخواست:</span>
+                      </div>
+                      <div class="floatLeftBox">
+                        <span>{{requestItem?.request?.title}}</span>
+                      </div>
+                    </div>
+      
+                    <div class="row1">
+                      <div class="floatRightBox">
+                          <span>کد درخواست:</span>
+                      </div>
+                      <div class="floatLeftBox">
+                          <span>{{requestItem?.request?.code}}</span>
+                      </div>
+                    </div>
+      
+                    <div class="row2">
+                      <div class="floatRightBox">
+                        <span>تاریخ ثبت:</span>
+                      </div>
+                      <div class="floatLeftBox">
+                        <span>{{dateRegister(requestItem?.stateHistory[0]?.updateTime)}}</span>
+                      </div>
+                    </div>
+      
+                    <div class="row1">
+                      <div class="floatRightBox">
+                        <span>زمان ثبت:</span>
+                      </div>
+                      <div class="floatLeftBox">
+                        <span>{{timeRegister(requestItem?.stateHistory[0]?.updateTime)}}</span>
+                      </div>
+                    </div>
+      
+                    <div style="width: 100%; height: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                      <input type="button" class="btn btn-success" 
+                        style="width: 85%; height: 35px; border-radius: 7px;" 
+                        value="جزئیات" (click)="onDetails(requestItem)">
+                    </div>
+      
+                  </div>
+                  <!--end white box-->
+                </div>
+              </div>
+            </div>
+      
+          </div>
+          <!--end content-->
+      
+          <!--start details-->
+          <div *ngIf="!showAllRequest">
+            <finish-request-details 
+              [inputRequestInfo]="requestInfo" 
+              [jobcatIcon]="urlRest.imagePath + jobcatIcon"
+              [jobcatName]="jobcatName"
+              [imgPath]="urlRest.imagePath"
+              [xWindow]="shared.xWindow.value"
+              (back)="showAllRequest=$event">
+            </finish-request-details>
+          </div>
+          <!--end details-->
+      
+        </div>
+      </div>
+      
+      <div>
+        <webapp-footer></webapp-footer>
+      </div>
+</div>

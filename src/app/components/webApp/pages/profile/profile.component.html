@@ -1,0 +1,127 @@
+<div [ngStyle]="shared.noScroll.value ? {height:shared.yWindow.value+'px', overflow: 'hidden'} : {height:'auto', overflow: 'auto'}">
+    <div *ngIf="shared.xWindow.value >= 620">
+        <globalHeader></globalHeader>
+      </div>
+      <div *ngIf="shared.xWindow.value < 620">
+        <app-drawer-menu></app-drawer-menu>
+      </div>
+      
+      
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear" 
+        id="mainDiv" 
+        [ngStyle]="shared.xWindow.value > 620 ? {'min-height': shared.yWindow.value-125 + 'px'} : {'min-height': shared.yWindow.value + 'px'}">
+      
+        <div *ngIf="isLoadingProfileImage" style="position: absolute; width: 100%; height: 100%; z-index: 10;">
+          <div style="position: absolute; width: 100%; height: 100%; background-color: black; opacity: 0.4;"></div>
+          <div style="position: absolute; width: 100%; height: 80%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <lottie-animation-view 
+              [options]="lottieConfig"
+              [width]="200"
+              [height]="200"
+              (animCreated)="handleAnimation($event)">
+            </lottie-animation-view>
+          </div>
+        </div>
+          
+        <div *ngIf="!isLoading" class="row clear justify-content-md-center justify-content-lg-center justify-content-xl-center"
+        style="padding: 10px 0;">
+          <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 clear">
+      
+            <form method="POST" enctype="multipart/form-data" name="demo">
+              <div class="imageUploadDivProfileImage">
+                <div style="position: relative; width: 100px; height: 110px; margin: 0 auto;">
+                  <input accept="image/x-png,image/jpg,image/jpeg" type="file" name="photo"
+                    (change)="readUrl($event)" class="imageUploadInputFile"/>
+        
+                  <img [src]="fackeData.url == '' ? photo : sanitizer.bypassSecurityTrustUrl(fackeData.url)" alt="user image" class="img-fluid rounded-circle" 
+                    style="width: 100px; height: 100px;">
+        
+                  <div *ngIf="hasImageProfile" (click)="onDeleteProfileImage()" class="deleteBtn">
+                    <span>X</span>
+                  </div>
+                </div>
+              </div>
+            </form>
+      
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear" id="divMobileNumber">
+              <i class="fas fa-mobile-alt" style="padding-left: 4px;"></i>
+              <span>{{userMobileNumber}}</span>
+            </div>
+      
+            <!-----Start Form------------>
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                <div class="row clear divItemPadding">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+                        <i class="fas fa-user-edit iconFont"></i>
+                        <span>نام و نام خانوادگی</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 clear pl-md-1 pl-lg-1 pl-xl-1">
+                      <input type="text" [maxlength]="constVal.maxFirstName" placeholder="نام" id="inputFirstName"
+                      formControlName="firstName" [value]="userFirstName">
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 clear pr-md-1 pr-lg-1 pr-xl-1">
+                      <input type="text" [maxlength]="constVal.maxLastName" placeholder="نام خانوادگی" id="inputLastName"
+                      formControlName="lastName" [value]="userLastName">
+                    </div>
+                  </div>
+            
+                  <div class="row clear divItemPadding">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+                      <i class="fas fa-envelope-square iconFont"></i>
+                      <span>آدرس پست الکترونیک</span>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+                      <input type="text" placeholder="ایمیل" [maxlength]="constVal.maxEmail" id="inputEmail"
+                      formControlName="email" [value]="userEmail"> 
+                    </div>
+                  </div>
+            
+                  <div class="row clear divItemPadding">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 clear pl-md-1 pl-lg-1 pl-xl-1">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+                        <i class="far fa-calendar-alt iconFont"></i>
+                        <span>سال تولد</span>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+                        <select formControlName="year" id="selectYear" [value]="userBirthYear">
+                          <option *ngFor="let year of yearList">{{year}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 clear pr-md-1 pr-lg-1 pr-xl-1">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+                        <i class="fas fa-female iconFont"></i>
+                        <span>/</span>
+                        <i class="fas fa-male iconFont"></i>
+                        <span>جنسیت</span>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear" style="background-color: white; border-radius: 7px; height: 50px; padding-top: 10px; padding-right: 10px; border: 1px solid #ECEFF1;">
+                        <div class="divSexSelect">
+                          <input type="checkbox" [checked]="!userIsMale" formControlName="woman" (change)="onUserSex()" style="height: 20px; width: 20px;">
+                          <span class="spanSex">زن</span>
+                        </div>
+                        <div class="divSexSelect">
+                          <input type="checkbox" [checked]="userIsMale" formControlName="man" (change)="onUserSex()" style="height: 20px; width: 20px;">
+                          <span class="spanSex">مرد</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            
+            
+                  <div style="text-align: center; padding-top: 20px;">
+                    <input type="submit" class="btn btn-success" [disabled]="!activeBtnSaveInfo || !profileForm.valid"
+                    style="width: 90%; max-width: 400px; min-width: 200px; border-radius: 7px;" 
+                    value="ثبت اطلاعات کاربری">
+                  </div>
+            </form>
+            <!-----end form-->
+      
+          </div>
+        </div>
+      </div>      
+</div>
+
+<div>
+    <webapp-footer></webapp-footer>
+</div>

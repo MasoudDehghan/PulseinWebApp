@@ -1,0 +1,121 @@
+<div *ngIf="loading">
+    <app-loading-fullpage-latti></app-loading-fullpage-latti>
+</div>
+<div>
+    <div class="row clear">
+        <!-----start right col----->
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 clear" style="padding: 10px;">
+            <!----start box accept offer (box 1)---->
+            <div style="padding: 10px 5px; border: 1px solid #C8C8C8; border-radius: 7px;">
+                <div class="row clear">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+                        <div style="width: 100%; padding: 5px; padding-bottom: 15px; text-align: right; font-size: 14px;">
+                            <span>{{"جمع کل پرداختی: " + txtFinalPrice}}</span>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+                        <div class="row clear" (click)="onOnlineBox()" style="cursor: pointer;">
+                            <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 clear">
+                                <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                                    <span *ngIf="slectedOnlinePayment">
+                                        <i class="far fa-dot-circle" style="color: #039BE5;"></i>
+                                    </span>
+                                    <span *ngIf="!slectedOnlinePayment">
+                                        <i class="far fa-circle"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 clear">
+                                <div style="width: 100%; height: 100%; display: flex; justify-content: flex-start; align-items: center;">
+                                    <div style="font-size: 14px; padding: 7px 0px;">
+                                        <div>
+                                            <span>پرداخت به صورت آنلاین یا اعتباری</span>
+                                        </div>
+                                        <div *ngIf="showTxtUseableCredit">
+                                            <span style="font-size: 12px; padding-top: 7px;">
+                                                {{"سقف استفاده از اعتبار موجود " + txtUseableCredit + " می‌باشد."}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row clear" *ngIf="cashEnable && !activeDiscount" (click)="onCashBox()" style="cursor: pointer; ">
+                            <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 clear">
+                                <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                                    <span *ngIf="!slectedOnlinePayment">
+                                        <i class="far fa-dot-circle" style="color: #039BE5;"></i>
+                                    </span>
+                                    <span *ngIf="slectedOnlinePayment">
+                                        <i class="far fa-circle"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 clear">
+                                <div style="width: 100%; height: 100%; display: flex; justify-content: flex-start; align-items: center;">
+                                    <div style="font-size: 14px; padding: 7px 0px;">
+                                        <div>
+                                            <span>پرداخت به صورت نقدی</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div style="font-size: 12px;padding: 5px; padding-top: 15px; width: 100%;">
+                            <div *ngIf="slectedOnlinePayment || activeDiscount" (click)="onlinePayment()" 
+                                style="border-radius: 7px; height: 40px; width: 100%; cursor: pointer; color: white; font-size: 14px; background-color: #039BE5; outline: none; display: flex; align-items: center; justify-content: center;">
+                                <span>پرداخت اعتباری</span>
+                            </div>
+                            <div *ngIf="!slectedOnlinePayment && !activeDiscount" (click)="cashPayment()" 
+                                style="border-radius: 7px; height: 40px; width: 100%; cursor: pointer; color: white; font-size: 14px; background-color: #039BE5; outline: none; display: flex; align-items: center; justify-content: center;">
+                                <span>پرداخت نقدی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!----end box accept offer (box 1)---->
+        </div>
+        <!-----end right col----->
+
+        <!-----start left col----->
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-7 clear" style="padding: 10px;">
+            <!----start box invoice (box 3)---->
+            <div style="padding: 10px 5px; border: 1px solid #C8C8C8; border-radius: 7px; font-size: 14px;">
+                <div style="width: 100%; padding-bottom: 15px;">
+                    <strong>فاکتور نهایی</strong>
+                </div>
+                <div *ngIf="finalInvoice">
+                    <table *ngIf="finalInvoice.items.length > 0" style="width: 100%;">
+                        <tr style="font-size: 12px;">
+                            <th>نام کالا</th>
+                            <th>تعداد</th>
+                            <th>قیمت واحد (تومان)</th>
+                            <th>قیمت کل (تومان)</th>
+                        </tr>
+                        <tr *ngFor="let item of finalInvoice.items; index as i" 
+                        [ngStyle]="(i % 2 == 0 ) ? {'background-color':'#ECEFF1'} : {'background-color':'#FFFFFF'}">
+                            <td>{{item.title}}</td>
+                            <td>{{customFunction.chanageNumbersToFarsi(item.quantity.toString())}}</td>
+                            <td>{{customFunction.formatAmountMoney(customFunction.chanageNumbersToFarsi(item.unitPrice.toString()))}}</td>
+                            <td>{{customFunction.formatAmountMoney(customFunction.chanageNumbersToFarsi(item.totalPrice.toString()))}}</td>
+                        </tr>
+                    </table>
+                    <div style="padding: 15px 0px;">
+                        <div><span class="styleRowSpanInvoice">{{"هزینه ایاب و ذهاب: " + customFunction.formatAmountMoney(customFunction.chanageNumbersToFarsi(finalInvoice.transfer.toString())) + " تومان"}}</span></div>
+                        <div><span class="styleRowSpanInvoice">{{"دستمزد: " + customFunction.formatAmountMoney(customFunction.chanageNumbersToFarsi(finalInvoice.wage.toString())) + " تومان"}}</span></div>
+                    </div>
+                    <div><span class="styleRowSpanInvoice">{{"قیمت کل: " + customFunction.formatAmountMoney(customFunction.chanageNumbersToFarsi(finalInvoice.totalPrice.toString())) + " تومان"}}</span></div>
+                </div>
+            </div>
+            <!----end box invoice (box 3)---->
+        </div>
+        <!-----end left col----->
+
+    </div>
+</div>
+

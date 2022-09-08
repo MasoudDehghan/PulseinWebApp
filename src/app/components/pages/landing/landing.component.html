@@ -1,0 +1,100 @@
+<div *ngIf="isLoadingFullpage">
+    <app-loading-fullpage-latti></app-loading-fullpage-latti>
+</div>
+
+<div id="header">
+    <img src="assets/image/landing/pulsei.png">
+</div>
+<!--start body-->
+<div>
+    <div *ngIf="isLoadingInpage">
+        <div style="width: 100%; padding: 20px 0px; text-align: center;">
+            <img src="assets/image/loading.gif" style="width: 100%; max-width: 300px;" class="img-fluid">
+        </div>
+    </div>
+    <div *ngIf="!isLoadingInpage"> 
+        <!--start off chanel-->  
+            <div *ngFor="let item of listDiscount" style="padding: 7px;">
+                <!--start in pc-->
+                <div *ngIf="item.code != ''" class="d-none d-lg-block d-xl-block clear col-lg-12 col-xl-12 clear">
+                <div class="row clear" (click)="onOffCodePc(item.code, item.jobcat3)"
+                    style="border: 1px solid gray; border-radius: 7px; cursor: pointer; width: 100%; max-width: 800px; margin: 0 auto;">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" style="text-align: center; padding: 7px;">
+                        <img src="{{item.img}}" style="width: 100%; max-width: 300px; border-radius: 7px;" class="img-fluid">
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" 
+                        style="display: flex; align-items: center; justify-content: center; font-size: 14px; padding: 5px;">
+                        <div>
+                                <div style="padding-bottom: 10px;">
+                                    <span style="color: #1092E1; font-weight: bold; font-size: 18px;">{{"تخفیف ویژه " + item.jobcat3.name}}</span>
+                                </div>
+                                <div style="padding-bottom: 4px;">
+                                    <span style="color: #2196F3;">{{"کد تخفیف : " + item.code}}</span>
+                                </div>
+                                <div style="padding-bottom: 4px;">
+                                    <span style="color: #219603;">{{"قابل استفاده در " + item.locationSuport}}</span>
+                                </div>
+                                <div style="padding-bottom: 4px;"><strong>{{makeTextDiscount(item.percent, item.maxCredit)}}</strong></div>
+                                <div style="padding-bottom: 4px;"><span>{{item.description}}</span></div>
+                                <div>
+                                    <input type="button" class="btn btnStyle" value="ثبت درخواست با کد تخفیف">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!--end in pc-->
+
+                <!--start in mobile-->
+                <div *ngIf="item.code != ''" class="d-block d-lg-none d-xl-none clear col-12 col-sm-12 col-md-12 clear"> 
+                    <div style="text-align: center; padding: 7px; width: 100%; max-width: 500px; margin: 0 auto; cursor: pointer; border-bottom: 1px solid gray;">
+                        <div style="width: 100%; max-width: 320px; border-radius: 7px; position: relative;">
+                            <img src="{{item.img}}" (click)="onShowDiscountInfo(item)" 
+                                style="width: 100%; border-radius: 7px;" class="img-fluid">
+                            <div style="position: absolute; bottom: 0px; right: 0px; border-bottom-left-radius: 7px; border-bottom-right-radius: 7px; width: 100%; text-align: center; padding: 10px 0px; background-color: rgba(0, 0, 20, 0.5);">
+                                <input type="button" class="btn styleBtnInMobile"
+                                    (click)="onShowDiscountInfo(item)" 
+                                    value="{{' اطلاعات کد تخفیف ' + item.jobcat3.name}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+                <!--end in mobile-->
+            </div>
+        
+        <!--end off chanel-->
+    </div>
+</div>
+<!--end body-->
+<app-footer></app-footer>
+
+
+<div *ngIf="showModal"
+    [ngStyle]="{height: shared.yWindow.value+'px', width: shared.xWindow.value+'px'}" 
+    class="divLoadingPage">
+
+    <div id="divWiteBox">
+        <div id="divClose">
+            <img src="assets/webappPics/x-button.png" alt="close" (click)="closeModal()" id="imgClose">
+        </div>
+        <div class="textDiv">
+            <span id="textTitr">{{" اطلاعات تخفیف " + modal_selectedJobcat?.name}}</span>
+        </div>
+        <div class="textDiv">
+            <span id="subText">{{"کد تخفیف : " + modal_code}}</span>
+        </div>
+        <div class="textDiv">
+            <span id="subText">{{"قابل استفاده در " + modal_citySuport}}</span>
+        </div>
+        <div class="textDiv">
+            <strong id="subText">{{makeTextDiscount(modal_percent, modal_maxcredit)}}</strong>
+        </div>
+        <div class="textDiv">
+            <span id="subText">{{modal_description}}</span>
+        </div>
+        <div class="textDiv">
+            <input type="button" class="btn btnStyle" value="ثبت درخواست با کد تخفیف" (click)="onOffCodeMobile(modal_code, modal_selectedJobcat)">
+        </div>
+    </div>
+
+</div>

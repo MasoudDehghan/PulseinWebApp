@@ -1,0 +1,63 @@
+<div *ngIf="isLoading">
+    <app-loading-fullpage-latti></app-loading-fullpage-latti>
+</div>
+<div *ngIf="!isLoading">
+    <div style="padding: 10px 15px;" *ngIf="requestInfoList.length > 0">
+        <div style="width: 100%; background-color: white; border: 1px solid #C8C8C8; border-radius: 10px; padding: 10px 10px; padding-bottom: 0px;">
+            <div style="padding: 10px 7px;">
+                <span style="font-size: 14px; color: #546E7A;">شرح درخواست</span>
+            </div>
+            <div *ngFor="let info of requestInfoList" style="font-size: 12px; color: #546E7A; padding: 0px 15px;">
+                <p>{{info}}</p>
+            </div>
+        </div>
+    </div>
+    <div style="padding: 10px 15px;">
+        <div style="width: 100%; background-color: white; border: 1px solid #C8C8C8; border-radius: 10px; padding: 10px 10px; padding-bottom: 0px;">
+            <div style="padding: 10px 7px;">
+                <span style="font-size: 14px; color: #546E7A;">تاریخ و زمان انجام کار</span>
+            </div>
+            <div *ngIf="!isEmergency">
+                <div style="font-size: 12px; color: #546E7A; padding: 0px 15px;">
+                    <p>
+                        <span>{{"تاریخ: "}}</span>
+                        <span>{{fa_day + " " + fa_mounth + " " + fa_year}}</span>
+                    </p>
+                </div>
+                <div style="font-size: 12px; color: #546E7A; padding: 0px 15px;">
+                    <p>
+                        <span>{{"ساعت: "}}</span>
+                        <span>{{endTime + " - " + startTime}}</span>
+                    </p>
+                </div>
+            </div>
+            <div *ngIf="isEmergency">
+                <div style="font-size: 12px; color: #546E7A; padding: 0px 15px;">
+                    <p>{{emergencyText}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding: 10px 15px;" *ngIf="requestImgeList.length > 0">
+        <div style="width: 100%; background-color: white; border: 1px solid #C8C8C8; border-radius: 10px; padding: 10px 10px; padding-bottom: 0px;">
+            <div style="padding: 10px 7px;">
+                <span style="font-size: 14px; color: #546E7A;">آدرس</span>
+            </div>
+            <div style="font-size: 12px; color: #546E7A; padding: 0px 15px;">
+                <p>{{addressText}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding: 10px 15px;" *ngIf="requestImgeList.length > 0">
+        <div style="width: 100%; background-color: white; border: 1px solid #C8C8C8; border-radius: 10px; padding: 10px 10px; padding-bottom: 0px;">
+            <div style="padding: 10px 7px;">
+                <span style="font-size: 14px; color: #546E7A;">تصاویر</span>
+            </div>
+            <div *ngFor="let pic of requestImgeList" style="display: inline-block; padding: 5px; width: 130px;">
+                <img src="{{imgPath + pic}}" style="width: 100%; border-radius: 5px;" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>

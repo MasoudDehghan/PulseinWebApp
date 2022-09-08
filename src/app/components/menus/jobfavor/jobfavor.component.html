@@ -1,0 +1,79 @@
+<div id="mainDiv">
+
+    <div style="padding-top: 10px; overflow: hidden; height: 55px; display: flex; align-items: center;">
+        <div style="float: right; width: 65%; overflow: hidden; text-align: right;  padding-right: 7px; padding-top: 10px;">
+            <h2 style="font-size: 18px; color: #455A64; font-weight: bold;">{{mainTitle}}</h2>
+        </div>
+        <div style="float: left; width: 35%; overflow: hidden; text-align: left; padding-left: 7px;">
+            <input type="button" value="تمام سرویس ها" class="btn btnStyle" [routerLink]="['/services']">
+        </div>
+    </div>
+
+    <!--------start mode pc------------>
+    <div *ngIf="sharedService.xWindow.value > 992" id="divMainTile" class="d-none d-lg-block d-xl-block">
+        <div class="row clear">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 tile" *ngFor="let item of jobListCat">
+                <div class="mycontainer">
+                    <img src="{{imagePath + item?.image}}" [alt]="item?.name" class="image">
+                    <div class="overlay">
+                        <div class="textStyle text-truncate">{{item?.name}}</div>
+                        
+                        <div class="buton" *ngIf="checkMap(item?.ename) == '2'">  
+                            <input type="button" class="btn btn-success btnBorder" 
+                                value="ثبت درخواست"
+                                [routerLink]="['/categories3', item?.ename]">
+                        </div>
+                        <div class="buton" *ngIf="checkMap(item?.ename) == '1'">
+                            <input type="button" value="ثبت درخواست"
+                                class="btn btn-success btnBorder" (click)="goToPulseinApp(item?.ename)">
+                        </div>
+                        <div class="buton" *ngIf="checkMap(item?.ename) == '0'">
+                            <input type="button" value="ثبت درخواست"
+                                class="btn btn-success btnBorder" (click)="noWorker()">
+                        </div>
+                            
+                    </div>
+                </div>
+            </div>
+        </div>  
+         
+    </div>
+    <!--------end mode pc------------>
+
+    <!----start mode mobile with slider---->
+    <div *ngIf="sharedService.xWindow.value <= 992" class="d-block d-lg-none d-xl-none">
+        <div style="width: 100%; overflow: hidden; min-height: 180px;">
+              <div style="width: 100%;">
+                  <owl-carousel-o [options]="customOptions">
+                      <ng-container *ngFor="let slide of jobListCat">
+                          <ng-template carouselSlide [id]="slide?.ename">
+                              <div *ngIf="checkMap(slide?.ename) == '2'" class="divSlid">
+                                  <img src="{{imagePath + slide.thumbnail}}" [routerLink]="['/categories3', slide?.ename]"
+                                      [alt]="slide.name" [title]="slide.name" class="imgSlid">
+                                  <div style="text-align: right; padding-right: 2px;">
+                                      <span style="font-size: 12px;">{{slide?.name}}</span>
+                                  </div>
+                              </div>
+                              <div *ngIf="checkMap(slide?.ename) == '1'" class="divSlid">
+                                  <img src="{{imagePath + slide.thumbnail}}" (click)="goToPulseinApp(slide?.ename)"
+                                      [alt]="slide.name" [title]="slide.name" class="imgSlid">
+                                  <div style="text-align: right; padding-right: 2px;">
+                                      <span style="font-size: 12px;">{{slide?.name}}</span>
+                                  </div>
+                              </div>
+                              <div *ngIf="checkMap(slide?.ename) == '0'" class="divSlid">
+                                  <img src="{{imagePath + slide.thumbnail}}" (click)="noWorker()"
+                                      [alt]="slide.name" [title]="slide.name" class="imgSlid">
+                                  <div style="text-align: right; padding-right: 2px;">
+                                      <span style="font-size: 12px;">{{slide?.name}}</span>
+                                  </div>
+                              </div>
+                          </ng-template>
+                      </ng-container>
+                  </owl-carousel-o>
+              </div>
+        </div>
+    </div>
+    <!----end mode mobile with slider---->
+
+</div>

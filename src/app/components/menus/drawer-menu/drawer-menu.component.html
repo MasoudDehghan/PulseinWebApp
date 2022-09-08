@@ -1,0 +1,244 @@
+<div class="topFixed">
+  <div style="overflow: hidden; width: 100%; height: 100%;">    
+    <div id="logoDivStyle">
+        <img src="assets/image/logo.png" id="menuLogo" (click)="onPulsein()">
+    </div>
+    <div id="pulseinText" (click)="onPulsein()">
+      <img src="assets/image/mobileHome/pulseinWhite.png"
+        style="width: 100%; max-width: 300px; height: 40px;">
+    </div>
+    <div style="width: 20%; float: right; height: 100%; padding-right: 7px;">
+      <div id="menuBtnDiv">
+        <div style="width: 100%; text-align: right;">
+          <img (click)="onclickMenu()" *ngIf="!showMenu"
+            src="assets/image/mobileHome/menuBtn.png" 
+            class="menuBtn">
+          <img *ngIf="showMenu" 
+            src="assets/image/mobileHome/close.png"
+            (click)="onclickMenu()" 
+            class="menuBtn">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div [ngStyle]="{'height': shared.yWindow.value - 50 + 'px'}" 
+  [ngClass]="showMenu ? 'showScreen' : 'hideScreen'">
+  <div style="width: 100%; height: 100%; position: relative;">
+    <div (click)="onclickMenu()" style="width: 100%; height: 100%; position: absolute; top: 0; right: 0; z-index: 0;"></div>
+    <div style="width: 100%; max-width: 300px; height: 100%; background-color: white; position: absolute; top: 0; right: 0; z-index: 10; overflow: auto;">
+      <!--start user guest-->
+      <div *ngIf="!storage.isLogin.value">
+        <div style="width: 100%; height: 45px; display: flex; align-items: center; justify-content: center;">
+          <span id="btnStyleLogin" (click)="onLogin()">ورود | ثبت نام</span>
+        </div>
+
+        <div class="eLine"></div>
+
+        <!--
+        <div style="width: 100%; display: flex; align-items: center; justify-content: center;">
+          <div class="divBtnStyle" 
+            *ngIf="!shared.isWebAppPage.value">
+            <input type="button" class="btnStyle" value="ثبت درخواست" (click)="onNewRequest()">  
+          </div>
+        </div>
+        -->
+        
+        <div style="padding-top: 5px;">
+          <ul style="margin: 0px;">
+            <li *ngFor="let item of categories1" class="liBox" [routerLink]="['', item.ename]" (click)="onclickMenu()">
+              <span>{{item.name}}</span>
+            </li>
+          </ul>
+        </div>
+  
+        <div class="eLine"></div>
+  
+        <div>
+          <ul>
+            <li class="liBox" (click)="goToBlog()">
+              <span>{{"وبلاگ"}}</span>
+            </li>
+            <li class="liBox" [routerLink]="['/experts']" (click)="onclickMenu()">
+              <span>{{"کسب درآمد"}}</span>
+            </li>
+            <li class="liBox" [routerLink]="['/contact-us']" (click)="onclickMenu()">
+              <span>{{"تماس با ما"}}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--end user guest-->
+
+      <!--start user register-->
+      <div *ngIf="storage.isLogin.value">
+        <div style="overflow: hidden; height: 75px; padding-top: 15px;">
+          <div *ngIf="isProfileImage" class="divInfoFloat">
+            <div class="divimgUserForClick" (click)="onProfile()">
+              <img [src]="profileImageAddress" style="width: 100%; height: 100%; cursor: pointer;" class="rounded-circle">
+            </div>
+          </div>
+          <div *ngIf="!isProfileImage" class="divInfoFloat">
+            <div class="divimgUserForClick" (click)="onProfile()">
+              <img src="assets/image/man.jpg" style="width: 100%; height: 100%; cursor: pointer;" class="rounded-circle">
+            </div>
+          </div>
+            
+          <div *ngIf="storage.isLogin.value" style="float: left; width: 75%;">
+            <div class="userInfoStyle">
+              <span (click)="onProfile()" class="text-truncate">{{userName}}</span>
+            </div>
+            <div *ngIf="userCredit != ''" class="userInfoStyle">
+              <span style="padding-left: 4px;">اعتبار</span>
+              <span>{{userCredit}}</span>
+            </div>
+          </div> 
+        </div>
+
+        <div class="eLine"></div>
+
+
+        <div style="width: 100%; display: flex; align-items: center; justify-content: center;">
+          <!--
+            <div class="divBtnStyle" 
+              *ngIf="!shared.hasActiveRequest.value && showBtnRegisterRequest && !shared.isWebAppPage.value">
+              <input type="button" class="btnStyle" value="ثبت درخواست" (click)="onNewRequest()">  
+            </div>
+          -->
+          
+          <div class="divBtnStyle" 
+              *ngIf="shared.hasActiveRequest.value && showBtnCurrentRequest && !shared.isWebAppPage.value">
+              <input type="button" class="btnStyle" value="پیگیری درخواست" (click)="onFollowingRequest()">
+          </div>
+        </div>
+
+
+        <div class="paddingBoxBtnUserMenu">
+          <div class="styleBtnUserMenu" (click)="onAddCredit()">
+            <div class="itemFRight">
+              <i class="fas fa-wallet"></i>
+            </div>
+            <div class="itemFLeft">
+              <span>افزایش اعتبار</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="paddingBoxBtnUserMenu">
+          <div class="styleBtnUserMenu" (click)="onInvite()">
+            <div class="itemFRight">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <div class="itemFLeft">
+              <span>دعوت از دوستان</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="paddingBoxBtnUserMenu">
+          <div class="styleBtnUserMenu" (click)="onCandidateLocations()">
+            <div class="itemFRight">
+              <i class="fas fa-map-marked"></i>
+            </div>
+            <div class="itemFLeft">
+              <span>مکان های منتخب</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="paddingBoxBtnUserMenu">
+          <div class="styleBtnUserMenu" (click)="onProfile()">
+            <div class="itemFRight">
+              <i class="fas fa-user-alt"></i>
+            </div>
+            <div class="itemFLeft">
+              <span>حساب کاربری</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="paddingBoxBtnUserMenu">
+          <div class="styleBtnUserMenu" (click)="onTransactions()">
+            <div class="itemFRight">
+              <i class="fas fa-file-invoice-dollar"></i>
+            </div>
+            <div class="itemFLeft">
+              <span>گردش حساب</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="paddingBoxBtnUserMenu">
+          <div class="styleBtnUserMenu" (click)="onFinishedRequest()">
+            <div class="itemFRight">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="itemFLeft">
+              <span>درخواست های اتمام یافته</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="paddingBoxBtnUserMenu">
+          <div class="styleBtnUserMenu" (click)="onExit()">
+            <div class="itemFRight">
+              <i class="fas fa-sign-out-alt"></i>
+            </div>
+            <div class="itemFLeft">
+              <span>خروج از حساب کاربری</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="eLine"></div>
+  
+        <div>
+          <ul>
+            <li class="liBox" (click)="goToBlog()">
+              <span>{{"وبلاگ"}}</span>
+            </li>
+            <li class="liBox" [routerLink]="['/experts']" (click)="onclickMenu()">
+              <span>{{"کسب درآمد"}}</span>
+            </li>
+            <li class="liBox" [routerLink]="['/contact-us']" (click)="onclickMenu()">
+              <span>{{"تماس با ما"}}</span>
+            </li>
+          </ul>
+        </div>
+
+
+      </div>
+      <!--end user register-->
+
+    </div>
+  </div>
+</div>
+
+
+<!----start landing----
+<div *ngIf="!isWebAppPage">
+  <app-landings-notification></app-landings-notification>
+</div>
+<!----end landing---->
+
+
+<div *ngIf="storage.showModalLogin.value">
+  <smslogin></smslogin>
+</div>
+
+<div *ngIf="storage.showModalUserMenu.value">
+  <userMenuModal></userMenuModal>
+</div>
+
+<!--start modal add credit-->
+<div *ngIf="basicData.activeModalAddCredit.value">
+  <modal-add-credit [userToken]="userToken" [credit]="0" [dicountCode]="''" [requestID]="0"></modal-add-credit>
+</div>
+<!--end modal add credit-->
+
+<!--start modal invite-->
+<div *ngIf="basicData.activeModalInvite.value">
+  <app-invite [inviteLink]="inviteMsg"></app-invite>
+</div>
+<!--end modal invite--> 

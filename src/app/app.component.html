@@ -1,0 +1,25 @@
+<div (window:resize)="onResize($event)">
+
+    <div *ngIf="shared.showFirebaseNotification.value || isMouseOverNotification"
+    (mouseenter)="mouseInNotification()" (mouseleave)="mouseOutNotifcation()" 
+    style="width: 100%; max-width: 300px; max-height: 130px; min-height: 100px; cursor: pointer; background-color: #64B5F6; position: fixed; bottom: 0px; right: 0px; z-index: 99999; border-radius: 5px;">
+        <div style="overflow: auto; color: white; font-size: 12px;" 
+            (click)="onNotificatioClick(message?.notification?.click_action)">
+            <div style="float: right; max-width: 200px; width: 66%; min-height: 60px;">
+                <div style="padding: 5px 4px;">
+                    <span style="font-weight: bold;">{{ message?.notification?.title }}</span>
+                </div>
+                <div style="padding: 3px 4px;">
+                    <span>{{ message?.notification?.body }}</span>
+                </div>
+            </div>
+            <div style="float: left; max-width: 100px; width: 33%;">
+                <img src="{{ message?.notification?.icon }}" style="width: 100%; border-radius: 5px;" class="img-fluid">
+            </div>
+        </div>  
+    </div>
+
+    <router-outlet></router-outlet>
+    
+</div>
+

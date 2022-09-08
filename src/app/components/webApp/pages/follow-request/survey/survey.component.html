@@ -1,0 +1,92 @@
+<div *ngIf="isLoading">
+    <app-loading-fullpage-latti></app-loading-fullpage-latti>
+</div>
+
+<div *ngIf="!isLoading">
+
+        <!--start vote-->
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear" style="padding-top: 10px;">
+            <div class="row justify-content-md-center justify-content-lg-center justify-content-xl-center clear">
+                <div class="col-12 col-md-12 col-md-8 col-lg-8 col-xl-6">
+                    <div style="padding: 7px; background-color: white;">
+                        <div style="width: 100%; color: #546E7A; font-size: 14px; padding: 7px 5px;">
+                            <span>لطفا نظر خود را در مورد متخصص بیان کنید</span>
+                        </div>
+              
+                        <!--start box of vote price-->
+                        <div class="divBoxVote">
+                            <div class="divTitrVote">
+                                <span>ارزیابی قیمت</span>
+                            </div>
+                            <div style="width: 100%;">
+                                <div *ngFor="let item of listVote; index as i" class="divContent" (click)="vote('price' , 5-i)">
+                                    <div class="divContent2" *ngIf="votePrice == 5-i">
+                                        <img [src]="item.imageSelect" [alt]="item.text" class="imgVote">
+                                    </div>
+                                    <div class="divContent2" *ngIf="votePrice != 5-i">
+                                        <img [src]="item.imageDefault" [alt]="item.text" class="imgVote">
+                                    </div>
+                                    <div class="divContent2">
+                                        <span class="textVoteDef" 
+                                            [ngStyle]="{ color: votePrice == 5-i ? item.color : '#90A4AE'}">{{item.text}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end box of vote price-->
+                        <div class="divSeprator"></div>
+                        <!--start box of vote Timing-->
+                        <div class="divBoxVote">
+                            <div class="divTitrVote">
+                                <span>ارزیابی زمانبندی</span>
+                            </div>
+                            <div style="width: 100%;">
+                                <div *ngFor="let item of listVote; index as i" class="divContent" (click)="vote('timing' , 5-i)">
+                                    <div class="divContent2" *ngIf="voteTiming == 5-i">
+                                        <img [src]="item.imageSelect" [alt]="item.text" class="imgVote">
+                                    </div>
+                                    <div class="divContent2" *ngIf="voteTiming != 5-i">
+                                        <img [src]="item.imageDefault" [alt]="item.text" class="imgVote">
+                                    </div>
+                                    <div class="divContent2">
+                                        <span class="textVoteDef" [ngStyle]="{ color: voteTiming == 5-i ? item.color : '#90A4AE'}">{{item.text}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end box of vote Timing-->
+                        <div class="divSeprator"></div>
+                        <!--start box of vote Quality-->
+                        <div class="divBoxVote">
+                            <div class="divTitrVote">
+                                <span>ارزیابی نحوه انجام کار</span>
+                            </div>
+                            <div style="width: 100%;">
+                                <div *ngFor="let item of listVote; index as i" class="divContent" (click)="vote('quality' , 5-i)">
+                                    <div class="divContent2" *ngIf="voteQuality == 5-i">
+                                        <img [src]="item.imageSelect" [alt]="item.text" class="imgVote">
+                                    </div>
+                                    <div class="divContent2" *ngIf="voteQuality != 5-i">
+                                        <img [src]="item.imageDefault" [alt]="item.text" class="imgVote">
+                                    </div>
+                                    <div class="divContent2">
+                                        <span class="textVoteDef" 
+                                            [ngStyle]="{ color: voteQuality == 5-i ? item.color : '#90A4AE'}">{{item.text}}</span>
+                                    </div>
+                                </div>              
+                            </div>
+                        </div>
+                        <!--end box of vote Quality-->
+              
+                        <div style="width: 100%; padding: 20px 10px;">
+                            <input type="button" value="ثبت نظر" class="btn" (click)="onVote()" style="width: 100%; border-radius: 7px; background-color: #039BE5; color: white;">
+                        </div>
+                      
+              
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end vote-->
+              
+</div>

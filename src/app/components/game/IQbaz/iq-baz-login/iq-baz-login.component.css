@@ -1,0 +1,319 @@
+@font-face{
+	font-family: 'shabnam';
+    src: url(../../../../../assets/myFonts/Shabnam.ttf);
+    font-display: block;
+}
+
+.text4M{
+    font-size: 20px; 
+    font-weight: bold; 
+    color: green; 
+    padding-right: 4px;
+}
+
+.giftBoxWhite{
+    font-family: "shabnam";
+    background-color: white; 
+    width: 100%; 
+    max-width: 200px;
+    height: 330px;
+    border-radius: 15px; 
+    position: relative;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    margin: 0 auto;
+}
+
+.giftNumber{
+    font-size: 40px; 
+    color: tomato; 
+    padding-left: 4px;
+    font-family: "shabnam";
+    font-weight: bold;
+}
+
+.gamePoints{
+    font-size: 40px; 
+    color: tomato; 
+    padding-left: 5px;
+    font-family: "shabnam";
+    font-weight: bold;
+}
+
+.gamePointsBoxWhite{
+    border-radius: 7px; 
+    height: 80px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    background-color: white; 
+    color: green; 
+    font-size: 16px; 
+    font-weight: bold;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
+
+.spanGiftText{
+    padding-left: 4px;
+    font-size: 18px; 
+    color: tomato;
+}
+
+.textTitr{
+    font-size: 50px; 
+    color: white;
+    font-family: 'shabnam';
+}
+
+#textPoints{
+    font-size: 50px; 
+    color: white;
+    font-family: 'shabnam';
+}
+
+#divRules{
+    width: 100%; 
+    max-width: 600px; 
+    padding: 10px; 
+    background-color: white; 
+    border-radius: 15px; 
+    margin: 0 auto;
+    background-image: url('../../../../../assets/image/game/iqBaz/rules.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
+
+#btnAddOrder{
+    width: 100%; 
+    max-width: 400px; 
+    margin: 0 auto;
+    height: 45px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    border-radius: 7px; 
+    background-color: #E91E63; 
+    cursor: pointer;
+    color: white; 
+    font-size: 16px;
+    font-family: 'shabnam';
+    box-shadow: -4px 4px 17px 0px rgba(0,0,0,0.75);
+}
+
+#btnAddOrder:hover{
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+}
+
+#mainDiv {
+    width: 100%;
+    background-image: linear-gradient(#FFC107, #FF5722);
+    padding: 0px;
+    position: relative;
+}
+
+#divCenterBox{
+    height: 100%;
+}
+
+.whiteBox{
+    background-color: #ECEFF1; 
+    box-shadow: -22px 16px 33px -12px rgba(0,0,0,0.75); 
+    width: 100%; 
+    max-width: 450px;  
+    overflow: hidden; 
+    margin: 0 auto; 
+    text-align: center; 
+    border: 1px solid white; 
+    border-radius: 15px;
+    padding-top: 10px;
+}
+
+.witheBoxLittleWindow{
+    background-color: #E0F7FA; 
+    box-shadow: -22px 16px 33px -12px rgba(0,0,0,0.75); 
+    width: 100%; 
+    max-width: 450px; 
+    height: 350px; 
+    overflow: hidden; 
+    margin: 0 auto; 
+    text-align: center; 
+    padding: 15px; 
+    border: 1px solid white; 
+    border-radius: 10px;
+}
+
+.divTitle{
+    padding: 10px 15px; 
+    text-align: center; 
+    font-size: 18px;
+}
+
+.divSignUPItem{
+    width: 100%; 
+    max-width: 300px; 
+    height: 100%; 
+    margin: 0 auto; 
+    overflow: hidden;
+}
+
+.divSignUpItemLittleWindow{
+    height: 55px; 
+    width: 100%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.inputUnComplete{
+    width: 100%; 
+    height: 50px; 
+    border-radius: 7px; 
+    outline: none;
+    border: 1px solid #CFD8DC; 
+    background-color: white;
+    color: #455A64;
+    text-align: center; 
+    padding: 5px 15px; 
+    font-weight: bold; 
+    font-size: 18px;
+}
+
+.inputComplete{
+    width: 100%; 
+    height: 50px; 
+    border-radius: 7px; 
+    outline: none;
+    border: 1px solid white; 
+    background-color: #4CAF50;
+    color: white;
+    text-align: center; 
+    padding: 5px 15px; 
+    font-weight: bold; 
+    font-size: 18px;
+}
+
+.inputOnLittleWindowComplete{
+    width: 100%;
+    min-width: 200px; 
+    max-width: 340px; 
+    height: 50px; 
+    border-radius: 7px;
+    border: 1px solid white; 
+    background-color: #22B573;
+    color: white; 
+    outline: none; 
+    text-align: center; 
+    padding: 5px 15px; 
+    font-weight: bold; 
+    font-size: 18px;
+}
+
+.inputOnLittleWindowUnComplete{
+    width: 100%;
+    min-width: 200px; 
+    max-width: 340px; 
+    height: 50px; 
+    border-radius: 7px;
+    border: 1px solid #CFD8DC; 
+    background-color: white;
+    color: #455A64;
+    outline: none; 
+    text-align: center; 
+    padding: 5px 15px; 
+    font-weight: bold; 
+    font-size: 18px;
+}
+
+.btnLogin{
+    width: 45px; 
+    height: 45px; 
+    border-radius: 50px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    border: 1px solid white;
+    outline: none;
+}
+
+.timerDiv{
+    position: absolute; 
+    top: 0; 
+    right: 28%;
+}
+
+.timerDivLittleWindow{
+    position: absolute; 
+    top: 0; 
+    right: 24%;
+}
+
+
+/*---start input placeholder---*/
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    letter-spacing: 0;
+    color: #78909C;
+    font-size: 18px;
+    font-weight: bold;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    letter-spacing: 0;
+    color: #78909C;
+    font-size: 18px;
+    font-weight: bold;
+}
+:-ms-input-placeholder { /* IE 10+ */
+    letter-spacing: 0;
+    color: #78909C;
+    font-size: 18px;
+    font-weight: bold;
+}
+:-moz-placeholder { /* Firefox 18- */
+    letter-spacing: 0;
+    color: #78909C;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#smsCode::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    letter-spacing: 0;
+    color: #78909C;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 9px;
+}
+#smsCode::-moz-placeholder { /* Firefox 19+ */
+    letter-spacing: 0;
+    color: #78909C;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 9px;
+}
+#smsCode:-ms-input-placeholder { /* IE 10+ */
+    letter-spacing: 0;
+    color: #78909C;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 9px;
+}
+#smsCode:-moz-placeholder { /* Firefox 18- */
+    letter-spacing: 0;
+    color: #78909C;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 9px;
+}
+
+.NameSignUpLittleWindow::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-size: 12px;
+}
+.NameSignUpLittleWindow::-moz-placeholder { /* Firefox 19+ */
+    font-size: 12px;
+}
+.NameSignUpLittleWindow:-ms-input-placeholder { /* IE 10+ */
+    font-size: 12px;
+}
+.NameSignUpLittleWindow:-moz-placeholder { /* Firefox 18- */
+    font-size: 12px;
+}
+/*---end input placeholder---*/

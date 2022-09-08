@@ -1,0 +1,132 @@
+.mainDivInvoice{
+    width: 100%;
+}
+
+.tblBill{
+    width:100%;
+}
+
+.trHeaderBill{
+    background-color: #EEEEEE; 
+    height: 45px;
+    padding-top: 10px;
+    width: 100%;
+    overflow: auto;
+}
+
+.trHeaderText{
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.tdBill{
+    display: inline-block;
+    height: 100%;
+}
+
+.tdBill2{
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tdBill3{
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    text-align: left; 
+    padding-left: 3px;
+}
+
+.darkTr{
+    background-color: #E0F7FA;
+    color: #2E7D32;
+    min-height: 40px;
+    padding: 8px 0px;
+}
+
+.lightTr{
+    background-color: #ffffff;
+    color: #0277BD;
+    min-height: 40px;
+    padding: 8px 0px;
+}
+
+.divCost3{
+    border-radius: 10px; 
+    padding-top: 7px; 
+    padding-bottom: 4px;
+}
+
+.divCost2{ 
+    padding-bottom: 5px;
+    color: #000000;
+}
+
+.divCost1{
+    border-top: 1px solid #CFD8DC; 
+    padding-bottom: 5px; 
+    padding-top: 1px; 
+    color: #000000;
+}
+
+.divCostSeparator{
+    height: 5px; 
+    border-top: 1px solid #CFD8DC; 
+    width: 100%;
+}
+
+.textBill{
+    padding-left: 4px;
+    width: 50%;
+    text-align: left;
+    display: inline-block;
+    font-size: 12px;
+}
+
+#textBillFinal{
+    padding-left: 4px;
+    width: 50%;
+    text-align: left;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.costText{
+    color: green;
+    width: 50%;
+    display: inline-block;
+    text-align: left;
+    font-size: 12px;
+    padding-left: 3px;
+}
+
+#costTextFinal{
+    color: green;
+    width: 50%;
+    display: inline-block;
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 3px;
+}
+
+.spanTotalText{
+    color:#455A64; 
+    font-weight: bold; 
+    padding-left: 7px;
+}
+
+.spanTotalCost{
+    color: green; 
+    font-weight: bold;
+}
+
+

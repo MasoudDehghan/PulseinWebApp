@@ -1,0 +1,46 @@
+/*----start vote----*/
+.divBoxVote{
+    background-color: white;
+    border: 1px solid #C8C8C8; 
+    border-radius: 7px; 
+    padding-top: 10px; 
+    padding-bottom: 10px;
+}
+
+.divTitrVote{
+    width: 100%;
+    text-align: center;
+    color: #546E7A;
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.divContent{
+    width: 20%; 
+    display: inline-block;
+    cursor: pointer;
+}
+
+.divContent2{
+    text-align: center; 
+    width: 100%;
+}
+
+.imgVote{
+    width: 50px;
+    height: 50px;
+}
+
+.textVoteDef{
+    font-size: 14px;
+}
+
+
+.divSeprator{
+    height: 10px;
+    width: 100%;
+}
+
+/*----end vote-----*/

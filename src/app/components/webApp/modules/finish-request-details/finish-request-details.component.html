@@ -1,0 +1,220 @@
+
+
+<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear" style="padding-top: 5px;">
+
+    <div class="row clear  justify-content-md-center justify-content-lg-center justify-content-xl-center">
+
+      <div *ngIf="xWindow > 620" class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <div style="width: 100%; text-align: center;">
+          <input type="button" value="اطلاعات درخواست" class="btn styleBtnTabs" (click)="onTabInPayment(1)"
+            [ngClass]="btn1ShowRequestInfo ? 'btn-primary' : 'btn-light'" [disabled]="btn1ShowRequestInfo">
+          <input *ngIf="this.inputRequestInfo.selectedOffer" type="button" value="اطلاعات متخصص" class="btn styleBtnTabs" (click)="onTabInPayment(2)"
+            [ngClass]="btn2ShowWorkerInfo ? 'btn-primary' : 'btn-light'" [disabled]="btn2ShowWorkerInfo">
+          <input type="button" value="وضعیت های درخواست" class="btn styleBtnTabs" (click)="onTabInPayment(3)"
+            [ngClass]="btn3ShowHistoryStates ? 'btn-primary' : 'btn-light'" [disabled]="btn3ShowHistoryStates">
+          <input *ngIf="inputRequestInfo.finalInvoice" type="button" value="فاکتور" class="btn styleBtnTabs" (click)="onTabInPayment(4)"
+            [ngClass]="btn4ShowInvoice ? 'btn-primary' : 'btn-light'" [disabled]="btn4ShowInvoice">
+          <button class="btn btn-light styleBtnTabs" (click)="onBackToAllFinishRequest()">
+            <span>بازگشت</span>
+            <i class="fas fa-arrow-left" style="padding: 0 3px;"></i>
+          </button>
+        </div>
+      </div>
+
+
+      <div *ngIf="xWindow <= 620" class="styleDivPaddingDropDown">
+        <div class="styleDivDropDown">
+          <select (change)="onClickDropDow()" [(ngModel)]="dropdownSelectedText" 
+            style="width: 95%; height: 100%; border-radius: 7px; font-size: 12px; text-align: center;">
+            <option *ngFor="let item of dropdownTextList; index as i" [value]="item">{{item}}</option>
+          </select>
+        </div>
+        <div style="float: left; width: 40%; text-align: left; height: 35px;">
+            <button class="btn btn-info" style="font-size: 12px; text-align: center; width: 95%" (click)="onBackToAllFinishRequest()">
+                <span>بازگشت</span>
+                <i class="fas fa-arrow-left" style="padding: 0 3px;"></i>
+            </button>
+        </div>
+      </div>
+
+      <!--start col 1-->
+      <div *ngIf="btn1ShowRequestInfo" class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 divBoxPadding">
+        <div class="divBoxStyle">
+        
+          <div class="borderTitle">
+            <img [src]="jobcatIcon" alt="آیکون دسته" class="jobCatPicStyle">
+            <span class="mainTitleInBox">{{jobcatName}}</span>
+          </div>
+          <div class="divTableStyleEvenRow">
+            <span class="titleStyle">عنوان:</span>
+            <span class="requestInfoStyle">{{inputRequestInfo?.request?.title}}</span>
+          </div>
+            
+            <div class="divTableStyleOddRow">
+              <span class="titleStyle">کد:</span>
+              <span class="requestInfoStyle">{{inputRequestInfo?.request?.code}}</span>
+            </div>
+            <div class="divTableStyleEvenRow">
+              <span class="titleStyle">توضیحات:</span>
+              <div *ngIf="inputRequestInfo?.request?.info" style="max-height: 90px; min-height: 50px; overflow: auto;">
+                <span class="requestInfoStyle">{{inputRequestInfo?.request?.info}}</span>
+              </div>
+              <span *ngIf="!inputRequestInfo?.request?.info" class="requestInfoStyle">{{blankData}}</span>
+            </div>
+            
+            <div class="divTableStyleOddRow">
+              <span class="titleStyle">زمان شروع کار:</span>
+              <span class="requestInfoStyle" dir="ltr">{{inputRequestInfo?.request?.timeData?.startTime}}</span>
+            </div>
+
+            <div class="divTableStyleEvenRow" style="position: relative;">
+              <span class="titleStyle">مکان انجام کار:</span>
+              <div style="height: 45px; overflow: auto;">
+                <span class="requestInfoStyle">{{inputRequestInfo?.request?.geoData?.address}}</span>
+              </div>
+            </div>
+
+            <div *ngIf="photos">
+                <div *ngIf="photos.length > 0; else NoImageBlock" class="divTableStyleEvenRow">
+                    <div>
+                      <span class="titleStyle">تصاویر</span>
+                    </div>
+                    <div class="divPhotosShow">
+                      <span *ngFor="let img of photos" class="spanPhoto">
+                        <img [src]="imgPath + img" alt="تصویر" class="photoStyle" (click)="onPhoto(img)">
+                      </span>
+                    </div>
+                </div>
+                <ng-template #NoImageBlock>
+                    <div class="divTableStyleEvenRow">
+                        <span class="titleStyle">تصاویر:</span>
+                        <span class="requestInfoStyle">{{blankData}}</span>
+                    </div>
+                </ng-template>
+            </div>
+            
+        </div>
+      </div>
+      <!--end col 1-->
+
+      <!--start col 2-->
+        <div *ngIf="btn2ShowWorkerInfo" class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 divBoxPadding">
+          <!--start worker detailes-->
+          <div class="divStyle4BoxInPaymentStep">
+            <div style="padding: 3px; overflow: auto;" *ngIf="this.inputRequestInfo.selectedOffer">
+              <div style="float: left; width: 35%;">
+                <div style="width: 100%; text-align: left">
+                  <img [src]="imgPath + offer_workerImage" alt="تصویر متخصص" class="img-fluid" style="width: 100px; height: 100px; border-radius: 5px;">
+                </div>
+              </div>
+              <div style="float: right; width: 65%;">
+                    <div class="divStyleWorkerInfo">
+                      <span class="titleStyle">نام متخصص:</span>
+                      <span class="requestInfoStyle">{{offer_workerFirstName + ' ' + offer_workerLastName}}</span>
+                    </div>
+                    <div class="divStyleWorkerInfo">
+                      <span class="titleStyle">کد متخصص:</span>
+                      <span class="requestInfoStyle">{{offer_workerCode}}</span>
+                    </div>
+                    <div class="divStyleWorkerInfo">
+                      <span class="titleStyle">سال شروع فعالیت:</span>
+                      <span class="requestInfoStyle" *ngIf="offer_startWorkYear">{{offer_startWorkYear}}</span>
+                      <span class="requestInfoStyle" *ngIf="!offer_startWorkYear">{{blankData}}</span>
+                    </div>
+                    <div class="divStyleWorkerInfo">
+                      <span class="titleStyle">امتیاز:</span>
+                      <div style="display: inline-block; direction: ltr;">
+                        <span *ngFor="let star of offer_stars">
+                          <i *ngIf="star == 0" class="far fa-star" style="color: green"></i>
+                          <i *ngIf="star == 0.5" class="fas fa-star-half-alt" style="color: green"></i>
+                          <i *ngIf="star == 1" class="fas fa-star" style="color: green"></i>
+                        </span>
+                      </div>
+                    </div>
+              </div>
+            </div> 
+            <div style="padding: 5px 0px;">
+              <div style="text-align: center; padding: 4px 0px; background-color: #90CAF9; color: #1A237E; width: 90%; margin: 0 auto; border-radius: 7px;">
+                <i class="fas fa-phone-square fa-2x" style="padding-left: 5px;">
+                  {{offer_workerMobile}}
+                </i>
+              </div>                  
+            </div>
+
+            <div *ngIf = "offer_workerDocumentList">
+                <div *ngIf = "offer_workerDocumentList.length > 0 ; else NoDocumentBlock" class="divTableStyleEvenRow">
+                    <div>
+                      <span class="titleStyle">مدارک</span>
+                    </div>
+                    <div class="divPhotosShow">
+                      <span *ngFor="let doc of offer_workerDocumentList" class="spanPhoto">
+                        <img [src]="imgPath + doc.photo" [alt]="doc.documentType.name" class="photoStyle" (click)="onPhoto(doc.photo)">
+                      </span>
+                    </div>
+                </div>
+                <ng-template #NoDocumentBlock>
+                    <div class="divTableStyleEvenRow">
+                        <span class="titleStyle">مدارک</span>
+                        <span class="requestInfoStyle">{{blankData}}</span>
+                    </div>
+                </ng-template>
+            </div>
+            
+            <div *ngIf = "offer_workerCatalogList">
+                <div *ngIf = "offer_workerCatalogList.length > 0; else NoCatalog" class="divTableStyleEvenRow">
+                    <div>
+                      <span class="titleStyle">نمونه کار</span>
+                    </div>
+                    <div class="divPhotosShow">
+                      <span *ngFor="let catalog of offer_workerCatalogList" class="spanPhoto">
+                        <img [src]="imgPath + catalog.photo" alt="catalogPhoto" class="photoStyle" (click)="onPhoto(catalog.photo)">
+                      </span>
+                    </div>
+                </div>
+                <ng-template #NoCatalog >
+                    <div class="divTableStyleEvenRow">
+                        <span>نمونه کار</span>
+                        <span class="requestInfoStyle">{{blankData}}</span>
+                    </div>
+                </ng-template>
+            </div>
+          </div>
+
+          <!--end worker detailes-->
+        </div>
+      <!--end col 2-->
+
+       <!--start col 3-->
+       <div *ngIf="btn3ShowHistoryStates" class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 divBoxPadding">
+          <div class="divStyle4BoxInPaymentStep">
+              <div style="overflow: auto; background-color: #FFF59D; color: #1A237E; font-size: 14px;">
+                <div style="float: left; width: 50%; padding: 5px; text-align: left;">تاریخ و زمان</div>
+                <div style="float: right; width: 50%; padding: 5px; text-align: right;">وضعیت درخواست</div>
+              </div>
+              <div *ngFor="let state of stateList; index as i">
+                <div style="overflow: auto; min-height: 40px;" 
+                  [ngStyle]="i%2 ? {'background-color': '#E8F5E9', 'color':'#BF360C'} : {'background-color': '#FFFFFF', 'color':'#004D40'}">
+                  <div style="float: left; width: 50%; padding: 5px; text-align: left; padding-top: 7px;">{{state.updateTime}}</div>
+                  <div style="float: right; width: 50%; padding: 5px; text-align: right; padding-top: 7px;">{{state.name}}</div>
+                </div>
+              </div>
+          </div>
+       </div>
+       <!--end col 3-->
+
+       <!--start col 4-->
+       <div *ngIf="btn4ShowInvoice" class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 divBoxPadding">
+          <div class="divStyle4BoxInPaymentStep">
+              <invoice [invoice]="offer_invoice"></invoice>
+          </div>
+       </div>
+       <!--end col 4-->
+
+    </div>
+</div>
+
+<!--Start modal photo-->
+<div *ngIf="basicData.activeModalPhoto.value">
+  <photoPopup [srcPhoto]="srcPhotoPopUp"></photoPopup>
+</div>
+<!--End modal photo-->

@@ -1,0 +1,20 @@
+<div [ngStyle]="(shared.noScroll.value) ? {height:shared.yWindow.value+'px', overflow: 'hidden'} : {height:'auto', overflow: 'auto'}">
+    <div *ngIf="(shared.pagePath.value != 'categories3')">
+        <div *ngIf="shared.xWindow.value >= 620">
+            <globalHeader></globalHeader>
+        </div>
+        <div *ngIf="shared.xWindow.value < 620">
+            <app-drawer-menu></app-drawer-menu>
+        </div>
+    </div>
+    <div *ngIf="(shared.pagePath.value == 'categories3')">
+        <div class="col-lg-12 col-xl-12 d-none d-lg-block clear">
+            <globalHeader></globalHeader>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+
+    <div *ngIf="shared.showModalFolloweRequest.value && shared.firstTimeShowModalFolloweRequest.value">
+        <app-followe-request></app-followe-request>
+    </div>
+</div>

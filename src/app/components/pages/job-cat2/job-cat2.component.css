@@ -1,0 +1,322 @@
+.clear{
+    margin: 0px;
+    padding: 0px;
+}
+
+#mainDiv{
+    position: relative;
+    padding: 0px;
+    margin: 0px;
+    padding: 10px 0px;
+}
+
+.backImageDiv{
+    position: relative;
+    height: 400px;
+    width: 100%;
+    background-repeat:no-repeat; 
+    background-size:cover; 
+    background-position:center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.cat2TitleDiv{
+    position: absolute; 
+    bottom: 50px; 
+    right: 4vw; 
+    opacity: 0.5;
+    background-color: black;
+    border-radius: 4px;
+    padding: 7px;
+}
+
+.cat2TitleText{
+    color: white; 
+    font-size: 28px; 
+    font-weight: 800;
+    opacity: 1;
+}
+
+#needServiceMainDiv{
+    position: absolute; 
+    background-color:white; 
+    min-height: 40px; 
+    width: 400px; 
+    left: 5vw; 
+    top: 30px;
+    box-sizing: border-box;
+    padding: 14px 7px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    border-radius: 4px;
+}
+
+.needServiceTitleFont{
+    font-size: 18px; 
+    font-weight: 700; 
+    text-align: center;
+}
+
+.needServiceSecondeDiv{
+    box-sizing: border-box;
+    padding-top: 20px;
+    padding-bottom: 7px;
+    text-align: center;
+}
+
+.needServiceElementDiv{
+    width: 95%; 
+    box-sizing: border-box; 
+    margin: 0 auto; 
+    text-align: center;
+    padding: 7px 0;
+}
+
+textarea{
+    width: 100%; 
+    padding: 8px 5px; 
+    height: 250px; 
+    font-size: 12px; 
+    font-weight: 600;
+    box-sizing: border-box;
+}
+
+select{
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+ul li{
+    list-style-type: none;
+    display: inline;
+    background-color: gray;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    color: white;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+ul li:hover{
+    background-color: tomato;
+}
+
+#btnSendRequest{
+    border-radius: 4px;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    height: 40px;
+}
+
+#back1Div{
+    position: relative;
+    height: 300px;
+    width: 100%;
+    background-repeat:no-repeat; 
+    background-size:cover; 
+    background-position:center;
+    padding: 0px;
+    margin: 0px;
+}
+
+#txtDescripDiv{
+    width: 80%; 
+    box-sizing: border-box; 
+    padding-top: 20px; 
+    margin: 0 auto;
+    text-align: center;
+}
+
+#txtDescripFont{
+    font-size: 20px; 
+    font-weight: 300;
+    line-height: 35px;
+    color: #455A64;
+}
+
+#tagsDiv{
+    width: 60%; 
+    font-size: 12px; 
+    font-weight: 500; 
+    box-sizing: border-box; 
+    padding-top: 40px; 
+    line-height: 40px;
+}
+
+.txtTitleDiv{
+    text-align: center; 
+    box-sizing: border-box; 
+    padding-top: 30px; 
+    padding-bottom: 20px;
+}
+
+.txtTitleDiv h3{
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+.importPropertiesDiv{
+    box-sizing: border-box; 
+}
+
+#importDivMain{
+    box-sizing: border-box; 
+    padding-bottom: 40px; 
+    padding-top: 10px; 
+}
+
+#back2Div{
+    position: relative;
+    height: 300px;
+    width: 100%;
+    background-repeat:no-repeat; 
+    background-size:cover; 
+    background-position:center;
+    padding: 0px;
+    margin: 0px;
+}
+
+#back3Div{
+    position: relative;
+    height: 300px;
+    width: 100%;
+    background-repeat:no-repeat; 
+    background-size:cover; 
+    background-position:center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.subInfo1{
+    position: absolute; 
+    width: 50%;
+    margin-right: 35%;
+    margin-left: 15%; 
+    top: 80px; 
+    background-color: white;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+    box-sizing: border-box;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.subInfo2{
+    position: absolute; 
+    width: 50%;
+    margin-right: 15%;
+    margin-left: 35%; 
+    top: 80px;  
+    background-color: white;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.5);
+    box-sizing: border-box;
+    padding: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*----Start Cat3 tiles----*/
+/*------------*/
+.mycontainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border-radius: 4px;
+  }
+  
+  .image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+  }
+
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    width: 100%;
+    height:0;
+    transition: .5s ease;
+    border-radius: 4px;
+    background-color: #55ace6;
+  }
+  
+  .mycontainer:hover .overlay{
+    bottom: 0;
+    height: 70%;
+  }
+
+  .text1 {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
+  .butonDiv {
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    top: 60%;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
+  .btnCurv{
+      border-radius: 4px;
+  }
+
+  .btnMore{
+    width: 250px;
+    border-radius: 4px;
+  } 
+
+  #jobCat3Div{
+    box-sizing: border-box; 
+    padding: 0; 
+    margin: 0; 
+    padding-top: 4px; 
+    padding-bottom: 30px;
+  }
+
+  .boxJobCat3{
+    box-sizing: border-box;
+    margin: 0; 
+    padding: 4px; 
+    max-height: 200px;
+  }
+/*----End cat3 tiles-----*/
+
+.fontSubTitle{
+    font-size: 20px;
+    font-weight: bold;
+    color: #455A64;
+    line-height: 30px;
+}
+
+.fontSubinfo{
+    font-size: 14px;
+    font-weight: 300px;
+    color: #546E7A;
+    line-height: 25px;
+}

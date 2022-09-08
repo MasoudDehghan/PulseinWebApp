@@ -1,0 +1,154 @@
+.divItemPadding{
+    padding-top: 15px; 
+    padding-bottom: 15px;
+}
+
+.iconFont{
+    padding-right: 5px; 
+    padding-left: 3px;
+}
+
+.locationRowEven{
+    background-color: #E1F5FE;
+    color: green;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 15px;
+}
+
+.locationRowOdd{
+    background-color: white;
+    color: #455A64;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 15px;
+}
+
+/*----start add new location----*/
+.divModalFullPageShow{
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.divModalFullPageHide{
+    top: 0px;
+    right: 0px;
+    height: 0;
+    width: 0;
+}
+
+.showCoverModal{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: black;
+    opacity: 0.4;
+    height: 100%;
+    width: 100%;
+}
+
+.hideCoverModal{
+    top: 0px;
+    right: 0px;
+    height: 0;
+    width: 0;
+}
+
+.modalBoxContent{
+    position: absolute; 
+    background-color: white;
+    border-radius: 7px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    height: 0;
+    width: 0;
+}
+
+
+/*------start map-------*/
+.divMap{
+    width: 100%;
+    padding: 0px 10px;
+}
+
+agm-map {
+    height: 270px;
+    width: 100%;
+}
+
+/*------End map--------*/
+
+/*----end add new location----*/
+
+
+.selectedPlaceDiv{
+    width: 100%; 
+    padding-left: 10px; 
+    padding-top: 5px; 
+    padding-bottom: 5px;
+}
+
+.selectedPlacePositionDiv{
+    width: 100%; 
+    position: relative;
+}
+
+.selectedPlaceInput{
+    width: 100%; 
+    border: 1px solid #CFD8DC; 
+    height: 40px; 
+    padding-right: 15px; 
+    padding-left: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.selectedPlaceUl{ 
+    position: absolute; 
+    top: 38px; 
+    width: 100%; 
+    list-style-type: none; 
+    padding-right: 5px; 
+    max-height: 100px; 
+    overflow: auto; 
+    background-color: white;
+    border: 1px solid gray;
+    z-index: 10;
+}
+
+.inputBtnSelectPlace{
+    width: 100%; 
+    height: 30px; 
+    border: none;
+    background-color: white; 
+    text-align: right; 
+    cursor: pointer;
+    color: #78909C;
+}
+
+.inputBtnSelectPlace:hover{
+    color: #455A64;
+}
+
+.selectedPlaceChevron{
+    position: absolute; 
+    top: 15px; 
+    left: 7px; 
+    font-size: 12px; 
+    color: #90A4AE;
+}
+
+.btnBlue{
+    width: 100%; 
+    max-width: 300px; 
+    border-radius: 5px; 
+    height: 40px; 
+    outline: none; 
+    color: white; 
+    background-color: #2196F3;
+}

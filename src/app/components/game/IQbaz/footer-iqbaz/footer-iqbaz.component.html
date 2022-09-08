@@ -1,0 +1,181 @@
+<!------Start mainDiv1------>
+<div class="mainDiv1">  
+
+  <!--Start mainDiv1 for PC-->
+  <div class="col-md-12 col-lg-12 col-xl-12 clear d-none d-md-block">
+      <div class="row clear" style="padding-top: 10px; height: 40px;">
+          <div class="col-md-6 col-lg-8 col-xl-8 clear" id="divTextOwner">
+              <p class="fontSmall">{{txtOwnr}}</p>
+          </div>
+          <div class="col-md-6 col-lg-4 col-xl-4 clear text-left" id="divCountactUs">
+              <ul>
+                  <li class="liSocial">
+                      <a [href]="telegram" class="socialLink">
+                          <i class="fab fa-telegram-plane socialIcon"></i>
+                      </a>
+                  </li>
+                  <li class="liSocial">
+                      <a [href]="instagram" class="socialLink">
+                          <i class="fab fa-instagram socialIcon"></i>
+                      </a>
+                  </li>
+                  <li class="seprateLi">|</li>
+                  <li id="liMobile"><span class="fontSmall">{{txtTel}}<span id="tell">{{telNumber}}</span></span></li>
+              </ul>
+          </div>
+      </div>
+  </div>
+  <!--End mainDiv1 for PC-->
+  
+  <!--Start mainDiv1 for mobile-->
+  <div class="row clear d-block d-md-none d-lg-none d-xl-none" style="padding-top: 10px; overflow: hidden;">
+      <div class="col-12 col-sm-12 clear text-center">
+          <p class="fontSmall">{{txtOwnr}}</p>
+      </div>
+      <div class="col-12 col-sm-12 text-center">
+          <div class="row clear">
+              <div class="col-12 col-sm-12 clear">
+                  <div class="row clear text-center">
+                      <div class="col-6 col-sm-6">
+                          <a [href]="telegram" class="socialLink">
+                              <i class="fab fa-telegram-plane socialIcon"></i>
+                          </a>
+                      </div>
+                      <div class="col-6 col-sm-6">
+                          <a [href]="instagram" class="socialLink">
+                              <i class="fab fa-instagram socialIcon"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-sm-12 text-center" id="tellDiv">
+          <p class="fontSmall"> {{txtTel}} <span id="tell">{{telNumber}}</span></p>
+      </div>
+  </div>
+  <!--End mainDiv1 for mobile-->
+  
+</div>
+<!------End mainDiv1------>
+  
+  <div class="mainDiv2">
+      <div class="row justify-content-md-center justify-content-lg-center justify-content-xl-center clear">
+  
+          <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10">
+              <p class="text-justify txtSeo">
+                <span>{{textSeo1}}</span>
+                <span *ngFor="let item of seoLinkList1">
+                    <span [routerLink]="[item.link]" style="font-weight: bold; padding: 0px 3px; cursor: pointer;">{{item.text}}</span>
+                    <span>{{'،'}}</span>
+                </span>
+                <span>{{textSeo2}}</span>
+                <span *ngFor="let item of seoLinkList2">
+                    <span [routerLink]="[item.link]" style="font-weight: bold; padding: 0px 3px; cursor: pointer;">{{item.text}}</span>
+                    <span>{{'،'}}</span>
+                </span>
+                <span>{{textSeo3}}</span>
+                <span *ngFor="let item of seoLinkList3">
+                    <span [routerLink]="[item.link]" style="font-weight: bold; padding: 0px 3px; cursor: pointer;">{{item.text}}</span>
+                    <span>{{'،'}}</span>
+                </span>
+                <span>{{textSeo4}}</span>
+                <span *ngFor="let item of seoLinkList4">
+                    <span [routerLink]="[item.link]" style="font-weight: bold; padding: 0px 3px; cursor: pointer;">{{item.text}}</span>
+                    <span>{{'،'}}</span>
+                </span>
+                <span>{{textSeo5}}</span>
+              </p>
+              
+          </div>
+  
+          <div style="width: 100%; height: 90px; padding: 5px; display: flex; justify-content: center; overflow: hidden;">
+              <!--
+              <div style="float: left; width: 80px; height: 100%; max-width: 20%; text-align: center;">
+                  <a [href]="computerUnionLink" target="_blank">
+                      <img src="assets/image/logoSenfyIT.png" alt="سازمان صنفی رایانه ای" style="width: 100%; height: 100%; cursor: pointer;">
+                  </a>
+              </div>
+              -->
+              <div style="float: left; width: 80px; height: 80px; max-width: 20%; text-align: center; background-color: transparent;">
+                <a href="https://pub.daneshbonyan.ir" target="_blank">
+                    <img src="assets/image/daneshBonyan.png" alt="دانش بنیان" style="width: 100%; height: 100%; cursor: pointer;">
+                </a>
+              </div>
+
+              <div style="float: left; width: 80px; height: 80px; max-width: 20%; text-align: center; background-color: transparent;">
+                  <img src="assets/image/logoSenfyJob.png" alt="سازمان صنفی کارفرمایی و فروشگاهی اینترنتی تهران" style="width: 100%; height: 100%;">
+              </div>
+              
+              <div style="float: left; width: 80px; height: 80px; max-width: 20%; text-align: center;">
+                  <img id = 'jxlzwlaowlaooeukfukzjzpe' 
+                  style = 'cursor:pointer; width: 100%; height: 100%;' 
+                  onclick = 'window.open("https://logo.samandehi.ir/Verify.aspx?id=144867&p=rfthaodsaodsmcsigvkajyoe", "Popup","toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' 
+                  alt = 'logo-samandehi' 
+                  src = 'https://logo.samandehi.ir/logo.aspx?id=144867&p=nbpdshwlshwlaqgwwlbqyndt' />
+              </div>
+              <div style="float: left; width: 80px; height: 80px; max-width: 20%; text-align: center;">
+                  <img id="S3NRit95SOa0XMIV"
+                   style = 'cursor:pointer; width: 100%; height: 100%;' 
+                   src="https://trustseal.enamad.ir/logo.aspx?id=118582&p=S3NRit95SOa0XMIV"
+                   alt='logo-enamd'
+                   onclick='window.open("https://trustseal.enamad.ir/Verify.aspx?id=118582&p=S3NRit95SOa0XMIV", "Popup","toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30")' >
+              </div>
+<!--
+              <div style="float: left; width: 80px; height: 100%; max-width: 20%; text-align: center;">
+                  <img src="assets/image/eNamad.png" alt="نماد الکترونیک" style="width: 100%; height: 100%;">
+              </div>
+              -->
+
+
+              <!--
+              <div style="float: left; width: 80px; height: 100%; max-width: 20%; text-align: center;">
+                  <img id="jxlzesgtoeuksizpnbqenbqe" 
+                      style="cursor:pointer; width: 100%; height: 100%;" 
+                      onclick="window.open(&quot;https://logo.samandehi.ir/Verify.aspx?id=108922&amp;p=rfthobpdmcsipfvluiwkuiwk&quot;, &quot;Popup&quot;,&quot;toolbar=no, scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30&quot;)" 
+                      alt="نماد ساماندهی" 
+                      src="https://logo.samandehi.ir/logo.aspx?id=108922&amp;p=nbpdlymaaqgwbsiyodrfodrf">
+              </div>
+              <div style="float: left; width: 80px; height: 100%; max-width: 20%; text-align: center;">
+                  <img src="https://trustseal.enamad.ir/logo.aspx?id=98710&amp;p=aMUih5jq9SidJzBD" 
+                      alt="نماد اعتماد الکترونیک" 
+                      onclick="window.open(&quot;https://trustseal.enamad.ir/Verify.aspx?id=98710&amp;p=aMUih5jq9SidJzBD&quot;, &quot;Popup&quot;,&quot;toolbar=no, location=no, statusbar=no, menubar=no, scrollbars=1, resizable=0, width=580, height=600, top=30&quot;)" 
+                      style="cursor:pointer; width: 100%; height: 100%;"
+                      id="aMUih5jq9SidJzBD">
+              </div>
+              -->
+          </div>
+  
+      </div>
+  </div>
+  
+  
+  <div class="container-fluid mainDiv3">
+          <div class="row clear">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 text-center">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 titr">{{txtPulsinName}}</div>
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 txtLink linkFooterLayer3" 
+                       *ngFor="let item of links1" [routerLink]="['/' , item.route]">{{item.title}}</div>
+              </div>
+  
+              <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 text-center">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 titr">{{contactUs}}</div>
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 txtLink"
+                       *ngFor="let item of links2" [routerLink]="['/' , item.route]">{{item.title}}</div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 text-center">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 titr">{{moreKnow}}</div>
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 txtLink" 
+                       *ngFor="let item of links3" [routerLink]="['/' , item.route]">{{item.title}}</div>
+              </div>
+              <!--
+              <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 text-center">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 titr">{{otherService}}</div>
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 txtLink" 
+                       *ngFor="let item of links4">{{item}}</div>
+              </div>
+              -->
+          </div>
+  </div>
+  
+  

@@ -1,0 +1,68 @@
+#mainDiv{
+    box-sizing: border-box;
+    background-color: #f7f8f5;
+    margin-top: 5px;
+    padding-bottom: 10px;
+}
+
+.clear{
+    padding: 0;
+    margin: 0;
+}
+
+.h1Font{
+    font-size: 20px;
+    font-weight: bold;
+    color: green;
+}
+
+.underLineDiv1{
+    border: none; 
+    border-bottom: 1px solid green;
+}
+
+
+.underLineDiv2{
+    border: none; 
+    border-bottom: 3px solid green; 
+    width: 200px;
+}
+
+
+.imgStyle{
+    max-width: 350px; 
+    max-height: 350px;
+}
+
+
+#mapGoogleDiv{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url('../../../../assets/image/mapAddress.jpg');
+    box-sizing: border-box; 
+    width: 100%;
+    height: 300px; 
+    margin: 10px auto;
+}
+
+#contant{
+    box-sizing: border-box;
+    margin-top: 5px;
+    background-color: white;
+    padding-top: 20px;
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.4);
+}
+
+.textDiv{
+    height: auto; 
+    padding-top: 10px; 
+    padding-bottom: 10px;
+}
+
+span{
+    display: block; 
+    height: auto; 
+    padding-top: 7px; 
+    padding-bottom: 7px;
+}

@@ -1,0 +1,374 @@
+#mainDiv{
+    width: 100%; 
+    height: 50px; 
+    padding: 0px; 
+    margin: 0px; 
+    background-color: #039BE5;
+    position: relative;
+}
+
+.menuUserInfo{
+    position: absolute;
+    top: 47px;
+    left: 0px;
+    width: 250px;
+    background-color: white;
+    height: 0px;
+    overflow: hidden;
+    z-index: -10;
+    box-shadow: 0px 14px 27px -7px rgba(0,0,0,0.26);
+    border-radius: 7px;
+}
+
+.menuWebAppUserInfo{
+    position: absolute;
+    top: 47px;
+    left: 0px;
+    width: 250px;
+    background-color: white;
+    height: 0px;
+    overflow: hidden;
+    z-index: -10;
+    box-shadow: 0px 14px 27px -7px rgba(0,0,0,0.26);
+    border-radius: 7px;
+}
+
+.menuUserInfo:hover{
+    height: 350px;
+    background-color: white;
+    padding: 7px;
+    z-index: 10;
+}
+
+.menuWebAppUserInfo:hover{
+    height: 350px;
+    background-color: white;
+    padding: 7px;
+    z-index: 10;
+}
+
+
+.spanUserName{
+    font-size: 16px; 
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.divCharNameForHover:hover + .menuUserInfo{
+    height: 350px;
+    background-color: white;
+    padding: 7px;
+    z-index: 10;
+    transition: height 0.7s ease;
+}
+
+.divCharNameForHover:hover + .menuWebAppUserInfo{
+    height: 350px;
+    background-color: white;
+    padding: 7px;
+    z-index: 10;
+    transition: height 0.7s ease;
+}
+
+/*
+.divCharNameForHover{
+    position: relative; 
+    width: 45px; 
+    height: 45px; 
+    border-radius: 50%; 
+    background-color: #1d8db5; 
+    color: white; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    margin: 0 auto;
+}
+*/
+
+.divCharNameForHover{
+    color: white;
+}
+
+.divCharNameForClick{
+    width: 45px; 
+    height: 45px; 
+    border-radius: 50%; 
+    background-color: #1d8db5; 
+    color: white; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.divimgUserForClick{
+    width: 45px; 
+    height: 45px;
+    margin: 0 auto;
+}
+
+.divimgUserForHover:hover + .menuUserInfo{
+    height: 350px;
+    background-color: white;
+    padding: 7px;
+    z-index: 10;
+    transition: height 0.7s ease;
+}
+
+.divimgUserForHover:hover + .menuWebAppUserInfo{
+    height: 350px;
+    background-color: white;
+    padding: 7px;
+    z-index: 10;
+    transition: height 0.7s ease;
+}
+
+.divimgUserForHover{
+    position: relative; 
+    width: 45px; 
+    height: 45px; 
+    margin: 0 auto;
+}
+
+.stylePart18Div{
+    float: right; 
+    margin-right: 1%; 
+    margin-left: 1%; 
+    width: 10.5%; 
+    box-sizing: border-box; 
+    text-align:center; 
+    font-size: 12px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stylePart78Div{
+    float: left; 
+    width: 87.5%; 
+    box-sizing: border-box; 
+    text-align:center; 
+    font-size: 12px;
+    height: 50px;
+    padding-left: 25px;
+}
+
+.btnStyle{
+    cursor: pointer; 
+    height: 40px; 
+    width: 98%; 
+    font-size: 16px; 
+    background-color: white;
+    color: #039BE5;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnUserName{
+    cursor: pointer; 
+    height: 40px; 
+    width: auto; 
+    min-width: 100px; 
+    background-color: white;
+    color: #039BE5;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 15px; 
+    padding-right: 15px;
+}
+
+.btnStyleDownload{
+    cursor: pointer; 
+    height: 40px; 
+    width: 110px; 
+    font-size: 14px; 
+    background-color: white;
+    color: #039BE5;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute; 
+    left: -130px; 
+    top: 2px;
+}
+
+.btnStyleBlog{
+    cursor: pointer; 
+    height: 40px; 
+    width: 110px; 
+    font-size: 14px; 
+    background-color: white;
+    color: #039BE5;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute; 
+    left: -250px; 
+    top: 2px;
+}
+
+.btnDivFloatleft{
+    float: left; 
+    width: 25%; 
+    max-width: 150px; 
+    height: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnDivFloatRight{
+    float: right; 
+    width: 25%; 
+    max-width: 150px; 
+    height: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.styleDivIcon{
+    height: 50px; 
+    float: left; 
+    width: 70px; 
+    padding: 0px 7px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    position: relative;
+}
+
+.showFixTop{
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    top: 0;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.showNormal{
+    position: static;
+    width: 100%;
+    opacity: 1;
+    transition: all 0.1s;
+}
+
+.hideNormal{
+    position: static;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.1s;
+}
+
+.showMeddleMenu{
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    top: 0;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.notShowWebApp{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+    height: 50px;
+    overflow: hidden;
+    transition: all 0.1s;
+    z-index: -1;
+}
+
+.notShow{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+    height: 120px;
+    overflow: hidden;
+    transition: all 0.1s;
+    z-index: -1;
+}
+
+.hidenMenu{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+    height: 0px;
+    overflow: hidden;
+    transition: all 0.1s;
+    z-index: -1;
+}
+
+.spanSearch{
+    cursor: pointer; 
+}
+
+.toltipSearch{
+    height: 0px;
+    position: absolute;
+    bottom: -10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    font-size: 12px;
+    position: absolute;
+    transition: opacity 400ms;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.spanSearch:hover + .toltipSearch{
+    height: 30px;
+    padding-top: 5px;
+    width: 100px;
+    text-align: center;
+    position: absolute;
+    bottom: -10px;
+    color: black;
+    font-size: 12px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.toltipSearch:hover{
+    height: 30px;
+    padding-top: 5px;
+    width: 150px;
+    text-align: center;
+    position: absolute;
+    bottom: -10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    font-size: 12px;
+    overflow: hidden;
+}
+
+.divStyleLogin{
+    width: 110px; 
+    text-align: center; 
+    cursor: pointer;
+}
+
+.spanLogin{
+    border-bottom: 1px solid white; 
+    font-size: 16px; 
+    color: white;
+}
+
+.spanLogin:hover{
+    border-bottom: 1px solid black; 
+    font-size: 16px; 
+    color: black;
+}

@@ -1,0 +1,11 @@
+.divBoxItem{
+    padding-bottom: 5px; 
+    padding-top: 10px; 
+    border-bottom: 1px solid #CFD8DC;
+    cursor: pointer;
+}
+
+.divBoxItem:hover{
+    background-color: #78909C;
+    color: white;
+}

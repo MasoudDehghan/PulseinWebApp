@@ -1,0 +1,54 @@
+*{
+  box-sizing: border-box;
+  outline: none;
+}
+
+body{
+	margin: 0;
+	padding: 0;
+	direction: rtl;
+	font-family: 'irsans';
+}
+
+.contentPadding{
+	box-sizing: border-box; 
+	padding-left: 8vw; 
+	padding-right: 8vw;
+}
+
+@font-face{
+	font-family: 'irsans';
+  src: url(../myFonts/Shabnam.ttf);
+  font-display: block;
+}
+
+.loadingPosition{
+	text-align: center; 
+	padding-top: 100px;
+}
+
+.clear{
+	padding: 0;
+	margin: 0;
+}
+
+/*----------------*/
+.fontTitleH2{
+    font-size: 24px;
+    font-weight: bold;
+    color: #455A64;
+  }
+
+.eLine{
+    height: 5px;
+    width: 100px;
+    margin: 10px auto;
+    border-radius: 10px;
+    background-color: #4fd5c5;
+}
+
+  .divTitlePad{
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+/*----------------*/

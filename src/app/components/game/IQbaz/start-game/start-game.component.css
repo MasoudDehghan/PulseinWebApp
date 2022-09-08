@@ -1,0 +1,671 @@
+@font-face{
+	font-family: 'Shabnam';
+    src: url(../../../../../assets/myFonts/Shabnam.ttf);
+    font-display: block;
+}
+
+#mainDiv {
+    width: 100%;
+    background-image: linear-gradient(#FFC107, #FF5722);
+    padding: 0px;
+    position: relative;
+}
+
+.gamePointsBoxWhite{
+    border-radius: 7px; 
+    height: 80px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    background-color: white; 
+    color: green; 
+    font-size: 16px; 
+    font-weight: bold;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+}
+
+.gamePoints{
+    font-size: 40px; 
+    color: tomato; 
+    padding-left: 5px;
+    font-family: "shabnam";
+    font-weight: bold;
+}
+
+#textPoints{
+    font-size: 50px; 
+    color: white;
+    font-family: 'shabnam';
+}
+
+#divReferalLink {
+    display: inline-block; 
+    background-color: white; 
+    border: 1px solid #CFD8DC; 
+    border-radius: 7px; 
+    padding: 10px 3px; 
+    text-align: center; 
+    width: 100%;
+    max-width: 350px; 
+    margin: 0 auto; 
+    cursor: pointer;
+    font-size: 12px;
+    overflow: hidden;
+    height: 40px;
+}
+
+#divReferalLink:hover{
+    background-color: orange;
+    color: green;
+}
+
+#time9{
+    position: absolute; 
+    top: 40px; 
+    left: 45px; 
+    color: #2196F3;
+    font-family: 'Shabnam';
+    font-size: 16px;
+}
+
+#time20{
+    position: absolute; 
+    top: 46px; 
+    left: 65px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#divCenterBox{
+    height: 100%;
+}
+
+#headerDiv{
+    font-family: 'Shabnam';
+    font-size: 40px; 
+    width: 100%; 
+    text-align: center; 
+    color: black;
+}
+
+#divUserName{
+    font-family: 'Shabnam';
+    font-size: 32px; 
+    width: 100%; 
+    text-align: center; 
+    color: black;
+}
+
+.titr{
+    font-family: 'Shabnam';
+    font-size: 22px; 
+    color: black;
+}
+
+.point{
+    font-family: 'Shabnam';
+    font-size: 32px; 
+    color: black;
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+.date{
+    font-family: 'Shabnam';
+    font-size: 18px; 
+    width: 100%; 
+    text-align: center; 
+    color: black;
+    font-weight: bold;
+}
+
+.divBoxTime{
+    display: inline-block; 
+    width: 40px; 
+    height: 50px;
+    overflow: hidden;
+}
+
+.spanBoxTime{
+    display: inline-block; 
+    width: 35px; 
+    height: 50px; 
+    border-radius: 10px; 
+    padding-top: 13px;
+    background-color: black; 
+    color: white;
+    overflow: hidden;
+    font-size: 18px;
+}
+
+#styleSpanTimeDoubleDot{
+    display: inline-block; 
+    width: 10px; 
+    height: 50px; 
+    color: black;
+    overflow: hidden;
+    font-size: 30px;
+    font-weight: bold
+}
+
+#btnStart{
+    -ms-transform: rotate(-3deg); /* IE 9 */
+    -webkit-transform: rotate(-3deg); /* Safari 3-8 */
+    transform: rotate(-3deg);
+    width: 250px;
+    font-family: 'Shabnam';
+    font-size: 30px;
+    padding: 10px 0px;
+    color: white;
+    background-image: linear-gradient(to right, #ff1744,#FF4081,#ff1744); 
+    border: 2px solid white;
+    border-radius: 25px;
+    outline: none;
+}
+
+#btnGifts{
+    -ms-transform: rotate(-6deg); /* IE 9 */
+    -webkit-transform: rotate(-6deg); /* Safari 3-8 */
+    transform: rotate(-6deg);
+    font-family: 'Shabnam';
+    font-size: 18px;
+    padding: 10px 0px;
+    color: white;
+    width: 100px;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid #E91E63;
+    border-radius: 7px;
+    height: 30px;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+#btnGifts:hover{
+    -ms-transform: rotate(0deg); /* IE 9 */
+    -webkit-transform: rotate(0deg); /* Safari 3-8 */
+    transform: rotate(0deg);
+    background-color: white;
+    color: #E91E63;
+}
+
+#btnGiftsIos{
+    -ms-transform: rotate(-6deg); /* IE 9 */
+    -webkit-transform: rotate(-6deg); /* Safari 3-8 */
+    transform: rotate(-6deg);
+    font-family: 'Shabnam';
+    font-size: 18px;
+    padding: 10px 0px;
+    color: white;
+    width: 100px;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid #E91E63;
+    border-radius: 7px;
+    height: 30px;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+#btnGiftsIos:hover{
+    background-color: white;
+    color: #E91E63;
+}
+
+#btnStart:hover{
+    background-image: linear-gradient(to right, #f44336,#f44336,#f44336);
+    color: yellow; 
+}
+
+#spanResultTable{
+    padding: 5px 10px; 
+    border: 2px solid white; 
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: transparent;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+#spanResultTable:hover{
+    background-color: white;
+    color: orangered;
+}
+
+#spanCloseResultTable{
+    padding: 5px 10px; 
+    border: 2px solid white; 
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: transparent;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+#spanCloseResultTable:hover{
+    background-color: white;
+    color: orangered;
+}
+
+
+#spanGiftsCode{
+    padding: 5px 10px; 
+    border: 2px solid #2E7D32; 
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 26px;
+    font-weight: bold;
+    color: #2E7D32;
+    background-color: transparent;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+#spanGiftsCode:hover{
+    background-color: white;
+    color: orangered;
+}
+
+#spanCloseGiftsCode{
+    padding: 5px 10px; 
+    border: 2px solid white; 
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: transparent;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+#spanCloseGiftsCode:hover{
+    background-color: white;
+    color: orangered;
+}
+
+.thumbnailGiftUnselected{
+    border: 1px solid white; 
+    border-radius: 5px; 
+    width: 100%; 
+    height: 100%; 
+    min-height: 70px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    cursor: pointer;
+}
+
+.thumbnailGiftUnselected:hover{
+    border: 1px solid #E91E63; 
+}
+
+.thumbnailGiftSelected{
+    background-color: white;
+    border:2px solid green; 
+    border-radius: 5px; 
+    width: 100%; 
+    height: 100%; 
+    min-height: 70px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    cursor: pointer;
+}
+
+.thumbnailLock{
+    border: 1px solid #CFD8DC; 
+    border-radius: 5px; 
+    width: 100%; 
+    height: 100%; 
+    min-height: 70px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.boxGiftInfo{
+    width: 100%; 
+    max-width: 400px; 
+    margin: 0 auto; 
+    color: white; 
+    background-color: #ff1744; 
+    border-radius: 7px;
+    text-align: center;
+    padding: 7px 5px;
+    border: 2px solid white;
+}
+
+.showBoxMainDivGifts1000{
+    background-color: rgba(255, 0, 0, 0.5);
+    width: 100%; 
+    max-width: 600px; 
+    height: 550px; 
+    overflow: hidden; 
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+}
+
+.showBoxMainDivGifts850{
+    background-color: rgba(255, 0, 0, 0.5);
+    width: 100%; 
+    max-width: 600px; 
+    height: 600px; 
+    overflow: hidden; 
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+}
+
+.showBoxMainDivGifts620{
+    background-color: rgba(255, 0, 0, 0.5);
+    width: 100%; 
+    max-width: 600px; 
+    height: 650px; 
+    overflow: hidden; 
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+}
+
+.showBoxMainDivGifts400{
+    background-color: rgba(255, 0, 0, 0.5);
+    width: 100%; 
+    max-width: 600px; 
+    height: 680px; 
+    overflow: hidden; 
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+}
+
+.showBoxMainDivGifts300{
+    background-color: rgba(255, 0, 0, 0.5);
+    width: 100%; 
+    max-width: 600px; 
+    height: 710px; 
+    overflow: hidden; 
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+}
+
+.hideBoxMainDivGifts{
+    background-color: transparent;
+    width: 100%; 
+    max-width: 600px; 
+    height: 0px; 
+    overflow: hidden; 
+    margin: 0 auto;
+    padding: 0px;
+    border-radius: 0px;
+    transition: all 0.4s ease;
+}
+
+.boxWhiteQuestion{
+    background-color: #ECEFF1; 
+    border: 2px solid white; 
+    border-radius: 7px; 
+    width: 100%; 
+    padding: 10px 7px;
+    min-height: 450px;
+}
+
+.divMainText{
+    color: black; 
+    font-size: 14; 
+    font-weight: bold; 
+    padding-bottom: 6px; 
+    border-bottom: 1px solid gray;
+    text-align: center;
+}
+
+.boxOptionAnswer{
+    font-size: 14px; 
+    color: black; 
+    padding: 10px; 
+    border: 2px solid #3F51B5; 
+    border-radius: 7px; 
+    cursor: pointer;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    position: relative;
+    padding-right: 25px;
+    background-color: white;
+}
+
+.trueAnswer1{
+    font-size: 14px; 
+    color: green; 
+    padding: 10px; 
+    border: 2px solid green; 
+    border-radius: 7px; 
+    cursor: pointer;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    position: relative;
+    padding-right: 25px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.5s ease;
+}
+
+.trueAnswer2{
+    font-size: 14px; 
+    color: white; 
+    padding: 10px; 
+    border: 2px solid green; 
+    border-radius: 7px; 
+    cursor: pointer;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    position: relative;
+    padding-right: 25px;
+    background-color: rgba(0, 255, 0, 1);
+    transition: all 0.5s ease;
+}
+
+.spanSignStyle{
+    position: absolute; 
+    right: 5px; 
+    top: 10px;
+}
+
+.falseAnswer{
+    font-size: 14px; 
+    color: tomato; 
+    padding: 10px; 
+    border: 2px solid tomato; 
+    border-radius: 7px; 
+    cursor: pointer;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    position: relative;
+    padding-right: 25px;
+    background-color: white;
+}
+
+.divBoxAnswerOp{
+    padding: 0px 10px; 
+    padding-top: 5px;
+}
+
+.iTrue{
+    color: green;
+}
+
+.ifalse{
+    color: tomato;
+}
+
+.iNotmantion{
+    color: gray;
+}
+
+.timer20Green{
+    color: green;
+    text-align: right;
+}
+
+.timer20Red{
+    color: tomato;
+    text-align: right;
+}
+
+.pointTableRow{
+    font-family: 'Shabnam';
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%; 
+    color: black; 
+    height: 40px; 
+    overflow: hidden; 
+    border-bottom: 1px solid #CFD8DC;
+}
+
+.pointTableHeader{
+    min-height: 50px; 
+    text-align: center;
+    font-family: 'Shabnam';
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%; 
+    color: black;  
+    border-bottom: 1px solid #CFD8DC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pointTableLastRow{
+    font-family: 'Shabnam';
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%; 
+    color: black; 
+    height: 40px; 
+    overflow: hidden; 
+    border-bottom: none;
+}
+
+.pointTableColText{
+    float: left;
+    width: 50%; 
+    height: 100%; 
+    text-align: center; 
+    padding-top: 10px; 
+    border-right: 1px solid #CFD8DC;
+}
+
+.pointTableColScore{
+    float: right; 
+    width: 50%; 
+    height: 100%; 
+    text-align: center; 
+    padding-top: 10px;
+}
+
+#txtQuestion{
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+#btnAddOrder{
+    width: 100%; 
+    max-width: 400px; 
+    margin: 0 auto;
+    height: 45px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    border-radius: 7px; 
+    background-color: #E91E63; 
+    cursor: pointer;
+    color: white; 
+    font-size: 16px;
+    font-family: 'shabnam';
+    box-shadow: -4px 4px 17px 0px rgba(0,0,0,0.75);
+}
+
+#btnAddOrder:hover{
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+}
+
+.btnClick{
+    width: 100%; 
+    max-width: 300px; 
+    height: 40px; 
+    border-radius: 7px; 
+    text-align: center; 
+    color: white; 
+    background-color: #E91E63;
+    cursor: pointer;
+}
+
+.btnClick:hover{
+    color: yellow;
+    background-color: #D81B60;
+}
+
+.textTitr{
+    font-size: 30px; 
+    color: white;
+    font-family: 'shabnam';
+}
+
+.giftBoxWhite{
+    font-family: "shabnam";
+    background-color: white; 
+    width: 100%; 
+    max-width: 200px;
+    height: 330px;
+    border-radius: 15px; 
+    position: relative;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    margin: 0 auto;
+}

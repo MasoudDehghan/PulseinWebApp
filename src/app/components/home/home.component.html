@@ -1,0 +1,249 @@
+
+<div class="d-none d-lg-block col-lg-12 col-xl-12 clear">
+    <app-job-cat-menu [jobCats1]="categories1"></app-job-cat-menu>
+</div>
+
+<div style="position: relative;"> 
+
+    <div *ngIf="shared.xWindow.value >= 992" class="d-none d-lg-block d-xl-block">
+
+    <!--start header png background in pc-->
+    <div style="width: 100%; height: 500px; border-bottom: 1px solid #ECEFF1;" class="row clear">
+        
+        <div class="col-md-6 col-lg-7 col-xl-7 clear" 
+            style="height: 100%; background-color: transparent; padding-top: 15px;">
+            <div id="divHeaderText" [ngStyle]="(shared.xWindow.value > 1050) ? {'padding-right': '10%'} : {'padding-right': '5%'}">  
+                <div style="padding: 10px 5px; width: 100%; overflow: hidden;">
+                    <h1 style="line-height: 40px;">{{titleH1}}</h1>
+                </div>
+                <div [ngStyle]="(shared.xWindow.value > 1050) ? {'padding-right': '10%', 'padding-top': '10px'} : {'padding-right': '0px', 'padding-top': '5px'}">
+                <div style="padding-top: 5px; padding-right: 5px;">
+                    <strong id="pText">{{subTitle1}}</strong>
+                </div>
+
+                <div style="font-size: 14px; padding-top: 10px; width: 400px; background-color: transparent;" class="text-justify">
+                    <ul style="line-height: 30px;" class="text-justify">
+                        <li>{{subTitle2}} <span [routerLink]="[linkTitlePath1]" class="headerLinkCats">{{linkTitleText1}}</span></li>
+                        <li>{{subTitle3}} <span [routerLink]="[linkTitlePath2]" class="headerLinkCats">{{linkTitleText2}}</span></li>
+                        <li>{{subTitle4}} <span [routerLink]="[linkTitlePath3]" class="headerLinkCats">{{linkTitleText3}}</span></li>
+                        <li>{{subTitle5}} <span [routerLink]="[linkTitlePath4]" class="headerLinkCats">{{linkTitleText4}}</span></li>
+                    </ul>
+                </div>
+    
+                <div style="width: 100%; margin: 0 auto;">
+    
+                    <!--start search box-->
+                    <div class="halfHeaderDivSearch">
+                        <input type="text" placeholder="دنبال چه سرویسی می گردید؟" maxlength="50"
+                         (input)="onChange($event.target.value)">
+                        <i class="fab fa-searchengin fa-2x"></i>
+                        <div *ngIf="listSearch.length > 0"
+                            class="headerHalf_resultSerchBoxDiv">
+                            <ul id="resultSerchBoxUl">
+                                <li *ngFor="let item of listSearch; index as i" class="resultSerchBoxLi">
+                                    <div (click)="onkeySearch(item?.ename, item?.id)" 
+                                        class="resultSerchBoxLiDiv">
+                                        {{item.name}}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--end search box-->
+    
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!--start slider heading in pc mode-->
+        <div class="col-md-6 col-lg-5 col-xl-5 clear" 
+            style="height: 100%; background-color: transparent; display: flex; align-items: flex-end; justify-content: center; position: relative; direction: ltr;">
+
+            <div style="position: relative; overflow: hidden; width: 100%; max-width: 450px; height: 100%; max-height: 450px;">
+                    <a [href]="slidList[0].linkPage" target="_blank">
+                        <img src="{{slidList[0].srcImage}}" 
+                            alt="{{slidList[0].alt}}"
+                            [ngClass]="index==0 ? 'slid0Show' : 'slid0Hide'">
+                    </a>
+                    <a [href]="slidList[1].linkPage" target="_blank">
+                        <img src="{{slidList[1].srcImage}}" 
+                            alt="{{slidList[1].alt}}"
+                            [ngClass]="index==1 ? 'slid1Show' : 'slid1Hide'">
+                    </a>
+                    <a [href]="slidList[2].linkPage" target="_blank">
+                        <img src="{{slidList[2].srcImage}}" 
+                            alt="{{slidList[2].alt}}"
+                            [ngClass]="index==2 ? 'slid2Show' : 'slid2Hide'">
+                    </a>
+                    <a [href]="slidList[3].linkPage" target="_blank">
+                        <img src="{{slidList[3].srcImage}}" 
+                            alt="{{slidList[3].alt}}"
+                            [ngClass]="index==3 ? 'slid3Show' : 'slid3Hide'">
+                    </a>
+                    <a [href]="slidList[4].linkPage" target="_blank">
+                        <img src="{{slidList[4].srcImage}}" 
+                            alt="{{slidList[4].alt}}"
+                            [ngClass]="index==4 ? 'slid4Show' : 'slid4Hide'">
+                    </a>
+            </div>
+
+        </div>
+        <!--end slider heading in pc mode-->
+    </div>
+    <!--end header png background in pc-->
+    
+    <!----start content with padding---->
+    <div class="contentPadding">
+
+    <div *ngIf="showPart1">
+
+        <!--start useFul category-->
+        <useful-category></useful-category>
+        <!--end useFul category-->
+
+        <div *ngIf="showPart1_2">
+            <!-----start best jobCats---->
+            <app-jobfavor></app-jobfavor>
+            <!-----end best jobCats------>
+        </div>
+
+        <!------start spesefic website----
+        <app-spesefics-web></app-spesefics-web>
+        <!------end spesefic website------>
+    </div>
+    
+    <div *ngIf="showPart2">
+        <!----start discount categories---->
+        <discount-categories></discount-categories>
+        <!----end discount categories---->
+        <!------start downlaod app-------->
+        <app-download></app-download>
+        <!-------end downlaod app---------->
+        <!-----start about web---->
+        <app-how-work></app-how-work>
+        <!-----end about web---->
+    </div>
+    
+    </div>
+    <!----end content with padding---->
+
+    <div *ngIf="showPart2">
+        <!----start get user idea---->
+        <div *ngIf="ideasList.length > 0">
+            <app-users-idea [ideasList]="ideasList"></app-users-idea>
+        </div>
+        <!----end get user idea---->
+
+        <!----start footer---->
+        <app-footer></app-footer>
+        <!----end footer---->
+    </div>
+
+    </div>
+
+
+    <!---- Start Home For mobile---->
+    <div *ngIf="shared.xWindow.value < 992"
+        class="d-block d-lg-none d-xl-none">
+        <!--Start menu fix bottom-->
+        <app-mob-fixed-bottom-menu></app-mob-fixed-bottom-menu>
+        <!--end menu fix bottom-->
+
+        <!--:::start IQ Baz:::--
+        <div (click)="onBanerIqBaz()"
+            style="width: 100%; height: 90px; overflow: hidden; background-color: #FFCA28; display: flex; align-items: center; justify-content: center;">
+            <img src="assets/image/game/iqBaz/mobileBanerIqBaz4.gif" 
+                style="width: 100%; max-width: 500px; cursor: pointer;" class="img-fluid">
+        </div>
+        <!--:::end IQ Baz:::-->
+
+        <!--Start mobile Header-->
+        <div id="mobHeader">
+
+            <div id="headerText">   
+                <div id="divTitleHeaderMobile">
+                    <h1>{{titleH1}}</h1>
+                </div>
+                                
+                <span>{{subTitle1}}</span>
+                        
+                <div style="width: 100%; max-width: 400px; margin: 0 auto;">
+                        
+                <!--start search box-->
+                <div class="serchDivMobile">
+                    <input type="text" placeholder="دنبال چه سرویسی می گردید؟" maxlength="50"
+                        (focus)="onFocus()" (blur)="onBlur()" (input)="onChange($event.target.value)">
+                    <i class="fab fa-searchengin fa-2x"></i>
+                    <div *ngIf="showSearchResult"
+                        class="resultSerchBoxDivMobile" (mouseenter)="onMuseEnter()" (mouseout)="onMuseOut()">
+                        <ul id="resultSerchBoxUlMobile">
+                            <li *ngFor="let item of listSearch; index as i" class="resultSerchBoxLi">
+                                <div (click)="onkeySearch(item?.ename, item?.id)" 
+                                    class="resultSerchBoxLiDivMobile" (mouseenter)="onMuseEnter()" (mouseout)="onMuseOut()">
+                                    {{item.name}}
+                                </div>
+                            </li>
+                        </ul>
+                    </div> 
+                </div>
+                <!--end search box-->
+                        
+                </div>
+            </div>
+
+        </div>
+        <!--End mobile Header-->
+
+        <!--start useFul category-->
+        <useful-category></useful-category>
+        <!--end useFul category-->
+
+        <!-----start best jobCats---->
+        <app-jobfavor></app-jobfavor>
+        <!-----end best jobCats------>
+        
+        <!------start spesefic website----
+        <app-spesefics-web></app-spesefics-web>
+        <!------end spesefic website------>
+        
+        <div *ngIf="showPart1">
+            <!----start discount categories---->
+            <discount-categories></discount-categories>
+            <!----end discount categories---->
+            <!-----start about web---->
+            <app-how-work></app-how-work>
+            <!-----end about web---->
+        </div>
+
+        <div *ngIf="showPart2">
+            <!--Start Expert-->
+            <div style="padding-top: 5px;">
+                <div id="expertPulsien">
+                    <div id="btnExpertDiv" [routerLink]="['/experts']">
+                        <p id="btnExpert">کسب درآمد</p>
+                    </div>
+                </div>
+            </div>
+            <!--End Expert-->
+                    
+            <!--start download app-->
+            <app-download></app-download>
+            <!--End download app-->
+        
+    
+            <!----start get user idea---->
+            <div *ngIf="ideasList.length > 0">
+                <app-users-idea [ideasList]="ideasList"></app-users-idea>
+            </div>
+            <!----end get user idea---->
+            
+            <!----start footer---->
+            <app-footer></app-footer>
+            <!----end footer---->
+        </div>
+        
+    </div>
+    <!--End Home for Mobile---->
+
+</div>

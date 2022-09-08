@@ -1,0 +1,38 @@
+<div id="mainDiv">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+        <div class="row clear">
+            <div class="d-none d-md-block col-md-3 col-lg-3 col-xl-3"></div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="text-center">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear text-center divTitlePad">
+                        <h2 class="fontTitleH2"><span>{{mainTxtTitr}}</span></h2>
+                    </div>
+                  </div>
+                  <div id="mainDescriptDiv">
+                   <h3 class="font">{{mainTxtdescription}}</h3>
+                </div>
+            </div>
+            <div class="d-none d-md-block col-md-3 col-lg-3 col-xl-3"></div>
+        </div>
+        <div class="eLine"></div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mainDivSubInfo">
+            <div class="row clear">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3"
+                    *ngFor="let item of specficWebList">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                        <img [src]="item?.src" alt="baner" class="imgStyle">
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 subTitleDiv">
+                        <h3 class="fontBold">{{item?.name}}</h3>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                        <h3 class="font">{{item?.description}}</h3>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+

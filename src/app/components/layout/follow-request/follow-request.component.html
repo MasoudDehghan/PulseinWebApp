@@ -1,0 +1,349 @@
+
+<div [ngStyle]="shared.noScroll.value ? {height:shared.yWindow.value+'px', overflow: 'hidden'} : {height:'auto', 'min-height':(shared.yWindow.value - 60)+'px', overflow: 'auto'}"
+    style="position: relative;">
+    <div class="col-lg-12 col-xl-12 d-none d-lg-block clear">
+        <globalHeader></globalHeader>
+    </div>
+    <div class="d-block d-lg-none col-12 col-sm-12 col-md-12 clear">
+        <app-drawer-menu></app-drawer-menu>
+    </div>
+
+    <div *ngIf="loadingJobcats || loadingData; else content">
+        <app-loading-fullpage-latti></app-loading-fullpage-latti>
+    </div>
+
+    <ng-template #content>
+        <!--start show data in pc mode-->
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear" style="color: #546E7A;">
+            <div class="row clear">
+                <!---------start right col------->
+                <!--start in pc-->
+                <div class="col-lg-4 col-xl-3 d-none d-lg-block clear">
+                    <div style="width: 100%; padding: 10px 15px;">
+                        <div style="padding: 10px 10px; border: 1px solid #C8C8C8; border-radius: 10px; background-color: white;">
+                            <div class="row clear">
+                                <div class="col-lg-5 col-xl-5 clear" style="text-align: center;">
+                                    <img src="{{iconJobcat}}" alt="{{jobcat3Name}}" style="width: 100%; max-width: 70px;" class="img-fluid">
+                                </div>
+                                <div class="col-lg-6 col-xl-6 clear">
+                                    <div style="display: flex; width: 100%; height: 100%; align-items: center; justify-content: flex-start;">
+                                        <span style="font-size: 14px; color: #546E7A;">{{requestTitle}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-xl-1 clear">
+                                    <div style="text-align: left;" *ngIf="shared.stateIdRequest.value == 1 || shared.stateIdRequest.value == 14">
+                                        <img src="assets/image/close25.png" 
+                                            alt="close"
+                                            (click)="onCancelRequest()"
+                                            style="border-radius: 50%; cursor: pointer; width: 100%; max-width: 25px;" 
+                                            class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clear">
+                                <div class="col-lg-5 col-xl-5 clear" style="text-align: center;">
+                                    <span style="font-size: 14px; color: #039BE5;">{{requestCode}}</span>
+                                </div>
+                                <div class="col-lg-6 col-xl-6 clear" style="text-align: right;">
+                                    <span style="font-size: 12px; color: #546E7A;">{{requestState}}</span>
+                                </div>
+                            </div>
+
+
+                            <!--start box discount-->
+                            <div *ngIf="shared.stateIdRequest.value != 5">
+                            <div class="row clear" *ngIf="!shared.discountCode.value">
+                                <div class="col-lg-8 col-xl-9 clear">
+                                    <div style="padding: 7px 5px; padding-left: 0px;">
+                                        <input type="text" placeholder="کد تخفیف"
+                                            [(ngModel)]="discountCodeText"
+                                            (input)="onInputDiscount($event.target.value.toUpperCase())"
+                                            [attr.maxlength]="constVal.maxDiscont"
+                                            style="width: 100%; height: 35px; border-radius: 7px; border: 1px solid #C8C8C8; outline: none; text-align: center; color: #546E7A; font-size: 14px;">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-xl-3 clear">
+                                    <div style="padding: 7px 5px;">
+                                        <input type="button" value="اعمال" class="btn" 
+                                            (click)="onCheckDiscount()"
+                                            style="width: 100%; height: 35px; border-radius: 7px; text-align: center; color: white; background-color: #039BE5; font-size: 14px;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="shared.discountCode.value" style="padding: 25px 0px; position: relative;">
+                                <div  style="border: 1px solid #C8C8C8; border-radius: 7px; padding: 15px; padding-left: 30px; font-size: 12px; color: #546E7A;">
+                                    <div *ngIf="isDiscountWithPercent">
+                                    {{shared.discountPercent.value + txtDiscountWithPercent1 + shared.discountMaxCredit.value + txtDiscountWithPercent2}}
+                                    </div>
+                                    <div *ngIf="!isDiscountWithPercent">{{textDiscoutnWithoutPercent}}</div>
+                                </div>
+                                <div style="text-align: left; position: absolute; top: 30px; left: 5px;">
+                                    <img src="assets/webappPics/x-button2.png" 
+                                        alt="close" 
+                                        style="border-radius: 50%; cursor: pointer; width: 100%; max-width: 20px;" 
+                                        class="img-fluid"
+                                        (click)="deleteDiscount()">
+                                </div>
+                            </div>
+                            </div>
+                            <!--end box discount-->
+
+
+                        </div>
+                    </div>
+                    <div style="padding: 10px 15px;" *ngIf="requestInfoList.length > 0">
+                        <div style="width: 100%; background-color: white; border: 1px solid #C8C8C8; border-radius: 10px; padding: 10px 10px; padding-bottom: 0px;">
+                            <div style="padding: 10px 7px;">
+                                <span style="font-size: 14px; color: #546E7A;">شرح درخواست</span>
+                            </div>
+                            <div *ngFor="let info of requestInfoList" style="font-size: 12px; color: #546E7A; padding: 0px 15px;">
+                                <p>{{info}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 10px 15px;">
+                        <div style="width: 100%; background-color: white; border: 1px solid #C8C8C8; border-radius: 10px; padding: 10px 10px; padding-bottom: 0px;">
+                            <div style="padding: 10px 7px;">
+                                <span style="font-size: 14px; color: #546E7A;">تاریخ و زمان انجام کار</span>
+                            </div>
+                            <div *ngIf="!isEmergency">
+                                <div style="font-size: 12px; color: #546E7A; padding: 0px 15px;">
+                                    <p>
+                                        <span>{{"تاریخ: "}}</span>
+                                        <span>{{fa_day + " " + fa_mounth + " " + fa_year}}</span>
+                                    </p>
+                                </div>
+                                <div style="font-size: 12px; color: #546E7A; padding: 0px 15px;">
+                                    <p>
+                                        <span>{{"ساعت: "}}</span>
+                                        <span>{{endTime + " - " + startTime}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div *ngIf="isEmergency">
+                                <div style="font-size: 12px; color: #546E7A; padding: 0px 15px;">
+                                    <p>{{emergencyText}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 10px 15px;" *ngIf="requestImgeList.length > 0">
+                        <div style="width: 100%; background-color: white; border: 1px solid #C8C8C8; border-radius: 10px; padding: 10px 10px; padding-bottom: 0px;">
+                            <div style="padding: 10px 7px;">
+                                <span style="font-size: 14px; color: #546E7A;">آدرس</span>
+                            </div>
+                            <div style="font-size: 12px; color: #546E7A; padding: 0px 15px;">
+                                <p>{{addressText}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="padding: 10px 15px;" *ngIf="requestImgeList.length > 0">
+                        <div style="width: 100%; background-color: white; border: 1px solid #C8C8C8; border-radius: 10px; padding: 10px 10px; padding-bottom: 0px;">
+                            <div style="padding: 10px 7px;">
+                                <span style="font-size: 14px; color: #546E7A;">تصاویر</span>
+                            </div>
+                            <div *ngFor="let pic of requestImgeList" style="display: inline-block; padding: 5px; width: 130px;">
+                                <img src="{{imgPath + pic}}" style="width: 100%; border-radius: 5px;" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end in pc-->
+                <!--start in mobile-->
+                <div class="col-12 col-sm-12 col-md-12 d-block d-lg-none d-xl-none clear">
+                        <div style="width: 100%; padding: 10px 3px; padding-bottom: 0px;">
+                            <div style="padding: 0px 5px; background-color: white;">
+                                <div class="row clear">
+                                    <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 clear" 
+                                        style="text-align: center;"
+                                        (click)="detailsRequest()">
+                                        <img src="{{iconJobcat}}" alt="{{jobcat3Name}}" style="width: 100%; max-width: 70px;" class="img-fluid">
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 clear" 
+                                        (click)="detailsRequest()">
+                                        <div style="display: flex; width: 100%; height: 100%; align-items: center; justify-content: flex-start;">
+                                            <div>
+                                                <span style="font-size: 14px; color: #546E7A;">{{requestTitle}}</span>
+                                                <div style="padding-top: 10px;">
+                                                    <span style="font-size: 12px; color: #546E7A;">{{"جزئیات درخواست"}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1 clear">
+                                        <div *ngIf="shared.stateIdRequest.value == 1 || shared.stateIdRequest.value == 14"
+                                            style="text-align: left; position: relative; height: 100%; width: 100%;">
+                                            <img src="assets/image/close25.png" 
+                                                alt="close"
+                                                (click)="onCancelRequest()"
+                                                style="border-radius: 50%; cursor: pointer; width: 100%; max-width: 25px; position: absolute; top: 5px; left: 0px;" 
+                                                class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clear">
+                                    <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 clear" style="text-align: center;">
+                                        <span style="font-size: 14px; color: #039BE5;">{{requestCode}}</span>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 clear" style="text-align: right;">
+                                        <span style="font-size: 12px; color: #546E7A;">{{requestState}}</span>
+                                    </div>
+                                </div>
+            
+                                <!--start box discount-->
+                                <div *ngIf="shared.stateIdRequest.value != 5">
+                                    <div class="row clear" *ngIf="!shared.discountCode.value">
+                                        <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-9 clear">
+                                            <div style="padding: 7px 5px; padding-left: 0px;">
+                                                <input type="text" placeholder="کد تخفیف"
+                                                    [(ngModel)]="discountCodeText"
+                                                    (input)="onInputDiscount($event.target.value.toUpperCase())"
+                                                    [attr.maxlength]="constVal.maxDiscont"
+                                                    style="width: 100%; height: 35px; border-radius: 7px; border: 1px solid #C8C8C8; outline: none; text-align: center; color: #546E7A; font-size: 14px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-3 clear">
+                                            <div style="padding: 7px 5px;">
+                                                <input type="button" value="اعمال" class="btn" 
+                                                    (click)="onCheckDiscount()"
+                                                    style="width: 100%; height: 35px; border-radius: 7px; text-align: center; color: white; background-color: #039BE5; font-size: 14px;">
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                    <div *ngIf="shared.discountCode.value" style="padding: 15px 0px; padding-bottom: 0px; position: relative;">
+                                        <div  style="border: 1px solid #C8C8C8; border-radius: 7px; padding: 15px; padding-left: 30px; font-size: 12px; color: #546E7A;">
+                                            <div *ngIf="isDiscountWithPercent">
+                                                {{shared.discountPercent.value + txtDiscountWithPercent1 + shared.discountMaxCredit.value + txtDiscountWithPercent2}}
+                                            </div>
+                                            <div *ngIf="!isDiscountWithPercent">{{textDiscoutnWithoutPercent}}</div>
+                                        </div>
+                                        <div style="text-align: left; position: absolute; top: 18px; left: 5px;">
+                                            <img src="assets/webappPics/x-button2.png" 
+                                                alt="close" 
+                                                style="border-radius: 50%; cursor: pointer; width: 100%; max-width: 20px;" 
+                                                class="img-fluid"
+                                                (click)="deleteDiscount()">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end box discount-->
+            
+                            </div>
+                        </div>
+                    </div>
+                <!--end in mobile-->
+                <!---------end right col------->
+                
+                <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-9 clear">
+                    <div style="width: 100%; height: 100%; background-color: white;">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end show data in pc mode-->
+
+        <!---------------------------------->
+
+        <!--start show data in tablet and mobile mode-->
+        
+        <!--end show data in tablet and mobile mode-->
+
+    </ng-template>
+
+    <!--start modal questinon refuse offer-->
+    <div *ngIf="showModalRefuseOffer" 
+        [ngStyle]="{height:shared.yWindow.value+'px', width:shared.xWindow.value+'px'}"
+        style="position: absolute; top: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.2); z-index: 100; display: flex; align-items: center; justify-content: center;">
+        <div style="width: 100%; max-width: 400px; height: 100%; max-height: 240px; background-color: white; text-align: center; font-size: 12px; border-radius: 7px; position: relative;">
+            <div style="padding-top: 45px; color: #039BE5; font-size: 14px;"><span>حذف پیشنهاد</span></div>
+            <div style="padding: 25px 0px; width: 100%; max-width: 300px; text-align: center; margin: 0 auto;">
+                <p style="line-height: 25px;">{{"آیا مایلید پیشنهاد " + shared.selectedWorkerName.value + " را از لیست پیشنهادهای خود حذف کنید؟"}}</p>
+            </div>
+            <div class="row clear">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 clear">
+                    <div (click)="onYesModalRefuseOffer()" style="cursor: pointer; height: 40px; display: flex; align-items: center; justify-content: center; width: 100%; max-width: 120px; color: white; background-color: #039BE5; outline: none; font-size: 12px; border: 1px solid #C8C8C8; border-radius: 7px; margin: 0 auto;">
+                        <span>بله</span>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 clear" style="text-align: center;">
+                    <div (click)="onNoModalRefuseOffer()" style="cursor: pointer; height: 40px; display: flex; align-items: center; justify-content: center; width: 100%; max-width: 120px; color: #039BE5; background-color: #ffffff; outline: none; font-size: 12px; border: 1px solid #C8C8C8; border-radius: 7px; margin: 0 auto;">
+                        <span>خیر</span>
+                    </div>
+                </div>
+            </div>
+            <div style="position: absolute; top: -30px; right: 0; width: 100%; text-align: center;">
+                <img src="assets/image/userLogo.png">
+            </div>
+        </div>
+    </div>
+    <!--end modal questinon refuse offer-->
+
+    <!--start modal questinon accept offer-->
+    <div *ngIf="showModalAcceptOffer" 
+        [ngStyle]="{height:shared.yWindow.value+'px', width:shared.xWindow.value+'px'}"
+        style="position: absolute; top: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.2); z-index: 100; display: flex; align-items: center; justify-content: center;">
+        <div style="width: 100%; max-width: 400px; height: 100%; max-height: 240px; background-color: white; text-align: center; font-size: 12px; border-radius: 7px; position: relative;">
+            <div style="padding-top: 45px; color: #039BE5; font-size: 14px;"><span>قبول پیشنهاد</span></div>
+            <div style="padding: 25px 0px; width: 100%; max-width: 300px; text-align: center; margin: 0 auto;">
+                <p style="line-height: 25px;">{{"آیا مایلید پیشنهاد " + shared.selectedWorkerName.value + " بپذیرید؟"}}</p>
+            </div>
+            <div class="row clear">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 clear">
+                    <div (click)="onYesModalAcceptOffer()" style="cursor: pointer; height: 40px; display: flex; align-items: center; justify-content: center; width: 100%; max-width: 120px; color: white; background-color: #039BE5; outline: none; font-size: 12px; border: 1px solid #C8C8C8; border-radius: 7px; margin: 0 auto;">
+                        <span>بله</span>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 clear" style="text-align: center;">
+                    <div (click)="onNoModalAcceptOffer()" style="cursor: pointer; height: 40px; display: flex; align-items: center; justify-content: center; width: 100%; max-width: 120px; color: #039BE5; background-color: #ffffff; outline: none; font-size: 12px; border: 1px solid #C8C8C8; border-radius: 7px; margin: 0 auto;">
+                        <span>خیر</span>
+                    </div>
+                </div>
+            </div>
+            <div style="position: absolute; top: -30px; right: 0; width: 100%; text-align: center;">
+                <img src="assets/image/userLogo.png">
+            </div>
+        </div>
+    </div>
+    <!--end modal questinon accept offer-->
+
+
+    <!--start modal questinon start do ack-->
+    <div *ngIf="showModalStartDoAck" 
+        [ngStyle]="{height:shared.yWindow.value+'px', width:shared.xWindow.value+'px'}"
+        style="position: absolute; top: 0px; right: 0px; background-color: rgba(0, 0, 0, 0.2); z-index: 100; display: flex; align-items: center; justify-content: center;">
+        <div style="width: 100%; max-width: 400px; height: 100%; max-height: 240px; background-color: white; text-align: center; font-size: 12px; border-radius: 7px; position: relative;">
+            <div style="padding-top: 45px; color: #039BE5; font-size: 14px;"><span>تأیید شروع</span></div>
+            <div style="padding: 25px 0px; width: 100%; max-width: 300px; text-align: center; margin: 0 auto;">
+                <p style="line-height: 25px;">{{"آیا مایلید پیشنهاد " + shared.selectedWorkerName.value + " را تأیید شروع کنید؟"}}</p>
+            </div>
+            <div class="row clear">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 clear">
+                    <div (click)="onYesModalStartDoAck()" 
+                        style="cursor: pointer; height: 40px; display: flex; align-items: center; justify-content: center; width: 100%; max-width: 120px; color: white; background-color: #039BE5; outline: none; font-size: 12px; border: 1px solid #C8C8C8; border-radius: 7px; margin: 0 auto;">
+                        <span>بله</span>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 clear" style="text-align: center;">
+                    <div (click)="onNoModalStartDoAck()" 
+                        style="cursor: pointer; height: 40px; display: flex; align-items: center; justify-content: center; width: 100%; max-width: 120px; color: #039BE5; background-color: #ffffff; outline: none; font-size: 12px; border: 1px solid #C8C8C8; border-radius: 7px; margin: 0 auto;">
+                        <span>خیر</span>
+                    </div>
+                </div>
+            </div>
+            <div style="position: absolute; top: -30px; right: 0; width: 100%; text-align: center;">
+                <img src="assets/image/userLogo.png">
+            </div>
+        </div>
+    </div>
+    <!--end modal questinon start do ack-->
+
+</div>
+<div>
+    <webapp-footer></webapp-footer>
+</div>

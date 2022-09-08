@@ -1,0 +1,25 @@
+<div id="mainDiv">
+    <div style="padding-right: 7px;">
+      <h2 style="font-size: 18px; color: #455A64; font-weight: bold;">{{mainTitle}}</h2>
+    </div>
+
+<!--start slider discountCode List in mobile-->
+<div *ngIf="discountCategoryList.length > 0" 
+    style="width: 100%; margin: 0 auto; padding: 10px 0px;">
+    <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let slide of discountCategoryList">
+            <ng-template carouselSlide [id]="slide.cat3Ename">
+                <div class="divSlid" [routerLink]="['/categories3', slide?.cat3Ename]">
+                  <img src="{{imagePath + slide.image}}"
+                      [alt]="slide.cat3Ename" [title]="slide.cat3Ename" class="imgSlid img-fluid" >
+                  <div class="divTextSlid">
+                    <span>{{changePercentFa(slide.percent) + " درصد تخفیف تا سقف " +  changeMaxCreditFa(slide.maxCredit) + " تومان "}}</span>
+                  </div>
+                </div>
+            </ng-template>
+        </ng-container> 
+    </owl-carousel-o>
+</div>
+<!--end slider discountCode List in mobile-->
+
+</div>

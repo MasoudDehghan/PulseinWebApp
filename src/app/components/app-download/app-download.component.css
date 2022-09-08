@@ -1,0 +1,64 @@
+h2{
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+h3{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 30px;
+    color: black;
+}
+
+.mainDiv{
+    box-sizing: border-box; 
+    padding-top: 20px; 
+    padding-bottom: 10px;
+}
+
+.clear{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+#btnDlMainDiv{
+    margin: 0; 
+    padding: 0; 
+    padding-top: 10px;
+}
+
+.imgBtnDl{
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-shadow: 2px 1px 5px 0px rgba(0,0,0,0.5);
+    border-radius: 5px;
+}
+
+.imgBtnDl:hover{
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+}
+
+.imgBtnDiv{
+    padding-top: 7px;
+    padding-bottom: 7px;
+    text-align: center;
+}
+
+#imgMainDiv{
+    padding: 0; 
+    margin: 0; 
+    padding-top: 50px;
+}
+
+.divBackDownload{
+    height: 450px;
+}
+
+.divTextDl{
+    padding-top: 20px;
+    padding-bottom: 50px;
+}

@@ -1,0 +1,23 @@
+<!--start Modal add Credit (inc Money)-->
+<div (window:resize)="onResize($event)" [ngClass]="displayModalAddCredit ? 'visibleDivModal' : 'hideDivModal'">
+    <div [ngClass]="displayModalAddCredit ? 'visibleDivModalCover' : 'hideDivModalCover'"></div>
+    <div class="modalBoxContent" [ngStyle]="displayModalAddCredit ? showModalStyle(1) : hideModalStyle()">
+      <input type="button" class="modalClose" value="X" (click)="onCloseModalAddCredit()">
+      <div style="width: 100%; text-align: center; padding: 5px; color: #546E7A;">
+        <div>
+          <span>{{TextAddCredit}}</span>
+        </div>
+        <div style="padding: 10px 0; text-align: center; width: 100%;">
+          <input dir="ltr" type="text" [maxlength]="constVal.maxAddCredit" 
+            placeholder="حداقل ۵۰۰۰ تومان" [(ngModel)]="moneyPayment" 
+          (input)="onInputCreditChange($event.target.value)"
+          style="width: 250px; border: 1px solid #CFD8DC; color: #607D8B; font-size: 14px; border-radius: 5px; height: 35px; padding-right: 5px; padding-left: 5px;">
+        </div>
+        <div>
+          <input type="button" class="btn btn-success" style="border-radius: 5px;" value="پرداخت" 
+            (click)="onPayment()" [disabled]="!isMoney">
+        </div>
+      </div>
+    </div>
+</div>
+<!--end Modal add Credit (inc Money)-->

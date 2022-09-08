@@ -1,0 +1,45 @@
+<div *ngIf="isLoading">
+  <app-loading-fullpage-latti></app-loading-fullpage-latti>
+</div>
+
+<div class="col-lg-12 col-xl-12 d-none d-lg-block clear">
+  <div style="max-width: 450px; width: 100%; height: 50px; border-radius: 25px; background-color: white; margin: 0 auto; text-align: center;">
+    <img [src]="imagePath + shared.reqRej_jobcat2Select?.icon" 
+      [alt]="shared.reqRej_jobcat2Select?.name" style="width: 50px; height: 50px;">
+    <span class="jobCat3StaticTerm">سرویس های</span>
+    <span id="jobCat2Title">{{" " + shared.reqRej_jobcat2Select?.name + " "}}</span>
+    <span class="jobCat3StaticTerm">پالسین</span>
+  </div>
+</div>
+
+<div class="col-12 col-sm-12 col-md-12 d-block d-lg-none d-xl-none clear">
+  <div style="width: 100%; height: 60px; text-align: center;">
+    <img [src]="imagePath + shared.reqRej_jobcat2Select?.icon" 
+      [alt]="shared.reqRej_jobcat2Select?.name" style="width: 50px; height: 50px;">
+    <span class="jobCat3StaticTerm">سرویس های</span>
+    <span id="jobCat2Title">{{" " + shared.reqRej_jobcat2Select?.name + " "}}</span>
+    <span class="jobCat3StaticTerm">پالسین</span>
+  </div>
+</div>
+      
+<!----start jobCats3---->
+  <div id="jobcat3MainDiv" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+    <div class="row clear">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+        <div class="row clear justify-content-md-center justify-content-lg-center justify-content-xl-center">
+          <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 clear jobCat3BoxPadding" 
+            *ngFor="let item of shared.reqRej_jobcat2Select?.jobCat3List">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear jobCat3Box" 
+              (click)="onJobCat3(item)"> 
+              <img [src]="imagePath + item?.icon" 
+                [alt]="item.name" 
+                class="img-fluid" 
+                style="max-width: 120px; max-height: 120px;">
+                <div class="jobCat3Name">{{item?.name}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!----end jobCats3---->

@@ -1,0 +1,243 @@
+
+<!------------>
+<div [ngClass]="showMainMenu ? 'showNormal' : 'hideNormal'">
+
+    <!--start IQ Baz--
+    <div *ngIf="shared.iqbazBanerShow.value">
+      <div (click)="onBanerIqBaz()" 
+        style="width: 100%; min-height: 70Px; background-image: linear-gradient(to left, #FFC107 40% , #FF5722); display: flex; align-items: center; justify-content: center;">
+        <img src="assets/image/game/iqBaz/iqbazBaner4.gif" 
+        style="width: 100%; cursor: pointer;" class="img-fluid">
+      </div>
+    </div>  
+    <!--end IQ Baz-->
+  
+  <!--start landing notification--
+  <div *ngIf="!shared.isWebAppPage.value && !fixShow">
+    <app-landings-notification></app-landings-notification>
+  </div>
+  <!--end landing notification-->
+  
+  <div id="mainDiv">
+  
+    <div class="stylePart18Div">
+      <span style="position: relative;">
+        <img [routerLink]="['/Home']" 
+          src="assets/image/lowLogo.png" alt="logo" 
+          style="cursor: pointer; width: 45px; height: 45px;">
+        <div *ngIf="shared.xWindow.value > 800" class="btnStyleDownload" [routerLink]="['/download']">
+          <span class="text-truncate">دانلود اپلیکیشن</span>
+        </div>
+        <div [ngClass]="shared.xWindow.value > 800 ? 'btnStyleBlog' : 'btnStyleDownload'" (click)="goToBlog()">
+          <span class="text-truncate">وبلاگ</span>
+        </div>
+      </span>
+    </div> 
+
+    <div class="stylePart78Div">
+
+      <!------------>
+      <!--
+      <div *ngIf="!storage.isLogin.value && showBtnRegisterRequest && !shared.isWebAppPage.value" 
+        class="btnDivFloatleft">
+        <div class="btnStyle" (click)="onNewRequest()">
+          <span class="text-truncate">ثبت درخواست</span>
+        </div>
+      </div> 
+      -->
+
+      <!--
+      <div *ngIf="storage.isLogin.value && !shared.hasActiveRequest.value && showBtnRegisterRequest && !shared.isWebAppPage.value"
+        class="btnDivFloatleft">
+        <div class="btnStyle" (click)="onNewRequest()">
+          <span class="text-truncate">ثبت درخواست</span>
+        </div>
+      </div>
+      -->
+      
+      <div *ngIf="storage.isLogin.value && shared.hasActiveRequest.value && showBtnCurrentRequest && !shared.isWebAppPage.value" 
+        class="btnDivFloatleft">
+        <div class="btnStyle">
+          <span (click)="onFollowRequest()" class="text-truncate">پیگیری درخواست</span>
+        </div>
+      </div>
+      <!------------>
+  
+      <div *ngIf="!storage.isLogin.value" class="btnDivFloatleft">
+        <div (click)="onLogin()" class="divStyleLogin">
+          <span class="text-truncate spanLogin">ورود | ثبت نام</span>
+        </div>
+      </div>
+
+      <!---->
+      <div *ngIf="storage.isLogin.value" 
+        style="float: left; width: auto; height: 50px; position: relative;">
+
+        <div (click)="onUserMenuClick()"
+          class="divCharNameForHover" 
+          style="display: flex; align-items: center; justify-content: flex-end; height: 100%; width: auto;">
+          <span style="padding-left: 7px;">
+            <span class="btnUserName">
+              <span style="font-size: 14px; cursor: pointer; padding-left: 7px;">{{userName}}</span>
+              <i class="fas fa-chevron-down"></i>
+            </span>
+          </span>
+        </div>
+        <div *ngIf="storage.userDataLogin && storage.deviceType == 2"
+          [ngClass]="shared.isWebAppPage.value ? 'menuWebAppUserInfo' : 'menuUserInfo'">
+          <menu-login-itme [inputCredit]="'noInput'"></menu-login-itme>
+        </div>
+      </div>
+      <!---->
+  
+      <div *ngIf="shared.isWebAppPage.value || !shared.isHomePage" class="styleDivIcon">
+          <span (click)="onClickSearch()" class="spanSearch">
+            <i class="fas fa-search fa-2x"></i>
+          </span>
+          <div (click)="onClickSearch()" class="toltipSearch">
+            <span>جستجوی سرویس</span>
+          </div>
+      </div>
+        
+    </div>
+    
+  </div>
+  
+</div>
+<!------------>
+
+<div [ngClass]="selectMenu()">
+
+  <!--start IQ Baz--
+  <div *ngIf="shared.iqbazBanerShow.value">
+    <div (click)="onBanerIqBaz()" 
+      style="width: 100%; min-height: 70Px; background-image: linear-gradient(to left, #FFC107 40% , #FF5722); display: flex; align-items: center; justify-content: center;">
+      <img src="assets/image/game/iqBaz/iqbazBaner4.gif" 
+      style="width: 100%; cursor: pointer;" class="img-fluid">
+    </div>
+  </div>  
+  <!--end IQ Baz-->
+
+<!--start landing notification--
+<div *ngIf="!shared.isWebAppPage.value && !fixShow">
+  <app-landings-notification></app-landings-notification>
+</div>
+<!--end landing notification-->
+
+<!---->
+<div id="mainDiv">
+  
+  <div class="stylePart18Div">
+    <span style="position: relative;">
+      <img [routerLink]="['/Home']" 
+        src="assets/image/lowLogo.png" alt="logo" 
+        style="cursor: pointer; width: 45px; height: 45px;">
+        <div *ngIf="shared.xWindow.value > 800" class="btnStyleDownload" [routerLink]="['/download']">
+          <span class="text-truncate">دانلود اپلیکیشن</span>
+        </div>
+        <div [ngClass]="shared.xWindow.value > 800 ? 'btnStyleBlog' : 'btnStyleDownload'" (click)="goToBlog()">
+          <span class="text-truncate">وبلاگ</span>
+        </div>
+    </span>
+  </div>
+
+  <div class="stylePart78Div">
+
+    <!------------>
+    <!--
+      <div *ngIf="!storage.isLogin.value && showBtnRegisterRequest && !shared.isWebAppPage.value" 
+      class="btnDivFloatleft">
+      <div class="btnStyle" (click)="onNewRequest()">
+        <span class="text-truncate">ثبت درخواست</span>
+      </div>
+    </div> 
+    -->
+
+    <!--
+      <div *ngIf="storage.isLogin.value && !shared.hasActiveRequest.value && showBtnRegisterRequest && !shared.isWebAppPage.value"
+      class="btnDivFloatleft">
+      <div class="btnStyle" (click)="onNewRequest()">
+        <span class="text-truncate">ثبت درخواست</span>
+      </div>
+      </div>
+    -->
+    
+    <div *ngIf="storage.isLogin.value && shared.hasActiveRequest.value && showBtnCurrentRequest && !shared.isWebAppPage.value" 
+      class="btnDivFloatleft">
+      <div class="btnStyle">
+        <span (click)="onFollowRequest()" class="text-truncate">پیگیری درخواست</span>
+      </div>
+    </div>
+    <!------------>
+
+    <div *ngIf="!storage.isLogin.value" class="btnDivFloatleft">
+      <div (click)="onLogin()" class="divStyleLogin">
+        <span class="text-truncate spanLogin">ورود | ثبت نام</span>
+      </div>
+    </div>
+
+    <!---->
+    <div *ngIf="storage.isLogin.value" 
+      style="float: left; width: auto; height: 50px; position: relative;">
+
+      <div (click)="onUserMenuClick()"
+        class="divCharNameForHover" 
+        style="display: flex; align-items: center; justify-content: flex-end; height: 100%; width: auto;">
+        <span style="padding-left: 7px;">
+          <span class="btnUserName">
+            <span style="font-size: 14px; cursor: pointer; padding-left: 7px;">{{userName}}</span>
+            <i class="fas fa-chevron-down"></i>
+          </span>
+        </span>
+      </div>
+      <div *ngIf="storage.userDataLogin && storage.deviceType == 2"
+        [ngClass]="shared.isWebAppPage.value ? 'menuWebAppUserInfo' : 'menuUserInfo'">
+        <menu-login-itme [inputCredit]="'noInput'"></menu-login-itme>
+      </div>
+    </div>
+    <!---->
+
+    <div *ngIf="shared.isWebAppPage.value || !shared.isHomePage" class="styleDivIcon">
+        <span (click)="onClickSearch()" class="spanSearch">
+          <i class="fas fa-search fa-2x"></i>
+        </span>
+        <div (click)="onClickSearch()" class="toltipSearch">
+          <span>جستجوی سرویس</span>
+        </div>
+    </div>
+      
+  </div>
+  
+</div>
+<!---->
+
+  <!--------start job cat menu--------
+  <div *ngIf="!shared.isWebAppPage.value">
+    <app-job-cat-menu [jobCats1]="categories1"></app-job-cat-menu>
+  </div>
+  <!-----end job cat menu-------->
+</div>
+
+<div *ngIf="storage.showModalLogin.value">
+  <smslogin></smslogin>
+</div>
+
+<div *ngIf="storage.showModalUserMenu.value">
+  <userMenuModal></userMenuModal>
+</div>
+
+<div *ngIf="storage.showModalSearch.value">
+  <searchModal></searchModal>
+</div>
+
+<!--start modal add credit-->
+<div *ngIf="basicData.activeModalAddCredit.value">
+  <modal-add-credit [userToken]="userToken" [credit]="0" [dicountCode]="''" [requestID]="0"></modal-add-credit>
+</div>
+<!--end modal add credit-->
+
+<!--start modal invite-->
+<div *ngIf="basicData.activeModalInvite.value">
+  <app-invite [inviteLink]="inviteMsg"></app-invite>
+</div>
+<!--end modal invite-->

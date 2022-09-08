@@ -1,0 +1,46 @@
+  <!----Start jobCats1---->
+    <div class="row clear">
+      <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 text-center boxPadding" 
+        *ngFor="let jobCat1 of categories1; index as i">
+  
+        <div class="flip-card">
+          <div class="flip-card-inner" (click)="onJobCat1(i)" 
+            [ngClass]="listjobcat1AnimState[i] == 'active' ? 'flip-card-inner-rotate-180' : 'flip-card-inner-rotate180'">
+
+            <div *ngIf="listjobcat1AnimState[i] != 'active'" class="flip-card-front">
+              <img [src]="imagePath + jobCat1.icon" [alt]="jobCat1.name" class="img-fluid" style="max-width: 80%; max-height: 80%;">
+              <strong class="jobCat1Title">{{jobCat1.name}}</strong>
+            </div>
+
+              <div class="flip-card-back">
+
+                <div>
+                  <strong class="jobCat1Title">{{jobCat1.name}}</strong>
+                </div>
+                
+                  <div class="textFlipCardBack1" *ngIf="jobCat1.jobCat2List.length <= 5">
+                      <div *ngFor="let jobCat2 of jobCat1.jobCat2List; index as i">
+                        <span (click)="onJobCat2(jobCat2.id)" class="jobCat2LinkText">{{jobCat2.name}}</span>
+                      </div>
+                      <div class="imageFlipCardBack">
+                        <img [src]="imagePath + jobCat1.icon" [alt]="jobCat1.name" 
+                          style="width: 80%; height: 80%; min-width: 130px; min-height: 130px;">
+                      </div>
+                  </div>
+                  <div class="textFlipCardBack2" *ngIf="jobCat1.jobCat2List.length > 5">
+                      <div *ngFor="let jobCat2 of jobCat1.jobCat2List; index as i">
+                          <span (click)="onJobCat2(jobCat2.id)" class="jobCat2LinkTextSmall">{{jobCat2.name}}</span>
+                      </div>
+                      <div class="imageFlipCardBack">
+                          <img [src]="imagePath + jobCat1.icon" [alt]="jobCat1.name" 
+                            style="width: 80%; height: 80%; min-width: 130px; min-height: 130px;">
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  <!----End jobCats1---->

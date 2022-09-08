@@ -1,0 +1,40 @@
+#jobcat3MainDiv{
+    padding: 3px 0px;
+}
+
+.jobCat3BoxPadding{
+    text-align: center; 
+    padding: 3px;
+}
+
+.jobCat3Box{
+    border: 1px solid #ECEFF1; 
+    border-radius: 4px; 
+    text-align: center; 
+    padding: 15px 10px; 
+    height: 100%;
+    width: 100%;
+    cursor: pointer; 
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5); 
+    background-color: white;     
+}
+
+.jobCat3Box:hover{
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+}
+
+.jobCat3Name{
+    color: green;
+}
+
+.jobCat3StaticTerm{
+    color: #607D8B;
+    font-size: 14px;
+    padding: 0px 5px;
+}
+
+#jobCat2Title{
+    color: green; 
+    font-size: 14px; 
+    font-weight: bold;
+}

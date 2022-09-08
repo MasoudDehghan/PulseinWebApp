@@ -1,0 +1,757 @@
+<!--start schema mark up-->
+<ngx-json-ld [json]="jsonLD"></ngx-json-ld>
+<ngx-json-ld [json]="qa_json_ld"></ngx-json-ld>
+<!--end schema mark up-->
+
+<div *ngIf="isLoading">
+  <app-loading-fullpage-latti></app-loading-fullpage-latti>
+</div>
+
+<div *ngIf="flag == 1">
+
+<div class="col-lg-12 col-xl-12 d-none d-lg-block clear">
+<div id="mainDiv" class="contentPadding">
+
+<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" 
+  style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
+  <!--start Iqbaz Notification point game--
+  <div *ngIf="showTimerIqbaz" style="padding-bottom: 5px;">
+    <div *ngIf="!timerIqBazFinish"
+      style="padding: 15px 5px; text-align: center; width: 100%; max-width: 700px; margin: 0 auto; font-size: 14px; background-color: pink; color: white; border-radius: 7px;">
+      <span>برای گرفتن ۱۰ امتیاز از جشنواره پالسین باید</span>
+      <span style="padding: 0px 5px; font-size: 18px; font-weight: bold;">{{textSecond}}</span>
+      <span>ثانیه در این صفحه حضور داشته باشید</span>
+    </div>
+    <div *ngIf="timerIqBazFinish"
+    style="padding: 15px 5px; text-align: center; width: 100%; max-width: 700px; margin: 0 auto; font-size: 14px; background-color: white; color: green; border: 2px solid pink; border-radius: 7px;">
+    <span>امتیاز بازدید از این صفحه به امتیازات شما اضافه شد</span>
+    <span style="padding-right: 4px;"><i class="fas fa-check"></i></span>
+    </div>
+  </div>
+  <!--end Iqbaz Notification point game-->
+
+  <!--start header image-->
+  <div style="position: relative; text-align: center;">
+    <img src="{{imageCat3}}" class="img-fluid" style="border-radius: 7px;">
+    
+    <div style="position: absolute; text-align: center; bottom: 20px; height: 70px; width: 100%;">
+      <input type="button" [value]=txtRequest
+        [eventTracker]="{'category':googleAnalyticsCategory,'action':'click'}"
+        (click)="onJobCat3(jobcat3Selected)" class="btn btn-success" 
+        style="border-radius: 7px; min-width: 200px; height: 70px; font-size: 20px; font-weight: bold;">
+    </div>
+  </div>
+  <!--end header image-->
+  
+  <div style="padding-top: 10px;">
+    <strong style="font-size: 20px; color: #000000">{{jobCat3FarsiName}}</strong> 
+  </div>
+  <div class="eLine"></div>
+  <div *ngFor="let item of descriptionForJobcat3">
+    <div style="padding-bottom: 7px; text-align: right;">
+      <strong style="color: #000000;">{{item?.title}}</strong>
+    </div>
+    <p class="text-justify" style="color: #455A64">{{item?.text}}</p>
+  </div>
+</div>
+
+<!--start download-->
+<div id="download" style="text-align: center; padding-top: 10px;">
+  <strong>دانلود اپلیکیشن</strong>
+  <div class="eLine"></div>
+  <img src="assets/image/localPage/QRCode.png" style="width: 300px; height: 300px;">
+</div>
+<!--end download-->
+
+</div>
+
+
+<!----start footer---->
+<app-footer></app-footer>
+<!----end footer---->
+
+</div>
+
+
+<!----start in mobile---->
+<div class="col-12 col-sm-12 col-md-12 d-block d-lg-none d-xl-none clear">
+
+  <!--start menu top mobile-->
+  <div style="width: 100%; overflow: hidden; height: 60px; background-color: #4FC3F7; color: white;">
+    <div style="width: 20%; height: 100%; float: right; text-align: right; padding-top: 5px; padding-right: 3px;">
+      <img (click)="onLogo()" src="assets/image/logo.png" 
+        alt="لوگوی وب سایت پالسین" 
+        style="width: 50px; height: 50px; outline: none;">
+    </div>
+    <div style="width: 60%; height: 100%; float: right; display: flex; align-items: center; justify-content: center;">
+      <span>
+        <div style="text-align: center;">ثبت درخواست</div>
+        <div style="text-align: center;">  
+          <span>{{jobCat3FarsiName}}</span>
+        </div>
+      </span>
+    </div>
+    <div style="width: 20%; height: 100%; float: left; text-align: left; padding-top: 15px; padding-left: 3px;">
+      <img (click)="onClose()" 
+        src="assets/image/close.png" 
+        alt="close" 
+        style="width: 30px; height: 30px; outline: none;">
+    </div>
+  </div>
+  <!--end menu top mobile-->
+
+  <!--start description view-->
+  <div>
+      <div style="color: #455A64; font-size: 16px; padding: 7px;">
+        <strong>{{jobCat3FarsiName}}</strong>
+      </div>
+      <div class="text-justify" *ngFor="let item of descriptionForJobcat3" 
+        style="color: #455A64; font-size: 14px; padding: 7px; padding-bottom: 0px;">
+        <div *ngIf="item.title" style="padding-bottom: 7px; text-align: right;">
+          <strong style="color: #000000;">{{item?.title}}</strong>
+        </div>
+        <p class="text-justify" style="color: #455A64">{{item?.text}}</p>
+      </div>
+      <div *ngIf="mobileImgCat3 != ''" style="width: 100%; text-align: center; padding: 7px;">
+        <img [src]="mobileImgCat3" style="width: 100%; max-width: 500px; border-radius: 7px;" class="img-fluid">
+      </div>
+      <div class="divBoxWhiteFooter"></div>
+  </div>
+  <!--end description view-->
+  <!----start btn mobile---->
+  <div style="position: fixed; bottom: 0px; right: 0; height: auto; width: 100%;">
+    <div class="divBoxWhiteFooter">
+      <div class="floatleft">
+        <div class="divStyleLeft">
+          <div (click)="onStart(jobcat3Selected)"  
+            [eventTracker]="{'category':googleAnalyticsCategory,'action':'click'}" 
+            class="divStyleBtnLeft">
+            <span>شروع</span>
+          </div>
+        </div>
+      </div>
+      <div class="floatRight">
+        <div class="divStyleRight">
+          <span (click)="onBack()" class="btnReturn">بازگشت</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!----end btn mobile---->
+</div>
+<!----end in mobile---->
+</div>
+
+
+<!---start new view of page (new seo page)-->
+<div *ngIf="flag == 2">
+  <div class="col-12 col-sm-12 col-md-12 d-block d-lg-none d-xl-none clear">
+    <!--start menu top mobile-->
+    <div style="width: 100%; overflow: hidden; height: 60px; background-color: #4FC3F7; color: white;">
+      <div style="width: 20%; height: 100%; float: right; text-align: right; padding-top: 5px; padding-right: 3px;">
+        <img (click)="onLogo()" src="assets/image/logo.png" 
+          alt="لوگوی وب سایت پالسین" 
+          style="width: 50px; height: 50px; outline: none;">
+      </div>
+      <div style="width: 60%; height: 100%; float: right; display: flex; align-items: center; justify-content: center;">
+        <span>{{jobCat3FarsiName}}</span>
+      </div>
+      <div style="width: 20%; height: 100%; float: left; text-align: left; padding-top: 15px; padding-left: 3px;">
+        <img (click)="onClose()" 
+          src="assets/image/close.png" 
+          alt="close" 
+          style="width: 30px; height: 30px; outline: none;">
+      </div>
+    </div>
+    <!--end menu top mobile-->
+  </div>
+  <!--start header-->
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+        <!--start off code in mobile-->
+        <div class="d-block d-lg-none d-xl-none" *ngIf="haveGeneralOffCode || haveFirstUseOffCode"
+          style="padding: 5px 10px; width: 100%; min-height: 150px;">
+          <div style="min-height: 150px; width: 100%; background-color: white; border: none; border-radius: 7px; padding: 10px; box-shadow: -2px 1px 7px 0px rgba(0,0,0,0.4);">
+            <div class="row clear">
+              <div class="col-6 col-sm-6 col-md-6 col-lg-5 col-xl-4" 
+                style="padding: 0; padding-left: 7px; margin: 0; display: flex; align-items: center; justify-content: center;">
+                <img src="{{imagePath + imgMainDiscount}}" 
+                  style="width: 100%; max-width: 300px; border-radius: 5px;" 
+                  class="img-fluid">
+              </div>
+              <div class="col-6 col-sm-6 col-md-6 col-lg-7 col-xl-8" 
+                style="padding: 0; margin: 0; display: flex; align-items: center; justify-content: center;">
+                
+                <div>
+                  <div *ngIf="showDiscountCodesAfterTimer">
+                      <div *ngIf="haveFirstUseOffCode" 
+                        style="width: 100%; padding-bottom: 4px; cursor: pointer;"
+                        (click)="copyFirstUseOffCode()">
+                        <div style="text-align: center; font-size: 14px; color: #E91E63;">
+                          <span>{{titrFirstDiscount}}</span>
+                        </div>
+                        <div class="blackText">
+                          <div style="width: 100%; padding: 4px 0px;">
+                            <div class="divBtnOffCode">
+                              <span>{{txtDiscount + " " + firstUseOffCode_code}}</span>
+                            </div>
+                          </div>
+                          <div>
+                            <span>{{firstUseOffCode_Percent}}</span>
+                            <span>{{txtPercentMaxPriceDiscount}}</span>
+                            <span>{{firstUseOffCode_maxPrice}}</span>
+                            <span>{{unitIranMoney}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="haveGeneralOffCode && !haveFirstUseOffCode" style="width: 100%; padding-top: 7px; cursor: pointer;" 
+                        (click)="copyGeneralOffCode()">
+                        <div style="text-align: center; font-size: 14px; color: #E91E63;">
+                          <span>{{titrGeneralDiscount}}</span>
+                        </div>
+                        <div class="blackText">
+                          <div style="width: 100%; padding: 4px 0px;">
+                            <div class="divBtnOffCode">
+                              <span>{{txtDiscount + " " + generalOffCode_code}}</span>
+                            </div>
+                          </div>
+                          <div>
+                            <span>{{generalOffCode_Percent}}</span>
+                            <span>{{txtPercentMaxPriceDiscount}}</span>
+                            <span>{{generalOffCode_maxPrice}}</span>
+                            <span>{{unitIranMoney}}</span>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end off code in mobile-->
+
+
+<!--start price info in mobile-->
+<div *ngIf="priceInfo"
+  style="width: 100%; font-size: 14px;">
+<div *ngIf="priceInfo?.title != '' || priceInfo?.description != ''"
+  class="d-block d-lg-none d-xl-none col-12 col-sm-12 col-md-12 clear text-justify"
+  style="width: 100%; margin: 0 auto; max-width: 800px;">
+  <div style="padding: 7px 15px; background-color: white;">
+    <div *ngIf="priceInfo?.title" style="padding-bottom: 15px; font-size: 16px;">
+      <strong>{{priceInfo.title}}</strong>
+    </div>
+    <div *ngIf="priceInfo?.description" style="padding-bottom: 15px;">
+      <span>{{priceInfo.description}}</span>
+    </div>
+    <div *ngIf="priceInfo?.items">
+      <ul *ngFor="let pItem of priceInfo.items">
+        <li *ngIf="pItem.price > 1">
+          <span>{{pItem.text + " " + changePriceToFa(pItem.price) + unitIranMoney}}</span>
+        </li>
+        <li *ngIf="pItem.price <= 1">
+          <span>{{pItem.text}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+<!--end price info in mobile-->
+
+
+
+    <!--start slider discountCode List in mobile-->
+      <div class="d-block d-lg-none d-xl-none" 
+        *ngIf="otherDiscountList.length > 0" 
+        style="width: 100%; margin: 0 auto; padding: 10px; background-color: rgba(33,150,243,0.05);">
+        <div style="width: 100%; text-align: center; font-size: 14px; font-weight: bold; padding-top: 7px; padding-bottom: 15px;">
+          <span style="border-bottom: 2px solid #2196F3; border-radius: 2px; padding: 7px 15px;">{{textDiscountGolds}}</span>
+        </div>
+        <owl-carousel-o [options]="customOptions">
+            <ng-container *ngFor="let slide of otherDiscountList">
+                <ng-template carouselSlide [id]="slide.cat3Ename">
+                    <div class="divSlid" (click)="onSliderDiscount(slide)">
+                      <img src="{{imagePath + slide.image}}"
+                          [alt]="slide.cat3Ename" [title]="slide.cat3Ename" class="imgSlid img-fluid" >
+                      <div class="divTextSlid">
+                        <span>{{makeTextDiscount(slide.percent , slide.maxCredit)}}</span>
+                      </div>
+                    </div>
+                </ng-template>
+            </ng-container> 
+        </owl-carousel-o>
+      </div>
+    <!--end slider discountCode List in mobile-->
+
+          <div class="row clear">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 clear" 
+              style="background-color: white; display: flex; align-items: center; justify-content: center; min-height: 400px;">
+                  <span style="padding: 0px 5%; text-align: center;">
+                      <h1 style="font-size: 26px; font-weight: bold; line-height: 40px;">{{h1Header}}</h1>
+                      <h2 style="font-size: 16px; line-height: 30px;">{{h2Header}}</h2>
+
+                      <!--start off code-->
+                      <div class="d-none d-lg-block d-xl-block" *ngIf="haveGeneralOffCode || haveFirstUseOffCode"
+                        style="padding: 5px; width: 100%; min-height: 150px;">
+                        <div style="min-height: 150px; width: 100%; background-color: white; border: none; border-radius: 7px; padding: 10px; box-shadow: -2px 1px 7px 0px rgba(0,0,0,0.4);">
+                          <div class="row clear">
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-5 col-xl-4" 
+                              style="padding: 0; margin: 0; display: flex; align-items: center; justify-content: center;">
+                                <img *ngIf="showDiscountCodesAfterTimer" src="assets/image/giftOff.png" alt="آیکون تخفیف" 
+                                  style="width: 100%; max-width: 150px;" class="img-fluid">
+
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-7 col-xl-8" 
+                              style="padding: 0; margin: 0; display: flex; align-items: center; justify-content: center;">
+                              
+                              <div *ngIf="showLoadingDiscount" 
+                                style="font-size: 16px; color: #E91E63;width: 100%; text-align: center;">
+                                <span style="font-size: 20px;">{{countDownShowDiscountCode}}</span>
+                                <span>{{textDiscountCodeLoading}}</span>
+                              </div>
+                              
+                              <div>
+                                <div *ngIf="showDiscountCodesAfterTimer">
+                                    <div *ngIf="haveFirstUseOffCode" 
+                                      style="width: 100%; padding-bottom: 4px; cursor: pointer;"
+                                      (click)="copyFirstUseOffCode()">
+                                      <div style="text-align: center; font-size: 14px; color: #E91E63;">
+                                        <span>{{titrFirstDiscount}}</span>
+                                      </div>
+                                      <div class="blackText">
+                                        <div style="width: 100%; padding: 4px 0px;">
+                                          <div class="divBtnOffCode">
+                                            <span>{{txtDiscount + " " + firstUseOffCode_code}}</span>
+                                          </div>
+                                        </div>
+                                        <div>
+                                          <span>{{firstUseOffCode_Percent}}</span>
+                                          <span>{{txtPercentMaxPriceDiscount}}</span>
+                                          <span>{{firstUseOffCode_maxPrice}}</span>
+                                          <span>{{unitIranMoney}}</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div *ngIf="haveGeneralOffCode && !haveFirstUseOffCode" style="width: 100%; padding-top: 7px; cursor: pointer;" 
+                                      (click)="copyGeneralOffCode()">
+                                      <div style="text-align: center; font-size: 14px; color: #E91E63;">
+                                        <span>{{titrGeneralDiscount}}</span>
+                                      </div>
+                                      <div class="blackText">
+                                        <div style="width: 100%; padding: 4px 0px;">
+                                          <div class="divBtnOffCode">
+                                            <span>{{txtDiscount + " " + generalOffCode_code}}</span>
+                                          </div>
+                                        </div>
+                                        <div>
+                                          <span>{{generalOffCode_Percent}}</span>
+                                          <span>{{txtPercentMaxPriceDiscount}}</span>
+                                          <span>{{generalOffCode_maxPrice}}</span>
+                                          <span>{{unitIranMoney}}</span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--end off code-->
+
+                      <div class="d-block d-lg-none d-xl-none col-12 col-sm-12 col-md-12 clear" 
+                        style="background-color: white; text-align: center;">
+                          <img [src]="imgHeader" 
+                          [alt]="altImageHeader"
+                          style="width: 100%; max-width: 200px;" class="img-fluid">
+                      </div>        
+                  </span>
+              </div>
+              <div class="d-none d-lg-block col-lg-6 col-xl-6 clear" style="background-color: white; text-align: center;">
+                  <img [src]="imgHeader" 
+                  [alt]="altImageHeader"
+                  style="width: 100%; max-width: 450px;" class="img-fluid">
+              </div>
+          </div>
+      </div>
+  <!--end header-->
+
+  <!--start price info in pc-->
+  <div *ngIf="priceInfo" style="width: 100%; font-size: 14px;">
+  <div *ngIf="priceInfo?.title != '' || priceInfo?.description != ''" 
+    class="d-none d-lg-block col-lg-12 col-xl-12 clear text-justify"
+    style="width: 100%; padding: 7px 15px; padding-top: 0px;">
+    <div class="row clear" style="width: 100%; max-width: 900px; margin: 0 auto; background-color: white; border: none; border-radius: 7px; padding: 10px; box-shadow: -2px 1px 7px 0px rgba(0,0,0,0.4);">
+      <div class="col-lg-2 col-xl-2 clear" style="padding: 10px 7px;">
+        <img src="assets/image/wallet.png" style="width: 100; max-width: 150px;" class="img-fluid">
+      </div>
+      <div class="col-lg-10 col-xl-10 claer">
+        <div style="padding: 10px;">
+          <div *ngIf="priceInfo?.title" style="padding-bottom: 15px; font-size: 18px;">
+            <strong>{{priceInfo.title}}</strong>
+          </div>
+          <div *ngIf="priceInfo?.description" style="padding-bottom: 15px;">
+            <span>{{priceInfo.description}}</span>
+          </div>
+          <div *ngIf="priceInfo?.items">
+            <ul *ngFor="let pItem of priceInfo.items">
+              <li *ngIf="pItem.price > 1">
+                <span>{{pItem.text + " " + changePriceToFa(pItem.price) + unitIranMoney}}</span>
+              </li>
+              <li *ngIf="pItem.price <= 1">
+                <span>{{pItem.text}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!--end price info in pc-->
+
+  <!--start slider discountCode List in PC-->
+  <div class="d-none d-lg-block d-xl-block col-lg-12 col-xl-12 clear"
+    *ngIf="otherDiscountList.length > 0" 
+    style="background-color: rgba(33,150,243,0.05); padding-top: 7px;">
+    <div style="width: 100%; text-align: center; font-size: 16px; font-weight: bold; padding-top: 7px; padding-bottom: 15px;">
+      <span style="border-radius: 2px; border-bottom: 2px solid #2196F3; padding: 7px 15px;">{{textDiscountGolds}}</span>
+    </div>
+    <div style="width: 100%; max-width: 1300px; margin: 0 auto; padding: 10px;">
+      <owl-carousel-o [options]="customOptions">
+          <ng-container *ngFor="let slide of otherDiscountList">
+              <ng-template carouselSlide [id]="slide.cat3Ename">
+                  <div class="divSlid" (click)="onSliderDiscount(slide)">
+                    <img src="{{imagePath + slide.image}}"
+                        [alt]="slide.cat3Ename" [title]="slide.cat3Ename" class="imgSlid img-fluid" >
+                    <div class="divTextSlid">
+                      <span>{{makeTextDiscount(slide.percent , slide.maxCredit)}}</span>
+                    </div>
+                  </div>
+              </ng-template>
+          </ng-container> 
+      </owl-carousel-o>
+    </div>
+  </div>
+  <!--end slider discountCode List in PC-->
+      
+  <!--start introdoction-->
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear" 
+          style="background-color: #039BE5; border-top: 1px solid #0D47A1;">
+          <div style="width: 100%; max-width: 900px; margin: 0 auto; padding: 10px; padding-top: 35px;">
+              <p style="line-height: 30px; font-size: 14px; color: #FFFFFF; text-align: right;" class="text-justify">{{introdouction}}</p>
+          </div>
+      </div>
+  <!--end introdoction-->
+
+  <!---start list index--->
+  <!--start list index for carpet cleaning-->
+  <div *ngIf="htmlIndexList.length > 0 && cat3ID == 313" style="padding-top: 20px; padding-right: 15px; padding-left: 15px;">
+    <div style="padding-bottom: 7px;">
+      <p style="font-size: 14px; font-weight: bold;">فهرست مطالب</p>
+    </div>
+    <div style="padding: 5px 0px;">
+      <div class="row claer">
+        <div *ngFor="let carpetImg of listCarpetImg; index as i" 
+          class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3" 
+          style="padding: 2px 5px; padding-top: 2px; text-align: center;">
+          <img src="{{pathImagesInServer + carpetImg}}" 
+            [alt]="htmlIndexList[i].name" 
+            style="width: 100%; max-width: 400px; cursor: pointer; border-radius: 5px;" 
+            class="img-fluid"
+            (click)="scroll(htmlIndexList[i].id)">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end list index for carpet cleaning-->
+  <!--start list index for moveing-->
+  <div *ngIf="htmlIndexList.length > 0 && cat3ID == 322" style="padding-top: 20px; padding-right: 15px; padding-left: 15px;">
+    <div style="padding-bottom: 7px;">
+      <p style="font-size: 14px; font-weight: bold;">فهرست مطالب</p>
+    </div>
+    <div style="padding: 5px 0px;">
+      <div class="row claer">
+        <div *ngFor="let moveImg of listMoveingImg; index as i" 
+          class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3" 
+          style="padding: 2px 5px; padding-top: 2px; text-align: center;">
+          <img src="{{pathImagesInServer + moveImg}}" 
+            [alt]="htmlIndexList[i].name" 
+            style="width: 100%; max-width: 400px; cursor: pointer; border-radius: 5px;" 
+            class="img-fluid"
+            (click)="scroll(htmlIndexList[i].id)">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end list index for moveing-->
+  <!--start list index for cleaning-->
+  <div *ngIf="htmlIndexList.length > 0 && cat3ID == 163" style="padding-top: 20px; padding-right: 15px; padding-left: 15px;">
+    <div style="padding-bottom: 7px;">
+      <p style="font-size: 14px; font-weight: bold;">فهرست مطالب</p>
+    </div>
+    <div style="padding: 5px 0px;">
+      <div class="row claer">
+        <div *ngFor="let cleanImg of listCleaningImg; index as i" 
+          class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3" 
+          style="padding: 2px 5px; padding-top: 2px; text-align: center;">
+          <img src="{{pathImagesInServer + cleanImg}}" 
+            [alt]="htmlIndexList[i]?.name" 
+            style="width: 100%; max-width: 400px; cursor: pointer; border-radius: 5px;" 
+            class="img-fluid"
+            (click)="scroll(htmlIndexList[i]?.id)">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--end list index for cleaning-->
+  <!---start list index for other categories--->
+  <div *ngIf="htmlIndexList.length > 0 && cat3ID != 313 && cat3ID != 322 && cat3ID != 163" style="padding-top: 20px; padding-right: 15px; padding-left: 15px;">
+    <p style="font-size: 14px; font-weight: bold;">فهرست مطالب</p>
+    <ul>
+        <li *ngFor="let index of htmlIndexList" 
+        style="font-size: 14px; line-height: 25px; cursor: pointer; text-decoration: underline; color: blue;" 
+        (click)="scroll(index?.id)">{{index?.name}}</li>
+    </ul>
+    <div></div>
+  </div>
+  <!---end list index for other categories--->
+  <!---end list index--->  
+
+  <!--start html content-->
+  <div *ngFor="let html of htmlList">
+    <div [id]="html?.id"></div>
+    <div [innerHTML]="html?.name | safeHtml"></div>
+  </div>
+  <!--end html content-->
+
+
+  <!---------start questions--------->
+    <div id="2000"></div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear" style="padding-top: 25px; padding-bottom: 15px;">
+          <div style="width: 100%; max-width: 900px; margin: 0 auto; padding-top: 20px; padding-bottom: 10px; text-align: center;">
+              <h2 style="font-size: 20px; font-weight: bold; line-height: 40px;">{{h2TitleFAQ}}</h2>
+          </div>
+          <div *ngFor="let faqObj of FAQList; index as i" 
+            style="width: 100%; max-width: 900px; margin: 0 auto; padding: 0px 15px;">
+              <div class="row clear">
+                  <div class="questionDiv" (click)="toggleState(i)">
+                      <i [@arrowState]="faqObj.state" class="fas fa-chevron-down" 
+                      [ngStyle]="faqObj.state == 'hide' ? {color:'#546E7A'} : {color:'black'}"></i>
+                      <h3 [ngClass]="faqObj.state == 'hide' ? 'questionStyleNoSelect' : 'questionStyleSelected'">{{faqObj.question}}</h3>
+                  </div>
+              </div>
+              <p class="pResponse text-justify" [@faqState]="faqObj.state">
+                  {{faqObj.response}}
+              </p>
+          </div>          
+      </div>
+  <!----------end questions--------->
+
+  <!----start new user comment------>
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear"
+    style="padding-top: 10px; padding-bottom: 15px;">
+    <div style="width: 100%; max-width: 900px; margin: 0 auto; padding-top: 10px; padding-bottom: 10px; text-align: center;">
+      <h4 style="font-size: 18px; font-weight: bold; line-height: 40px;">{{h2TitleComments}}</h4>
+    </div>
+    <div *ngIf="showMainIdeaBox" style="padding: 15px; width: 100%; max-width: 900px; margin: 0 auto;">
+      <textarea maxlength="500" placeholder="نظر خود را با ما درمیان بگذارید..."
+        class="textAreaStyle" [(ngModel)]="uesrIdeatext"></textarea>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+        <div class="row" style="width: 100%; max-width: 900px; margin: 0 auto;">
+          <div *ngIf="!storage.isLogin.value" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 clear">
+            <div style="width: 100%; padding: 3px 0px; padding-left: 10px;">
+              <input type="text" placeholder="نام (اختیاری)" 
+                [(ngModel)]="userName"
+                maxlength="50" class="textInputUserInfo">
+            </div>
+            <div style="width: 100%; padding: 3px 0px; padding-left: 10px;">
+              <input type="text" placeholder="موبایل (اختیاری)"
+                [(ngModel)]="userMobile"
+                maxlength="11" class="textInputUserInfo">
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 clear">
+            <div style="width: 100%; max-width: 450px; height: 100%; min-height: 50px; display: flex; align-items: center; justify-content: center;">
+              <input type="button"  class="btn btnSendComment" value="ارسال نظر" 
+                [disabled]="uesrIdeatext.length < 5"
+                (click)="sendIdea()">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!----end new user comment------>
+
+  <!--------start user comment------>
+  <div *ngIf="userCommentList.length > 0" 
+    class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear"
+    style="padding-top: 10px; padding-bottom: 15px;">
+    <div *ngFor="let comment of userCommentList;" style="width: 100%; max-width: 900px; margin: 0 auto; padding: 5px; padding-bottom: 10px;">
+      <div style="width: 100%; padding: 15px; border: 1px solid silver; border-radius: 7px; background-color: #EFEFF1;">
+        <div>
+          <span><img src="assets/image/profile.png" alt="userIcon" style="width: 70px; height: 70px;"></span>
+          <span style="padding-right: 5px; color: #2196F3;">{{comment.userName}}</span>
+        </div>
+        <div style="padding-right: 75px;">
+          <span>{{comment.text}}</span>
+        </div>
+        <div class="leftDivComment">
+          <span>{{comment.registerTime}}</span>
+        </div>
+        <div class="leftDivComment">
+          <input *ngIf="comment.id != ansID" 
+            type="button" 
+            value="پاسخ" 
+            (click)="onAnswer(comment.id)"
+            class="btn" 
+            style="width: 80px; height: 35px; padding-bottom: 5px; border-radius: 5px; border: 1px solid #CFD8DC; font-size: 14px; cursor: pointer;">
+          <input *ngIf="comment.id == ansID" 
+            type="button" 
+            value="لغو پاسخ" 
+            (click)="onCancelAnswer()"
+            class="btn" 
+            style="width: 70px; height: 30px; padding-bottom: 5px; border-radius: 5px; border: 1px solid #CFD8DC; font-size: 12px; cursor: pointer;">
+        </div>
+        <!----start answer in loop 1--->
+        <div *ngIf="comment.id == ansID" style="padding: 15px; width: 100%; max-width: 900px; margin: 0 auto;">
+          <textarea maxlength="500" placeholder="نظر خود را با ما درمیان بگذارید..."
+            class="textAreaStyle" [(ngModel)]="uesrIdeatext"></textarea>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+            <div class="row" style="width: 100%; max-width: 900px; margin: 0 auto;">
+              <div *ngIf="!storage.isLogin.value" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 clear">
+                <div style="width: 100%; padding: 3px 0px; padding-left: 10px;">
+                  <input type="text" placeholder="نام (اختیاری)" 
+                    [(ngModel)]="userName"
+                    maxlength="50" class="textInputUserInfo">
+                </div>
+                <div style="width: 100%; padding: 3px 0px; padding-left: 10px;">
+                  <input type="text" placeholder="موبایل (اختیاری)"
+                    [(ngModel)]="userMobile"
+                    maxlength="11" class="textInputUserInfo">
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 clear">
+                <div style="width: 100%; max-width: 450px; height: 100%; min-height: 50px; display: flex; align-items: center; justify-content: center;">
+                  <input type="button"  class="btn btnSendComment" value="ارسال نظر" 
+                    [disabled]="uesrIdeatext.length < 5"
+                    (click)="sendIdea()">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!----end answer in loop 1---->
+        <!----start lope 2----->
+        <div *ngIf="comment.answers">
+          <div *ngIf="comment.answers.length > 0">
+            <div *ngFor="let ansItem1 of comment.answers;" style="width: 100%; padding: 10px;">
+              <div style="width: 100%; padding: 15px; border: 1px dashed silver; background-color: white;">
+                  <div>
+                      <span><img src="assets/image/man.jpg" alt="userIcon" style="width: 50px; height: 50px;"></span>
+                      <span style="padding-right: 5px;">{{ansItem1.userName}}</span>
+                    </div>
+                    <div style="padding-right: 55px;">
+                      <span>{{ansItem1.text}}</span>
+                    </div>
+                    <div class="leftDivComment">
+                      <span>{{ansItem1.registerTime}}</span>
+                    </div>
+                    <div class="leftDivComment">
+                      <input *ngIf="ansItem1.id != ansID" 
+                        type="button" 
+                        value="پاسخ" 
+                        (click)="onAnswer(ansItem1.id)"
+                        class="btn" 
+                        style="width: 80px; height: 35px; padding-bottom: 5px; border-radius: 5px; border: 1px solid #CFD8DC; font-size: 14px; cursor: pointer;">
+                      <input *ngIf="ansItem1.id == ansID" 
+                        type="button" 
+                        value="لغو پاسخ" 
+                        (click)="onCancelAnswer()"
+                        class="btn" 
+                        style="width: 70px; height: 30px; padding-bottom: 5px; border-radius: 5px; border: 1px solid #CFD8DC; font-size: 12px; cursor: pointer;">
+                    </div>
+                    <!---start answer in loop 2-->
+                    <div *ngIf="ansItem1.id == ansID" style="padding: 15px; width: 100%; max-width: 900px; margin: 0 auto;">
+                      <textarea maxlength="500" placeholder="نظر خود را با ما درمیان بگذارید..."
+                        class="textAreaStyle" [(ngModel)]="uesrIdeatext"></textarea>
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+                        <div class="row" style="width: 100%; max-width: 900px; margin: 0 auto;">
+                          <div *ngIf="!storage.isLogin.value" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 clear">
+                            <div style="width: 100%; padding: 3px 0px; padding-left: 10px;">
+                              <input type="text" placeholder="نام (اختیاری)" 
+                                [(ngModel)]="userName"
+                                maxlength="50" class="textInputUserInfo">
+                            </div>
+                            <div style="width: 100%; padding: 3px 0px; padding-left: 10px;">
+                              <input type="text" placeholder="موبایل (اختیاری)"
+                                [(ngModel)]="userMobile"
+                                maxlength="11" class="textInputUserInfo">
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 clear">
+                            <div style="width: 100%; max-width: 450px; height: 100%; min-height: 50px; display: flex; align-items: center; justify-content: center;">
+                              <input type="button"  class="btn btnSendComment" value="ارسال نظر" 
+                                [disabled]="uesrIdeatext.length < 5"
+                                (click)="sendIdea()">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!---end answer in loop 2--->
+                    <!----start loop3----->
+                    <div *ngIf="ansItem1.answers">
+                      <div *ngIf="ansItem1.answers.length > 0">
+                          <div *ngFor="let ansItem2 of ansItem1.answers;" style="width: 100%; padding: 10px;">
+                            <div style="width: 100%; padding: 10px; border: 1px dotted silver; background-color: #ECEFF1;">
+                              <div>
+                                <span>{{ansItem2.userName}}</span>
+                              </div>
+                              <div>
+                                <span>{{ansItem2.text}}</span>
+                              </div>
+                              <div class="leftDivComment">
+                                <span>{{ansItem2.registerTime}}</span>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                    <!----end loop3----->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-----end loop 2------>
+      </div>
+    </div>
+  </div>
+  <!--------end user comment-------->
+
+  <!----start footer---->
+  <app-footer></app-footer>
+  <!----end footer---->
+
+  <!---------start Fix Btn Request Submit in mobile and PC-------->
+  <div style="width: 100%; height: 80px;"></div>
+  <div  class="d-block"
+    style="position: fixed; bottom: 0; width: 100%; height: 80px; background-color: white; text-align: center; padding-top: 10px; z-index: 10;">
+      <input type="button" [value]="btnText" (click)="onJobCat3(jobcat3Selected)"
+        style="width: 270px; height: 60px; border-radius: 7px; background-color: #2196F3; color: white; border: none; outline: none; cursor: pointer;">
+  </div>
+  <!---------end Fix Btn Request Submit in mobile and PC---------->
+</div>
+
+<!---->
+<div *ngIf="shared.showDiscountModal.value && selectedJobcatDiscount">
+  <app-discount-modal [discountInfo]="selectedJobcatDiscount"
+    (outputJobcat)="emitSelectedJobcat($event)" 
+    [imgPath]="imagePath"></app-discount-modal>
+</div>
+<!---->

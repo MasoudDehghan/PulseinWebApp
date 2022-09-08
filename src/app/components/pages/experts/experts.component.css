@@ -1,0 +1,152 @@
+.clear{
+    padding: 0px;
+    margin: 0px;
+}
+
+.headerDiv{
+    background-repeat:no-repeat; 
+    background-size:cover; 
+    background-position:center; 
+    height: 500px; 
+    position: relative;
+    background-image: url('../../../../assets/image/expertBackground.jpg');
+    margin-top: 5px;
+}
+
+#backgroundBlack{
+    position: absolute; 
+    top: 0px; 
+    right: 0px; 
+    height: 100%; 
+    background-color: black; 
+    opacity: 0.6;
+}
+
+#textMainDiv{
+    position: absolute; 
+    top: 0px; 
+    right: 0px; 
+    height: 100%;
+}
+
+#textRowDiv{
+    color: white; 
+    padding-top: 150px;
+    padding-right: 50px;
+}
+
+.h1boldFont{
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 40px;
+}
+
+.h2boldFont{
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: bold;
+}
+
+#h2DivSubText{
+    padding-top: 40px;
+}
+
+#howWorkMainDiv{
+    padding-top: 30px; 
+    padding-bottom: 10px;
+}
+
+.h2Reg{
+    font-size: 18px;
+}
+
+.h3Reg{
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.h3Bold{
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 22px;
+}
+
+.imgStyle{
+    width: 160px;
+    height: 160px;
+}
+
+.whiteCard{
+    box-sizing: border-box;
+    margin: 2px;
+    padding: 5px;
+}
+
+.descriptionCard{
+    height: auto;
+}
+
+.DivTransparent{
+    background-color: transparent;
+}
+
+#download{
+    box-sizing: border-box; 
+    padding-top: 20px; 
+    padding-bottom: 10px;
+}
+
+#backDivdownloadApp{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url('../../../../assets/image/expertDownladApp.jpg');
+    height: 500px;
+    padding-top: 20px;
+}
+
+.h2FontDownload{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.h3FontDownload{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+#btnDlMainDiv{
+    margin: 0; 
+    padding: 0;
+}
+
+.imgBtnDl{
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-shadow: 2px 1px 5px 0px rgba(0,0,0,0.5);
+    border-radius: 5px;
+}
+
+.imgBtnDl:hover{
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);
+}
+
+.imgBtnDiv{
+    padding-top: 5px;
+    padding-right: 5vw;
+}
+
+#imgMainDiv{
+    padding: 0; 
+    margin: 0; 
+    padding-top: 50px;
+}
+
+.divTextDl{
+    padding-right: 5vw;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}

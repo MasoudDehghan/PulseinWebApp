@@ -1,0 +1,80 @@
+
+<!--start pc view-->
+<div class="d-none d-md-block col-md-12 col-lg-12 col-xl-12 clear text-center" id="mainDivPC">
+  <strong class="fontBold" id="mainTitle">{{mainTitle}}</strong>
+
+  <div class="row clear">
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 contentDiv"
+      *ngFor="let item of ideasList; index as i">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 box">
+        <div class="row border-bottom content">
+          <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <img [src]="item?.src" [alt]="item?.name" class="img-fluid rounded-circle imgStyle">
+          </div>
+          <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <p class="font">{{item?.name}}</p>
+            <div style="direction: ltr;">
+              <span *ngFor="let star of listOfStarsIdea[i]">
+                <i *ngIf="star == 0" class="far fa-star" style="color: #F57F17"></i>
+                <i *ngIf="star == 0.5" class="fas fa-star-half-alt" style="color: #F57F17"></i>
+                <i *ngIf="star == 1" class="fas fa-star" style="color: #F57F17"></i>
+              </span>
+            </div>
+                 
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 content">
+          <p class="font">{{item?.idea}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<!--end pc view-->
+
+<!--start mobile view-->
+<div class="d-block d-md-none col-12 col-sm-12 clear text-center" id="mainDivMobile">
+    <strong class="fontBold" id="mainTitle">{{mainTitle}}</strong>
+  
+    <div class="row clear">
+  
+      <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 contentDiv" 
+        *ngFor="let item of ideasList; index as i">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 box">
+          <div class="row border-bottom content">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+              <img [src]="item?.src" [alt]="item?.name" class="img-fluid rounded-circle imgStyle">
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+              <p class="font">{{item?.name}}</p>
+              <!--
+              <div>
+                  <p-rating [ngModel]="item?.rank" readonly="true" stars="5" [cancel]="false"></p-rating>
+              </div>
+              -->
+
+              <div style="direction: ltr;">
+                <span *ngFor="let star of listOfStarsIdea[i]">
+                  <i *ngIf="star == 0" class="far fa-star" style="color: #F57F17"></i>
+                  <i *ngIf="star == 0.5" class="fas fa-star-half-alt" style="color: #F57F17"></i>
+                  <i *ngIf="star == 1" class="fas fa-star" style="color: #F57F17"></i>
+                </span>
+              </div>
+                   
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 content">
+            <p class="font">{{item?.idea}}</p>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  
+</div>
+<!--end mobile view-->
+
+

@@ -1,0 +1,179 @@
+
+<div>
+         
+        <!--start main content-->
+        <div class="contentPadding">
+        
+            <div id="mainDiv">
+                    <!--Start backGround image-->
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 backImageDiv"
+                         style.backgroundImage = "{{'url(' + path + jobCat2?.image + ')'}}">
+                        <div class="cat2TitleDiv">
+                            <div class="cat2TitleText">{{cat2Name}}</div>   
+                        </div>
+                    </div>
+                    <!--End backGround image-->
+        
+                    <!--Start div description-->
+                    <div id="txtDescripDiv" class="text-center">
+                        <h1 id="txtDescripFont">{{jobCat2?.description}}</h1>
+                    </div>
+                    <!--end div description-->
+        
+                    <!--Start Div tags----
+                    <div id="tagsDiv">
+                        <ul>
+                            <li *ngFor="let tag of item[1]">{{tag}}</li>
+                        </ul>
+                    </div>-->
+                    <!-------End Div tags--->
+    
+                    <!--Start Text tiles-->
+                    <div class="txtTitleDiv" *ngIf="leng != 0">
+                        <div class="col-md-12 col-lg-12 col-xl-12 clear text-center d-none d-md-block divTitlePad">
+                            <h2 class="fontTitleH2 sideLine"><span>{{"خدمات "+jobCat2?.name}}</span></h2>
+                        </div>
+                        <div class="col-12 col-sm-12 d-md-none d-block clear text-center divTitlePad">
+                            <h2 class="fontTitleH2"><span>{{"خدمات "+jobCat2?.name}}</span></h2>
+                        </div>
+                    </div>
+                    <!--end Text tiles-->
+        
+                    <!--Start jobCat3 tiles-->
+                  
+                                <div id="jobCat3Div">
+                  
+                                        <div class="row clear" 
+                                             *ngIf="!showMore">
+                                            <div *ngFor="let cat3 of jobCat2?.cat3List; index as i"
+                                                 class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 boxJobCat3">
+                                                <div class="mycontainer" *ngIf="i < 3">
+                                                    <img src = "{{path + cat3?.tumbnail}}" [alt]="cat3.name" class="image">
+                                                    <div class="overlay">
+                                                        <div class="text1 text-truncate">{{cat3?.name}}</div>
+                                                        <div class=" butonDiv">
+                                                            <!--
+                                                            <input type="button" value="ثبت درخواست"
+                                                            class="btn btn-warning btnCurv" [routerLink]="['', cat1Ename, cat2Ename, cat3?.ename]">
+                                                            -->
+                                                            
+                                                            <div class="buton" *ngIf="checkMap(cat3?.ename) == '2'">  
+                                                                <input type="button" class="btn btn-success btnBorder" value="ثبت درخواست"
+                                                                      [routerLink]="['/categories3', cat3?.ename]">
+                                                            </div>
+                                                            <div class="buton" *ngIf="checkMap(cat3?.ename) == '1'">
+                                                                <input type="button" value="ثبت درخواست"
+                                                                      class="btn btn-success btnBorder" (click)="goToPulseinApp(cat3?.ename)">
+                                                            </div>
+                                                            <div class="buton" *ngIf="checkMap(cat3?.ename) == '0'">
+                                                                <input type="button" value="ثبت درخواست"
+                                                                      class="btn btn-success btnBorder" (click)="noWorker()">
+                                                            </div>                                                      
+    
+    
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                        <div *ngIf="leng > 3 && !showMore" style="width: 100%;" class="text-center">
+                                            <input type="button" value="مشاهده بیشتر" class="btn btn-info btnMore" (click)="onMore()">
+                                        </div>
+                                    
+                                        
+                                        <div *ngIf="showMore" class="row clear">
+                                           <div *ngFor="let cat3 of jobCat2?.cat3List"
+                                           class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 boxJobCat3">
+                                               <div class="mycontainer">
+                                                   <img src="{{path + cat3?.tumbnail}}" [alt]="cat3.name" class="image">
+                                                   <div class="overlay">
+                                                       <div class="text1 text-truncate">{{cat3?.name}}</div>
+    
+                                                       <div class=" butonDiv">
+                                                           <!--
+                                                           <input type="button" value="ثبت درخواست"
+                                                           class="btn btn-warning btnCurv" [routerLink]="['', cat1Ename, cat2Ename, cat3?.ename]">
+                                                            -->
+                                                           <div class="buton" *ngIf="checkMap(cat3?.ename) == '2'">  
+                                                                <input type="button" class="btn btn-success btnBorder" value="ثبت درخواست"
+                                                                  [routerLink]="['/categories3', cat3?.ename]">
+                                                            </div>
+                                                            <div class="buton" *ngIf="checkMap(cat3?.ename) == '1'">
+                                                                <input type="button" value="ثبت درخواست"
+                                                                  class="btn btn-success btnBorder" (click)="goToPulseinApp(cat3?.ename)">
+                                                            </div>
+                                                            <div class="buton" *ngIf="checkMap(cat3?.ename) == '0'">
+                                                                <input type="button" value="ثبت درخواست"
+                                                                  class="btn btn-success btnBorder" (click)="noWorker()">
+                                                            </div> 
+                                                        </div>
+    
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                      
+                                    
+                                </div>
+                     
+                    <!--End jobCat3 tiles-->
+        
+        
+            <!--Start image & text for important properties-->
+            <div id="importDivMain" class="col-md-12 col-lg-12 col-xl-12 d-none d-md-block clear">
+                <!--Start importan proparties-->
+                <div class="txtTitleDiv">
+                    <div class="col-md-12 col-lg-12 col-xl-12 clear text-center d-none d-md-block divTitlePad">
+                        <h2 class="fontTitleH2 sideLine"><span>{{"ویژگی های "+cat2Name}}</span></h2>
+                    </div>
+                    <div class="col-12 col-sm-12 d-md-none d-block clear text-center divTitlePad">
+                        <h2 class="fontTitleH2"><span>{{"ویژگی های "+cat2Name}}</span></h2>
+                    </div>
+                </div>
+                <!--end importan properties-->
+    
+                <div class="importPropertiesDiv">
+                    <div id="back1Div" style.backgroundImage = "{{'url(' + path + jobCat2?.subImage1 + ')'}}">
+                        <div class="subInfo1 text-justify">
+                            <h2 class="fontSubTitle">{{jobCat2?.subTitle1}}</h2>
+                            <h3 class="fontSubinfo">{{jobCat2?.subInfo1}}</h3>
+                        </div>
+                    </div>
+                </div>
+     
+                <div class="importPropertiesDiv">
+                    <div id="back2Div" style.backgroundImage = "{{'url(' + path + jobCat2?.subImage2 + ')'}}">
+                        <div class="subInfo2 text-justify">
+                            <h2 class="fontSubTitle">{{jobCat2?.subTitle2}}</h2>
+                            <h3 class="fontSubinfo">{{jobCat2?.subInfo2}}</h3>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="importPropertiesDiv">
+                    <div id="back3Div" style.backgroundImage = "{{'url(' + path + jobCat2?.subImage3 + ')'}}">
+                        <div class="subInfo1 text-justify">
+                            <h2 class="fontSubTitle">{{jobCat2?.subTitle3}}</h2>
+                            <h3 class="fontSubinfo">{{jobCat2?.subInfo3}}</h3>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!--End image & text for important properties-->
+        
+            </div>
+            
+            <!------start downlaod app-------->
+            <app-download></app-download>
+            <!-------end downlaod app---------->
+    
+        </div>
+        <!--end main content-->
+        
+        <!----start footer---->
+        <app-footer></app-footer>
+        <!----end footer---->
+    
+</div>

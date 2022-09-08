@@ -1,0 +1,108 @@
+<div (window:resize)="onResize($event)" [ngStyle]="{height:screenY, width:screenX}" id="mainDiv">
+
+  <!---Start home icon---->
+  <div id="imgLogoDiv">
+    <img src="assets/image/refferal/goHome.png" alt="homeIcon" id="imgHome" [routerLink]="['/Home']">
+  </div>
+  <!---End home icon---->
+
+  <div *ngIf="displayLoading">
+    <img [src]="constVal.imgLoading" alt="loading">
+  </div>
+  <div *ngIf="!displayLoading && !dispalyReferralPage" style="border: 1px solid #CFD8DC; border-radius: 7px; text-align: center; background: #FCE4EC;">
+    <div style="padding: 20px 15px;">
+        <div style="color: tomato; padding-top: 15px;">
+          <strong>{{title4ErrorReferralCode}}</strong>
+          </div>
+        <div style="color: #546E7A; padding-top: 15px; padding-bottom: 15px;">
+          <span>{{description4ErrorReferralCode}}</span>
+        </div>
+    </div>
+  </div>
+  <div *ngIf="!displayLoading && dispalyReferralPage" id="mainDivRefferal">
+    <div id="divBox">
+
+      <div style="height: 150px; width: 100%; display: flex;
+    	flex-direction: column;
+    	align-items: center;
+      justify-content: center; padding-left: 40px; padding-right: 40px; position: relative;">
+        <div style="width: 100%; text-align: center; color: #1A237E">
+          <span style="font-size: 18px; font-weight: bold;">{{PresenterUserName}}</span>
+          <span>{{inviteText1}}</span>
+        </div>
+
+        <div>
+          <span style="width: 100%; text-align: center; color: #1A237E">{{inviteText2}}</span>
+        </div>
+
+      </div>
+
+      <div style="padding-top: 70px;">
+        <img src="assets/image/refferal/text.png" alt="text adv">
+      </div>
+
+      <div *ngIf="!showBtnDownloadApp; else blockDownloadApp">
+        <div *ngIf="!basicData.endTimer.value; else blockEndTime">
+          <div id="divInputMobile"> 
+              <input type="text" id="inputMobile" maxlength="11" placeholder="09-----------"
+                (input)="onChangeMobile($event.target.value)" [(ngModel)]="mobile">
+          </div>
+
+          <div *ngIf="isError" style="text-align: center; color: tomato; font-size: 14px; padding-top: 10px;">
+            <span>{{erroeMessage}}</span>
+          </div>
+      
+          <div *ngIf="!isCaptchaTrue" id="divCaptch">
+            <!--
+            <p-captcha #captcha siteKey="{{constVal.capchaGoogleKey}}" (onResponse)="showResponse($event)"></p-captcha>
+            -->
+            <re-captcha (resolved)="resolved($event)" siteKey="{{constVal.capchaGoogleKey}}"></re-captcha>
+          </div>
+          <div *ngIf="isCaptchaTrue && isMobileNumber" 
+          style="width: 100%; text-align: center; padding-top: 8px; padding-left: 35px; padding-right: 40px;">
+              <input type="button" [id]="isCaptchaTrue && isMobileNumber ? 'btnSendMobileActive' : 'btnSendMobileDiactive'"  
+              value="ثبت شماره موبایل و دریافت اپلیکیشن" 
+              (click)="onSendMobile()">
+          </div>
+        </div>
+        <ng-template #blockEndTime>
+          <div style="color: tomato; font-size: 24px; text-align: center; width: 100%; font-weight: bold;">
+            <span>{{textEndTime}}</span>
+          </div>
+        </ng-template>
+      </div>
+      <ng-template #blockDownloadApp>
+        <div style="text-align: center; padding-bottom: 10px; font-size: 20px; font-weight: bold; color: #1A237E; text-shadow: 1px 0px #FFFFFF;">
+          <span>{{titrDownload}}</span>
+        </div>
+        <div *ngIf="min > 0" style="width: 100%; text-align: center; padding: 10px 0px;">
+            <span style="color: orange; font-size: 14px; padding-left: 5px;">{{txtTime}}</span>
+            <timer [min]="min"></timer>
+        </div>
+        <div style="position: relative; height: 100px; width: 100%;">
+          <div style="position: absolute; top: 10px; left: 50px;">
+            <a [href]="linkDownload.directLinkCustomer">
+              <img src="assets/image/refferal/btnDirect.png" alt="دانلود مستقیم" style="cursor: pointer;">
+            </a>
+          </div>
+          <div style="position: absolute; top: 10px; right: 50px;">
+            <a [href]="linkDownload.cafeBazarCustomer">
+              <img src="assets/image/refferal/btnBazar.png" alt="دانلود از بازار" style="cursor: pointer;">
+            </a>
+          </div>
+          <div style="position: absolute; top: 50px; right: 100px;">
+            <a [href]="linkDownload.googlePlayCustomer">
+              <img src="assets/image/refferal/btnGoogle.png" alt="دانلود از گوکل پلی" style="cursor: pointer;">
+            </a>
+          </div>
+        </div>
+      </ng-template>
+
+      
+
+    </div>
+  </div>
+
+</div>
+
+

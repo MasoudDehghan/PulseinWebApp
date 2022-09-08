@@ -1,0 +1,40 @@
+<div class="container-fluid" style="margin: 0; padding: 0;" (window:resize)="onResize($event)">
+
+          <div *ngIf="isPC ; else mobileView">
+              <!-------start fixed top menu----
+              <app-top-fix-menu [jobCats1]="categories1"></app-top-fix-menu>
+              <!------end fixed top menu------->
+              
+              <!--------start top menu------
+              <app-top-menu [jobCats1]="categories1" [jobCats2]="categories2" [jobCats3]="categories3" [state]='0'></app-top-menu>-->
+              <!--------end top menu-------->
+              
+              <!--------start job cat menu------
+              <app-job-cat-menu [jobCats1]="categories1"></app-job-cat-menu>-->
+              <!-----end job cat menu-------->
+          </div>
+          <ng-template #mobileView>
+              <!--------start mob top menu------
+              <app-mob-top-menu [jobCats1]="categories1" [jobCats2]="categories2" [jobCats3]="categories3"></app-mob-top-menu>
+              --------end mob top menu-------->
+          </ng-template>
+      
+
+<div id="mainDiv" class="contentPadding">
+  <div id="contant">
+    <div>
+      <img src="assets/image/darbarema.jpg" alt="" class="img-fluid">
+    </div>
+    <div><h1>{{title}}</h1></div>
+    <div class="text-justify" id="text">
+      {{aboutUs}}
+    </div>
+  </div>
+</div>
+
+<!----start footer---->
+<app-footer></app-footer>
+<!----end footer---->
+
+</div>
+

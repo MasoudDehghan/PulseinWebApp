@@ -1,0 +1,334 @@
+<div *ngIf="isLoading">
+  <app-loading-fullpage-latti></app-loading-fullpage-latti>
+</div>
+
+<!--start edit request info PC--> 
+<div class="col-lg-12 col-xl-12 d-none d-lg-block clear">
+  <div class="row clear justify-content-md-center justify-content-lg-center justify-content-xl-center" 
+    style="padding-bottom: 7px;">
+    <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 clear whiteBoxStyle">
+
+      <div *ngIf="!discountIsChecked" style="text-align: center; padding: 5px 10px;">
+        <div>
+          <span style="font-size: 14px; color: #90A4AE;">در صورت در اختیار داشتن کد تخفیف می توانید آن را در باکس زیر وارد نمایید.</span>
+        </div>
+        <div style="padding-top: 5px;">
+          <input type="text" 
+            placeholder="کد تخفیف خود را وارد کنید" 
+            value="{{discountText | uppercase}}"
+            (input)="inputDiscount($event.target.value)"
+            id="inputTxtDiscount">
+          <input type="button" value="اعمال"
+            (click)="onDiscountCkeck()"
+            [disabled]="!hasDiscountCode"
+            [ngClass]="hasDiscountCode ? 'btnCheckDiscountEnable' : 'btnCheckDiscountDisable'">
+        </div>
+      </div>
+      <div *ngIf="discountIsChecked" style="min-height: 30px; position: relative;">
+        <div (click)="onCloseDiscountRes()"
+          style="position: absolute; left: 10px; top: 10px; z-index: 2; width: 30px; height: 30px; border: 1px solid tomato; cursor: pointer; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 16px; color: tomato; font-weight: bold;">X</span>
+        </div>
+        <div style=" text-align: center; color: green; font-size: 18px; padding: 5px 0px;">
+          <span style="padding-left: 5px;">اطلاعات کد تخفیف</span>
+          <strong>{{discountText | uppercase}}</strong>
+        </div>
+        <div style=" text-align: center; color: green; font-size: 18px; padding: 5px 0px;">
+          <span>مقدار تخفیف</span>
+          <strong style="padding: 0px 5px; color: tomato;">{{shared.discountPercent.value}}</strong>
+          <span>درصد</span>
+        </div>
+        <div style=" text-align: center; color: green; font-size: 18px; padding: 5px 0px;">
+          <span>تا سقف</span>
+          <strong style="padding: 0px 5px; color: tomato;">{{shared.discountMaxCredit.value}}</strong>
+          <span>تومان</span>
+        </div> 
+      </div>
+
+      <div style="border-radius: 5px; padding: 5px;">
+        <div class="editDivTextOdd"> 
+          <span class="editSpanTitle">عنوان درخواست:</span>
+          <span class="editSpanInfo">{{reqTitle}}</span>
+        </div>
+        <div class="editDivTextEven" style="max-height: 100px; overflow: auto;">
+          <span class="editSpanTitle">شرح درخواست:</span>
+          <div *ngIf="haveQuestion">
+            <div *ngFor="let item of answerQuestionList">
+              <span class="editSpanInfo">{{item.question + " : "}}</span>
+              <span class="editSpanInfo">{{item.answer}}</span>
+            </div>
+          </div>
+          <span class="editSpanInfo" *ngIf="reqDescription != ''">{{reqDescription}}</span>
+          <span class="editSpanInfo" *ngIf="reqDescription == '' && !haveQuestion">{{blank}}</span>
+        </div>
+        <div class="editDivTextOdd" *ngIf="!emergancy">
+          <span class="editSpanTitle">تاریخ انجام:</span>
+          <span class="editSpanInfo" dir="ltr">{{shared.standardDateList[shared.selectedIndexOfDateList]}}</span>
+        </div>
+        <div class="editDivTextOdd" *ngIf="emergancy">
+          <span class="editSpanTitle">تاریخ انجام:</span>
+          <span class="editSpanInfo">همین امروز</span>
+        </div>
+        <div class="editDivTextEven" *ngIf="!emergancy">
+          <span class="editSpanTitle">بازه زمانی شروع کار:</span>
+          <span class="editSpanInfo" *ngFor="let timeBox of shared.listStringTimePeriod; let ls = last" >
+            {{timeBox}}<span *ngIf="!ls" style="padding: 0px 2px;">,</span>
+          </span>
+        </div>
+        <div class="editDivTextEven" *ngIf="emergancy">
+          <span class="editSpanTitle">زمان شروع کار:</span>
+          <span class="editSpanInfo">اورژانسی</span>
+        </div>
+        <div *ngIf="!shared.isSavePlace">
+          <div class="editDivTextOdd">
+            <span *ngIf="!shared.reqRej_preRegister?.destinationAddressRequired" class="editSpanTitle">آدرس:</span>
+            <span *ngIf="shared.reqRej_preRegister?.destinationAddressRequired" class="editSpanTitle">آدرس مبدأ:</span>
+            <span class="editSpanInfo" *ngIf="shared.selectedArea.value">{{shared.citySelected.name + " , " + shared.selectedArea.value.name + " , " + shared.address}}</span>
+            <span class="editSpanInfo" *ngIf="!shared.selectedArea.value">{{shared.citySelected.name + " , " + shared.address}}</span>
+          </div>
+        </div>
+                
+        <div *ngIf="shared.isSavePlace" class="editDivTextOdd">
+          <span class="editSpanTitle">مکان منتخب:</span>
+          <span class="editSpanInfo">{{shared.savePlaceTitle}}</span>
+        </div>
+
+        <div *ngIf="shared.reqRej_preRegister?.destinationAddressRequired" class="editDivTextEven">
+          <span class="editSpanTitle">آدرس مقصد:</span>
+          <span class="editSpanInfo">{{shared.destination}}</span>
+        </div>
+        
+        <!----Start show images---->
+        <div *ngIf="imgUrlsList.length > 0" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+          <span class="editSpanTitle">تصاویر:</span>
+          <div class="row clear justify-content-center">
+            <div *ngFor="let imgItem of imgUrlsList" class="imageUploadDivPaddingBox">
+              <div class="imageUploadDivBox">
+                <div class="imageUploadDivShow">
+                  <img src="{{imagePath + imgItem}}" style="width: 100%; height: 100%; border-radius: 4px;">
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <!----End show images---->
+      </div>
+
+      <div style="height: 40px; overflow: hidden;">
+        <div [ngClass]="errorRulesAccept ? 'divRulsCheckBoxBold' : 'divRulsCheckBox'">
+          <input type="checkbox" style="width: 30px; height: 30px;" [checked]="RulesIsOK" (click)="onCheckBoxRules()">
+        </div>
+        <div (click)="onCheckBoxRules()" [ngClass]="errorRulesAccept ? 'divRulsBold' : 'divRuls'">
+          <span>قوانین را قبول دارم</span>
+        </div>
+        <div style="width: 100px; font-size: 12px; float: right; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+          <a [href]="rulesHref" target="_blank">مشاهده قوانین</a>
+        </div>
+      </div>
+
+      <div style="position: absolute; bottom: 0; right: 0; width: 100%; height: 50px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; overflow: hidden;">
+        <div (click)="onRegisterRequest()"
+          [eventTracker]="{'category':jobcat3EName+'_Final','action':'click'}" 
+          class="activeNextStep">
+          <span>مرحله بعدی</span>
+        </div>
+        <div class="previousStep"
+          (click)="onBack()">
+          <span>مرحله قبلی</span>
+        </div>
+      </div>
+  
+    </div>
+
+  </div> 
+</div>
+<!--end edit request info PC-->
+
+
+<!--start view in Mobile-->
+<div class="col-12 col-sm-12 col-md-12 d-block d-lg-none d-xl-none clear" style="background-color: white;">
+
+  <!--start discount in mobile-->
+    <div *ngIf="!discountIsChecked" style="text-align: center; padding: 5px 10px;">
+        <div>
+          <span style="font-size: 14px; color: #90A4AE;">کد تخفیف خود را وارد کنید</span>
+        </div>
+        <div style="padding-top: 5px;">
+          <input type="text"  
+            value="{{discountText | uppercase}}"
+            (input)="inputDiscount($event.target.value)"
+            id="inputTxtDiscount">
+          <input type="button" value="اعمال"
+            (click)="onDiscountCkeck()"
+            [disabled]="!hasDiscountCode"
+            [ngClass]="hasDiscountCode ? 'btnCheckDiscountEnable' : 'btnCheckDiscountDisable'">
+        </div>
+    </div>
+    <div *ngIf="discountIsChecked" style="padding: 3px 7px;">
+      <div style="min-height: 30px; position: relative; font-size: 14px; text-align: right; color: #607D8B; padding: 5px; border: 1px solid #CFD8DC; border-radius: 7px;">
+        <div style="position: absolute; left: 10px; top: 10px; z-index: 2; width: 30px; height: 30px;">
+          <img (click)="onCloseDiscountRes()" src="assets/webappPics/x-button.png" style="width: 30px; height: 30px;">
+        </div>
+        <div style="padding: 5px 10px;">
+          <span style="padding-left: 5px;">اطلاعات کد تخفیف</span>
+          <strong>{{discountText | uppercase}}</strong>
+        </div>
+        <div style="padding: 5px 10px;">
+          <span>مقدار تخفیف</span>
+          <strong style="padding: 0px 5px;">{{shared.discountPercent.value}}</strong>
+          <span>درصد</span>
+        </div>
+        <div style="padding: 5px 10px;">
+          <span>تا سقف</span>
+          <strong style="padding: 0px 5px; ">{{shared.discountMaxCredit.value}}</strong>
+          <span>تومان</span>
+        </div>
+      </div> 
+    </div>
+    <!--end discount in mobile-->
+
+    <!--start summary of request in mobile-->
+    <div style="padding: 0px 7px; padding-top: 25px; position: relative;">
+      <div style="border: 1px solid #B0BEC5; border-radius: 7px; padding: 10px 5px; padding-top: 15px;">
+        <div style="position: absolute; top: 12px; right: 10px; padding: 0px 5px; background-color: white;">
+          <span style="color: #78909C">خلاصه درخواست</span>
+        </div>
+        <div style="width: 100%; padding: 5px 0px;">
+
+          <div class="mobileTitr">
+            <i class="fas fa-circle"></i>
+            <span class="mobileSpanTitrPadding">عنوان درخواست</span>
+            <div class="mobileDivAnswer">
+              <span>{{reqTitle}}</span>
+            </div>
+          </div>
+
+          <div class="mobileTitr">
+            <i class="fas fa-circle"></i>
+            <span class="mobileSpanTitrPadding">توضیحات</span>
+            <div class="mobileDivAnswer">
+              <div *ngIf="haveQuestion">
+                <div *ngFor="let item of answerQuestionList">
+                  <span>{{item.question + " : "}}</span>
+                  <span>{{item.answer}}</span>
+                </div>
+              </div>
+              <span *ngIf="reqDescription != ''">{{reqDescription}}</span>
+              <span *ngIf="reqDescription == '' && !haveQuestion">{{blank}}</span>
+            </div>
+          </div>
+
+          <div class="mobileTitr">
+            <i class="fas fa-circle"></i>
+            <span class="mobileSpanTitrPadding">تاریخ و زمان انجام:</span>
+            <div class="mobileDivAnswer" *ngIf="!emergancy">
+                <div>
+                  <span dir="ltr">{{shared.standardDateList[shared.selectedIndexOfDateList]}}</span>
+                </div>
+                <div>
+                  <span *ngFor="let timeBox of shared.listStringTimePeriod; let ls = last" >
+                    {{timeBox}}<span *ngIf="!ls" style="padding: 0px 2px;">,</span>
+                  </span>
+                </div>
+            </div>
+            <div class="mobileDivAnswer" *ngIf="emergancy">
+                <div>
+                  <span>همین امروز</span>
+                </div>
+                <div>
+                  <span>اورژانسی</span>
+                </div>
+            </div>
+          </div>
+          
+
+
+          <div class="mobileTitr">
+            <div>
+              <i class="fas fa-circle"></i>
+              <span class="mobileSpanTitrPadding" *ngIf="!shared.reqRej_preRegister?.destinationAddressRequired">آدرس:</span>
+              <span class="mobileSpanTitrPadding" *ngIf="shared.reqRej_preRegister?.destinationAddressRequired">آدرس مبدأ:</span>
+            </div>
+            <div class="mobileDivAnswer" *ngIf="!shared.isSavePlace && shared.selectedArea.value" >
+              <span>{{shared.citySelected.name + " , " + shared.selectedArea.value.name + " , " + shared.address}}</span>
+            </div>
+            <div class="mobileDivAnswer" *ngIf="!shared.isSavePlace && !shared.selectedArea.value" >
+              <span>{{shared.citySelected.name + " , " + shared.address}}</span>
+            </div>
+            <div class="mobileDivAnswer" *ngIf="shared.isSavePlace">
+              <span>{{shared.savePlaceTitle}}</span>
+            </div>
+          </div>
+
+    
+          <div class="mobileTitr" *ngIf="shared.reqRej_preRegister?.destinationAddressRequired">
+            <i class="fas fa-circle"></i>
+            <span class="mobileSpanTitrPadding">آدرس مقصد:</span>
+            <div class="mobileDivAnswer">
+              <span>{{shared.destination}}</span>
+            </div>
+          </div>
+
+
+          <!----Start show images---->
+          <div *ngIf="imgUrlsList.length > 0" 
+            class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear mobileTitr">
+            <i class="fas fa-circle"></i>
+            <span class="mobileSpanTitrPadding">تصاویر:</span>
+            <div class="row clear">
+              <div *ngFor="let imgItem of imgUrlsList" class="imageUploadDivPaddingBox">
+                <div class="imageUploadDivBox">
+                  <div class="imageUploadDivShow">
+                    <img src="{{imagePath + imgItem}}" style="width: 100%; height: 100%; border-radius: 4px;">
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <!----End show images---->
+
+
+
+        </div>
+      </div>
+    </div>
+    <!--end summary of request in mobile-->
+
+
+    <div class="divBoxWhiteFooter" style="height: 90px;"></div> 
+    <!----start btn mobile---->
+    <div style="position: fixed; bottom: 0px; right: 0; height: auto; width: 100%;">
+        <div style="height: 40px; overflow: hidden; background-color: white;">
+            <div [ngClass]="errorRulesAccept ? 'divRulsCheckBoxBold' : 'divRulsCheckBox'">
+              <input type="checkbox" style="width: 30px; height: 30px;" [checked]="RulesIsOK" (click)="onCheckBoxRules()">
+            </div>
+            <div (click)="onCheckBoxRules()" [ngClass]="errorRulesAccept ? 'divRulsBold' : 'divRuls'">
+              <span>قوانین را قبول دارم</span>
+            </div>
+            <div style="width: 100px; font-size: 12px; float: right; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+              <a [href]="rulesHref" target="_blank">مشاهده قوانین</a>
+            </div>
+        </div>
+      <div class="divBoxWhiteFooter" style="height: 50px;">
+          <div class="floatleft">
+            <div class="divStyleLeft">
+              <div (click)="onRegisterRequest()"
+                class="divStyleBtnLeft"
+                [eventTracker]="{'category':jobcat3EName+'_Final','action':'click'}" >
+                <span>ادامه</span>
+              </div>
+            </div>
+          </div>
+          <div class="floatRight">
+            <div class="divStyleRight">
+              <span (click)="onBack()" class="btnReturn">بازگشت</span>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!----end btn mobile---->
+    <div *ngIf="storage.showModalLogin.value">
+      <smslogin></smslogin>
+    </div>
+</div>
+<!--end view in Mobile-->

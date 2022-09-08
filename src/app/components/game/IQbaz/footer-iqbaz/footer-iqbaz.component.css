@@ -1,0 +1,134 @@
+.clear{
+    padding: 0; 
+    margin: 0;
+}
+
+.socialLink{
+    color: #ffffff;
+}
+
+.mainDiv1{
+    box-sizing: border-box;
+    background-color: rgba(233,233,233, 0.3);
+    color: #ffffff;
+    padding: 0px;
+    margin: 0;
+}
+
+.mainDiv2{
+    background-color: rgba(248,187,208, 0.4);
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    padding-top: 7px; 
+    padding-bottom: 7px;
+}
+
+.mainDiv3{
+    background-color: rgba(233,233,233, 0.3);
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    padding-top: 10px; 
+    padding-bottom: 10px;
+}
+
+.fontSmall{
+    font-size: 12px;
+}
+
+#tell{
+    color: #ffffff;
+    padding-right: 3px;
+}
+
+
+.titr{
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 40px;
+}
+
+.txtLink{
+    font-size: 12px;
+    line-height: 25px;
+    color: white;
+    cursor: pointer;
+}
+
+.txtSeo{
+    font-size: 11px;
+    line-height: 26px;
+} 
+
+#tellDiv{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    padding-left: 1vw;
+}
+
+.socialIcon{
+    cursor: pointer;
+}
+
+.socialIcon:hover{
+    color: blue;
+}
+
+#imgLogo{
+    width: 70px; 
+    height: 70px;
+}
+
+#txtPulsin{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    padding-top: 20px;
+}
+
+.namad{
+    width: 120px; 
+    height: 120px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+ul li{
+    display: inline-block; 
+}
+
+#divTextOwner{
+    padding-right: 30px;
+}
+
+#divCountactUs{
+    padding-left: 30px;
+}
+
+#liMobile{
+    width: auto;
+    text-align: left;
+}
+
+.liSocial{
+    box-sizing: border-box;
+    width: auto;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.seprateLi{
+    box-sizing: border-box;
+    padding-right: 5px;
+    padding-left: 10px;
+}
+
+.txtLink:hover{
+    color: #FFF59D;
+}

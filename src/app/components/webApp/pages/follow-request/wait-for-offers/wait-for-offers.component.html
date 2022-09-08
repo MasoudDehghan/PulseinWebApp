@@ -1,0 +1,183 @@
+
+
+
+<div>  
+        <div class="row clear" *ngIf="shared.offerList.length > 0">
+            <div *ngFor="let offer of shared.offerList" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 clear">
+                <div style="padding: 7px; height: 100%;">
+                    <div style="border: 1px solid #C8C8C8; border-radius: 7px; padding: 7px; width: 100%; height: 100%; position: relative;">
+                        <div style="position: absolute; left: 5px; top: 5px; z-index: 2;">
+                            <img src="assets/webappPics/x-button2.png" 
+                                style="width: 20px; height: 20px; border-radius: 50%; cursor: pointer;"
+                                (click)="closeOffer(offer)">
+                        </div>
+                        <div class="row clear">
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear">
+                                <div style="width: 100%; text-align: center;">
+                                    <img *ngIf="!offer?.worker?.user?.personalData?.photo"
+                                        src="assets/image/profile.png" 
+                                        style="width: 100%; max-width: 120px; border-radius: 50%;" 
+                                        class="imgfluid">
+                                    <img *ngIf="offer?.worker?.user?.personalData?.photo"
+                                        src="{{imgPath + offer?.worker?.user?.personalData?.photo}}" 
+                                        style="width: 100%; max-width: 120px; border-radius: 50%;" 
+                                        class="imgfluid">
+                                </div>
+                            </div>
+                            <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 clear" 
+                                style="font-size: 12px; padding: 7px; text-align: right;">
+                                <div style="font-size: 14px;">
+                                    <span *ngIf="offer?.worker?.workStation?.info?.title">{{offer?.worker?.workStation?.info?.title}}</span>
+                                    <span *ngIf="!offer?.worker?.workStation?.info?.title">{{jobcat3Name}}</span>
+                                </div>
+                                <div style="padding: 10px 0px;">
+                                    <span *ngIf="offer?.suggestion?.invoice?.totalPrice">{{"قیمت پیشنهادی: " + customFunction.formatAmountMoney(customFunction.chanageNumbersToFarsi(offer?.suggestion?.invoice?.totalPrice.toString())) + " تومان"}}</span>
+                                    <span *ngIf="!offer?.suggestion?.invoice?.totalPrice">{{"قیمت پیشنهادی: توافقی"}}</span>
+                                </div>
+                                <div style="padding: 10px 0px; padding-top: 0px; height: 40px; overflow: hidden;">
+                                    <span *ngIf="offer?.suggestion?.info">{{"توضیحات: " + offer?.suggestion?.info}}</span>
+                                    <span *ngIf="!offer?.suggestion?.info">{{"توضیحات: -"}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clear">
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear">
+                                <div style="width: 100%; text-align: center; font-size: 12px; padding: 7px 0px;">
+                                    <span>{{offer?.worker?.user?.personalData?.firstName + " " + offer?.worker?.user?.personalData?.lastName}}</span>
+                                </div>
+                                <div style="direction: ltr; text-align: center; padding: 7px opx; padding-top: 2px;">
+                                    <span *ngFor="let star of customFunction.makeStarScore(offer.worker.score.totalScore)">
+                                        <i *ngIf="star == 0" class="far fa-star" style="color: #039BE5"></i>
+                                        <i *ngIf="star == 0.5" class="fas fa-star-half-alt" style="color: #039BE5"></i>
+                                        <i *ngIf="star == 1" class="fas fa-star" style="color: #039BE5"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear" 
+                                style="font-size: 12px; padding-top: 7px; cursor: pointer;"
+                                (click)="showDetailsOffer(offer)">
+                                <span>جزئیات بیشتر</span>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear">
+                                <div style="width: 100%; height: 100%; position: relative;">
+                                    <div (click)="onAcceptOffer(offer)" style="position: absolute; left: 0; bottom: 0; border-radius: 7px; height: 40px; width: 100%; max-width: 120px; cursor: pointer; color: white; font-size: 12px; background-color: #039BE5; outline: none; display: flex; align-items: center; justify-content: center;">
+                                        <span>قبول پیشنهاد</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 clear" 
+                                    style="color: #C8C8C8; font-size: 12px;">
+                                    <div style="padding: 7px; height: 100%;">
+                                        <div style="border: 1px solid #C8C8C8; border-radius: 7px; padding: 7px; width: 100%; position: relative; height: 100%;">
+                                            <div class="row clear">
+                                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear">
+                                                    <div style="width: 100%; text-align: center;">
+                                                        <img src="assets/image/profile.png" style="width: 100%; max-width: 120px; border-radius: 50%;" class="imgfluid">
+                                                    </div>
+                                                </div>
+                                                <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 clear" 
+                                                    style="font-size: 12px; padding: 7px; text-align: right;">
+                                                    <div style="font-size: 14px;"><span>{{jobcat3Name}}</span></div>
+                                                    <div style="padding: 10px 0px;"><span>قیمت پیشنهادی: -</span></div>
+                                                    <div style="padding: 10px 0px; padding-top: 0px;"><span>توضیحات: -</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="row clear">
+                                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear">
+                                                    <div style="width: 100%; text-align: center; font-size: 12px; padding: 7px 0px;">
+                                                        <span>متخصص پالسین</span>
+                                                    </div>
+                                                    <div style="direction: ltr; text-align: center; padding: 7px opx; padding-top: 2px;">
+                                                        <span *ngFor="let star of customFunction.makeStarScore(5)">
+                                                            <i *ngIf="star == 0" class="far fa-star" style="color: #C8C8C8"></i>
+                                                            <i *ngIf="star == 0.5" class="fas fa-star-half-alt" style="color: #C8C8C8"></i>
+                                                            <i *ngIf="star == 1" class="fas fa-star" style="color: #C8C8C8"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear" style="font-size: 12px; padding-top: 7px;">
+                                                    <span>جزئیات بیشتر</span>
+                                                </div>
+                                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear">
+                                                    <div style="width: 100%; height: 100%; position: relative;">
+                                                        <div style="position: absolute; left: 0; bottom: 0; border-radius: 7px; height: 40px; width: 100%; max-width: 120px; cursor: pointer; color: white; font-size: 12px; background-color: #C8C8C8; outline: none; display: flex; align-items: center; justify-content: center;">
+                                                            <span>قبول پیشنهاد</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="position: absolute; top: 0; right: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.1); border-radius: 7px; display: flex; align-items: center; justify-content: center;">
+                                                <lottie-animation-view
+                                                    [options]="lottieConfig"
+                                                    [width]="100"
+                                                    [height]="100"
+                                                    (animCreated)="handleAnimation($event)">
+                                                </lottie-animation-view>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                              
+                            </div>
+
+
+
+                            <div *ngIf="shared.offerList.length == 0">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 clear" 
+                                    style="color: #C8C8C8; font-size: 12px;">
+                                    <div style="padding: 7px;">
+                                        <div style="border: 1px solid #C8C8C8; border-radius: 7px; padding: 7px; width: 100%; position: relative;">
+                                            <div class="row clear">
+                                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear">
+                                                    <div style="width: 100%; text-align: center;">
+                                                        <img src="assets/image/profile.png" style="width: 100%; max-width: 120px; border-radius: 50%;" class="imgfluid">
+                                                    </div>
+                                                </div>
+                                                <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 clear" 
+                                                    style="font-size: 12px; padding: 7px; text-align: right;">
+                                                    <div style="font-size: 14px;"><span>{{jobcat3Name}}</span></div>
+                                                    <div style="padding: 10px 0px;"><span>قیمت پیشنهادی: -</span></div>
+                                                    <div style="padding: 10px 0px; padding-top: 0px;"><span>توضیحات: -</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="row clear">
+                                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear">
+                                                    <div style="width: 100%; text-align: center; font-size: 12px; padding: 7px 0px;">
+                                                        <span>متخصص پالسین</span>
+                                                    </div>
+                                                    <div style="direction: ltr; text-align: center; padding: 7px opx; padding-top: 2px;">
+                                                        <span *ngFor="let star of customFunction.makeStarScore(5)">
+                                                            <i *ngIf="star == 0" class="far fa-star" style="color: #C8C8C8"></i>
+                                                            <i *ngIf="star == 0.5" class="fas fa-star-half-alt" style="color: #C8C8C8"></i>
+                                                            <i *ngIf="star == 1" class="fas fa-star" style="color: #C8C8C8"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear" style="font-size: 12px; padding-top: 7px;">
+                                                    <span>جزئیات بیشتر</span>
+                                                </div>
+                                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear">
+                                                    <div style="width: 100%; height: 100%; position: relative;">
+                                                        <div style="position: absolute; left: 0; bottom: 0; border-radius: 7px; height: 40px; width: 100%; max-width: 120px; cursor: pointer; color: white; font-size: 12px; background-color: #C8C8C8; outline: none; display: flex; align-items: center; justify-content: center;">
+                                                            <span>قبول پیشنهاد</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="position: absolute; top: 0; right: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.1); border-radius: 7px; display: flex; align-items: center; justify-content: center;">
+                                                <lottie-animation-view
+                                                    [options]="lottieConfig"
+                                                    [width]="100"
+                                                    [height]="100"
+                                                    (animCreated)="handleAnimation($event)">
+                                                </lottie-animation-view>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+</div>
+

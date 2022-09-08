@@ -1,0 +1,228 @@
+@font-face{
+	font-family: 'Shabnam';
+    src: url(../../../../../assets/myFonts/Shabnam.ttf);
+    font-display: block;
+}
+
+#mainDiv {
+    width: 100%;
+    background-image: linear-gradient(#FFC107, #FF5722);
+    padding: 0px;
+    padding-top: 0px;
+    font-family: 'Shabnam';
+    font-size: 14px;
+    position: relative;
+}
+
+#divUserName{
+    font-family: 'Shabnam';
+    font-size: 30px; 
+    width: 100%; 
+    text-align: center; 
+    color: black;
+    height: 35px;
+}
+
+.titr{
+    font-family: 'Shabnam';
+    font-size: 22px; 
+    color: black;
+}
+
+.point{
+    font-family: 'Shabnam';
+    font-size: 40px; 
+    color: black;
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+.date{
+    font-family: 'Shabnam';
+    font-size: 18px; 
+    width: 100%; 
+    text-align: center; 
+    color: black;
+    font-weight: bold;
+}
+
+.divBoxTime{
+    display: inline-block; 
+    width: 40px; 
+    height: 50px;
+    overflow: hidden;
+}
+
+.spanBoxTime{
+    display: inline-block; 
+    width: 35px; 
+    height: 50px; 
+    border-radius: 10px; 
+    padding-top: 13px;
+    background-color: white; 
+    color: black;
+    overflow: hidden;
+    font-size: 18px;
+}
+
+#styleSpanTimeDoubleDot{
+    display: inline-block; 
+    width: 10px; 
+    height: 50px; 
+    color: black;
+    overflow: hidden;
+    font-size: 30px;
+    font-weight: bold
+}
+
+#divReferalLink {
+    display: inline-block; 
+    background-color: white; 
+    border: 1px solid #CFD8DC; 
+    border-radius: 7px; 
+    padding: 10px 3px; 
+    text-align: center; 
+    width: 100%;
+    max-width: 350px; 
+    margin: 0 auto; 
+    cursor: pointer;
+    font-size: 12px;
+    overflow: hidden;
+    height: 40px;
+}
+
+#divReferalLink:hover{
+    background-color: orange;
+    color: green;
+}
+
+.pointTableRow{
+    font-family: 'Shabnam';
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%; 
+    color: black; 
+    height: 40px; 
+    overflow: hidden; 
+    border-bottom: 1px solid #CFD8DC;
+}
+
+#pointTableLastRow{
+    font-family: 'Shabnam';
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%; 
+    color: black; 
+    height: 40px; 
+    overflow: hidden; 
+    border-bottom: none;
+}
+
+.pointTableColText{
+    float: left;
+    width: 50%; 
+    height: 100%; 
+    text-align: center; 
+    padding-top: 10px; 
+    border-right: 1px solid #CFD8DC;
+}
+
+.pointTableColScore{
+    float: right; 
+    width: 50%; 
+    height: 100%; 
+    text-align: center; 
+    padding-top: 10px;
+}
+
+.boxRowPoints{
+    overflow: hidden; 
+    width: 100%; 
+    max-width: 300px; 
+    margin: 0 auto; 
+    height: 50px;
+    padding: 5px 0px;
+}
+
+.divStar{
+    float: right; 
+    width: 20%; 
+    max-width: 40px; 
+    height: 100%; 
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.divPointText{
+    float: right; 
+    width: 80%; 
+    max-width: 250px; 
+    height: 100%; 
+    color: white; 
+    font-size: 14px; 
+    display: flex; 
+    align-items: center;
+}
+
+.mainSpanPintText{
+    padding-right: 7px;
+}
+
+.spanPoint{
+    padding-right: 7px; 
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.divWhiteBlurFix{
+    width: 100%; 
+    background-color: rgba(255, 255, 255, 0.2); 
+    border-radius: 5px;
+    height: 650px;
+}
+
+.divWhiteBlur{
+    width: 100%; 
+    background-color: rgba(255, 255, 255, 0.2); 
+    border-radius: 5px;
+}
+
+.divTextInfoRounds{
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    padding-top: 10px;
+    min-height: 55px;
+}
+
+.divTextInfoRoundsMobile{
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    padding-top: 5px;
+    min-height: 50px;
+}
+
+.spanNumberInfoRounds{
+    padding-right: 7px; 
+    padding-left: 7px; 
+    font-size: 16px; 
+    font-weight: bold;
+}
+
+.btnClick{
+    width: 100%; 
+    max-width: 300px; 
+    height: 40px; 
+    border-radius: 7px; 
+    text-align: center; 
+    color: white; 
+    background-color: #E91E63;
+    cursor: pointer;
+}
+
+.btnClick:hover{
+    color: yellow;
+    background-color: #D81B60;
+}

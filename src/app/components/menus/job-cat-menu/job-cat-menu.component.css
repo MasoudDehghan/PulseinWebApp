@@ -1,0 +1,125 @@
+
+.imageSize{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+#mainDiv{
+    border-top: 1px solid white;
+    background-color: white; 
+    box-sizing: border-box;
+    margin: 0px; 
+    padding: 0px; 
+    height: 70px;  
+    padding-top: 5px;
+    position: relative;
+    width: 100%;
+    clear: both;
+    color: black;
+}
+
+.cat1Div{
+    float: right; 
+    margin-right: 1%; 
+    margin-left: 1%; 
+    width: 14.5%; 
+    box-sizing: border-box; 
+    text-align:center; 
+    font-size: 12px;
+}
+
+.cat2Div{
+    width: 25%; 
+    float: right; 
+    box-sizing: border-box; 
+    padding-right: 3vw;
+    padding-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: right;
+}
+
+.mega{
+    width: 100%;
+    position: absolute;
+    background-color: white;
+    height: 0;
+    overflow: hidden;
+    z-index: 10;
+    top: 60px;
+    right: 0px;
+    opacity: 0;
+    box-shadow: 0px 14px 27px -7px rgba(0,0,0,0.26);
+}
+
+.boxJobcat1{
+    height: 100%;
+    cursor: pointer;
+}
+
+.boxJobcat1:hover + .mega{
+    height: auto;
+    min-height: 30px;
+    opacity: 1;
+    transition: opacity 700ms;
+}
+
+
+.mega:hover{
+    height: auto;
+    min-height: 30px;
+    opacity: 1;
+}
+
+
+.ah4{
+    box-sizing: border-box;
+    color: #66BB6A;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    padding-right: 2px;
+}
+
+.ah4:hover{
+    color: #2E7D32;
+}
+
+.ah6{
+    box-sizing: border-box;
+    color: #78909C;
+    text-decoration: none;
+    padding-top: 4px;
+    display: block;
+    padding-right: 14px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.ah6:hover{
+    color: #37474F;
+}
+
+i{
+    color: #66BB6A;
+}
+
+.ah4:hover + i{
+    color: red;
+    transform: rotate(-90deg);
+    transition: transform 200ms;
+}
+
+.h2FontMenu{
+    font-size: 12px;
+    color: black;
+    font-weight: bold;
+}
+
+.cat2Padding{
+    box-sizing: border-box; 
+    padding: 5px 0px;
+}

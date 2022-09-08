@@ -1,0 +1,110 @@
+<div *ngIf="isLoading">
+  <app-loading-fullpage-latti></app-loading-fullpage-latti>
+</div>
+
+<!--start show result for register request-->
+<div *ngIf="!isLoading">
+
+  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+    <div class="row clear">
+      
+      <div class="d-none d-lg-block col-lg-6 col-xl-6 clear" 
+        style="display: flex; justify-content: center; align-items: center;">
+        <div style="width: 100%; padding-top: 30px;">
+          <div style="font-size: 20px; font-weight: bold; padding: 15px 5px; color: #2196F3;">
+            <span>{{msgWaitForOffers}}</span>
+          </div>
+          <div style="font-size: 16px; font-weight: normal; padding: 0px 5px; color: #2196F3;">
+            <span>{{subMsgWaitForOffers}}</span>
+          </div>
+
+          <div style="padding-top: 40px; padding-bottom: 15px;">
+            <div style="padding: 0px 5px; color: #2196F3; font-size: 16px;">
+              <span>{{textCodeRequest}}</span>
+              <span style="color: #2196F3; padding-right: 4px;">{{requestCode}}</span>
+            </div>
+            <div *ngIf="discountCode != ''" style="font-size: 16px; padding: 7px 5px; color: #2196F3;">
+                  <span>کد تخفیف شما: </span>
+                  <span style="color: #EC407A; font-weight: bold;">{{discountCode}}</span>
+                  <div style="font-size: 14px; padding: 5px 0px;">
+                    <span>{{faPercentDiscount}}</span>
+                    <span>{{" تا سقف "}}</span>
+                    <span>{{faMaxCreditDiscount}}</span>
+                  </div>
+                  <div style="font-size: 14px;">
+                    <span>یرای استفاده از کد تخفیف پرداخت نهایی را به صورت اعتباری (آنلاین) انجام دهید.</span>
+                  </div>
+            </div>
+            <div style="font-size: 14px; padding: 7px 5px; color: #2196F3;">
+                <div><span>تماس با پشتیبانی</span></div>
+                <div><span>{{tel1}}</span></div>
+                <div><span>{{mobile1}}</span></div>
+            </div>
+            <div style="padding: 5px 0px;">
+              <div style="padding:0; padding-top: 8px; padding-bottom: 4px;">
+                <span id="btnGotoCurrentRequestPage" (click)="onFollowRequest()">{{textFolloweRequest}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-none d-lg-block col-lg-6 col-xl-6 clear">
+        <div style="width: 100%; display: flex; align-items: center; justify-content: center;">
+          <img src="assets/image/requestOK.png" style="width: 100%; max-width: 450px;" class="img-fluid">
+        </div>
+      </div>
+
+
+      <div class="d-block d-lg-none d-xl-none col-12 col-sm-12 col-md-12 clear">
+        <div style="width: 100%; text-align: center;">
+          <div style="font-size: 20px; font-weight: bold; padding: 15px 5px; color: #2196F3; width: 100%; text-align: center;">
+            <span>{{msgWaitForOffers}}</span>
+          </div>
+          <div style="font-size: 16px; font-weight: normal; padding: 0px 5px; color: #2196F3; width: 100%; text-align: center;">
+            <span>{{subMsgWaitForOffers}}</span>
+          </div>
+          <!----
+          <div style="width: 100%; text-align: center;">
+            <img src="assets/image/requestOK.png" class="img-fluid" style="width: 100%; max-width: 220px;">
+          </div>
+          <!---->
+          <div style="padding-top: 10px; padding-bottom: 10px; width: 100%; text-align: center;">
+            <div style="padding: 0px 5px; color: #2196F3; font-size: 16px; width: 100%; text-align: center;">
+              <span>{{textCodeRequest}}</span>
+              <span style="color: #2196F3; padding-right: 4px;">{{requestCode}}</span>
+            </div>
+
+            <div *ngIf="discountCode != ''" style="font-size: 16px; padding: 7px 5px; color: #2196F3;">
+                <span>کد تخفیف شما: </span>
+                <span style="color: #EC407A; font-weight: bold;">{{discountCode}}</span>
+                <div style="font-size: 14px; padding: 5px 0px;">
+                  <span>{{faPercentDiscount}}</span>
+                  <span>{{" درصد تخفیف تا سقف "}}</span>
+                  <span>{{faMaxCreditDiscount}}</span>
+                  <span>{{" تومان "}}</span>
+                </div>
+                <div style="font-size: 14px; color: #26A69A;">
+                  <span>برای استفاده از کد تخفیف پرداخت نهایی را به صورت اعتباری (آنلاین) انجام دهید.</span>
+                </div>
+            </div>
+            <div style="font-size: 14px; padding: 7px 5px; color: #2196F3;">
+                <div><span>تماس با پشتیبانی</span></div>
+                <div><span>{{tel1}}</span></div>
+                <div><span>{{mobile1}}</span></div>
+            </div>
+
+            <div style="padding: 5px 0px; width: 100%; text-align: center;">
+              <div style="padding:0; padding-top: 8px; padding-bottom: 4px; width: 100%; text-align: center;">
+                <span id="btnGotoCurrentRequestPage" (click)="onFollowRequest()">{{textFolloweRequest}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<!--end show result for register request-->

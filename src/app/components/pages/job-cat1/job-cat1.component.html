@@ -1,0 +1,155 @@
+
+<div (window:resize)="onResize($event)">
+
+            <div *ngIf="isPC ; else mobileView">
+                <!-------start fixed top menu----
+                <app-top-fix-menu [jobCats1]="categories1"></app-top-fix-menu>
+                <!------end fixed top menu------->
+                
+                <!--------start top menu------
+                <app-top-menu [jobCats1]="categories1" [jobCats2]="categories2" [jobCats3]="categories3" [state]='0'></app-top-menu>-->
+                <!--------end top menu-------->
+                
+                <!--------start job cat menu------
+                <app-job-cat-menu [jobCats1]="categories1"></app-job-cat-menu>-->
+                <!-----end job cat menu-------->
+            </div>
+            <ng-template #mobileView>
+                <!--------start mob top menu------
+                <app-mob-top-menu [jobCats1]="categories1" [jobCats2]="categories2" [jobCats3]="categories3"></app-mob-top-menu>
+                <!--------end mob top menu-------->
+            </ng-template>
+  
+  <!--------start fix background image-------->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mainDivHeader"
+        style.backgroundImage = "{{'url(' + path + cat1cat2?.image + ')'}}">
+        <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-5 blackBackground"></div>
+        <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-5 mainDivTextHeader">
+           <div class="row divTextHeader">
+               <div class="d-none d-md-block col-md-1 col-lg-1 col-xl-1"></div>
+               <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                   <h1 class="text-justify">{{cat1Name}}</h1>
+                   <h2 class="text-justify h2bold">{{cat1cat2.topInfo}}</h2>
+               </div>
+               <div class="d-none d-md-block col-md-1 col-lg-1 col-xl-1"></div>
+           </div>
+       </div>
+   </div>
+  <!--------end fix background image-------->
+  
+  <div class="contentPadding">
+  
+  <!-----start How work cat1------>
+  <div style="padding-top: 30px; padding-bottom: 10px;">
+        <div class="row clear">
+            <div class="col-md-3 col-lg-3 col-xl-3 clear"></div>
+            <div class="col-md-6 col-lg-6 col-xl-6 clear">
+                <div class="text-center">
+                    <div class="col-md-12 col-lg-12 col-xl-12 clear text-center d-none d-md-block divTitlePad">
+                        <h2 class="fontTitleH2 sideLine"><span>{{mainTxtTitr}}</span></h2>
+                    </div>
+                    <div class="col-12 col-sm-12 d-md-none d-block clear text-center divTitlePad">
+                        <h2 class="fontTitleH2"><span>{{mainTxtTitr}}</span></h2>
+                    </div>
+                </div>
+                  <div class="text-center">
+                   <h3>{{cat1cat2?.description}}</h3>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-3 clear"></div>
+        </div>
+      
+        <div class="row clear">
+            <div class="col-md-4 col-lg-4 col-xl-4 clear" style="background-color: transparent;">
+                <div class="col-md-12 col-lg-12 col-xl-12 clear whiteCard">
+                    <div class="text-center">
+                        <img src="assets/image/gif/step1.gif" [alt]="txt1Titr" class="img-fluid imgStyle">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="h3Bold">{{txt1Titr}}</h3>
+                    </div>
+                    <div class="text-center descriptionCard">
+                        <h3>{{cat1cat2?.subInfo1}}</h3>
+                    </div>
+                </div>
+            </div>
+      
+            <div class="col-md-4 col-lg-4 col-xl-4" style="background-color: transparent;">
+                <div class="col-md-12 col-lg-12 col-xl-12 shadow-lg bg-white whiteCard">
+                    <div class="text-center">
+                        <img src="assets/image/gif/step2.gif" [alt]="txt2Titr" class="img-fluid imgStyle">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="h3Bold">{{txt2Titr}}</h3>
+                    </div>
+                    <div class="text-center descriptionCard">
+                        <h3>{{cat1cat2?.subInfo2}}</h3>
+                  </div>
+                </div>
+            </div>
+      
+            <div class="col-md-4 col-lg-4 col-xl-4" style="background-color: transparent;">
+                <div class="col-md-12 col-lg-12 col-xl-12 shadow-lg bg-white whiteCard">
+                    <div class="text-center">
+                        <img src="assets/image/gif/step3.gif" [alt]="txt3Titr" class="img-fluid imgStyle">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="h3Bold">{{txt3Titr}}</h3>
+                    </div>
+                    <div class="text-center descriptionCard">
+                      <h3>{{cat1cat2?.subInfo3}}</h3>
+                    </div>
+                </div>
+            </div>
+      
+        </div>
+      
+    </div>
+  <!-----end How work cat1------>
+  
+  <!------start Cat2 tiles------>
+
+        <div style="box-sizing: border-box; padding: 0; margin: 0; padding-top: 30px; padding-bottom: 30px;">
+    
+            <div class="col-md-12 col-lg-12 col-xl-12 clear text-center d-none d-md-block divTitlePad">
+                <h2 class="fontTitleH2 sideLine"><span>{{"خدمات " + cat1Name}}</span></h2>
+            </div>
+            <div class="col-12 col-sm-12 d-md-none d-block clear text-center divTitlePad">
+                <h2 class="fontTitleH2"><span>{{"خدمات " + cat1Name}}</span></h2>
+            </div>
+                <div class="row clear">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3"
+                            *ngFor="let cat2 of cat1cat2.cat2CoList; index as i"
+                             style="margin: 0; padding: 4px;">
+         
+                            <div class="mycontainer">
+                                <img src="{{path + cat2?.tumbnail}}" [alt]="cat2.name" class="image">
+                                <div class="overlay1"></div>
+                                <div class="overlay2">
+                                    <div class="text1 text-truncate">{{cat2?.name}}</div>
+                                    <div class="text2 text-truncate">{{cat2?.topInfo}}</div>
+                                    <div class="butonDiv">
+                                        <input type="button" class="btn btn-success btnStyle" 
+                                               value="اطلاعات بیشتر"
+                                                [routerLink]="['' , enameCat1 , cat2?.ename]">
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            
+          </div>
+
+  <!------end Cat2 tiles-------->
+
+  <!----start download app---->
+  <app-download></app-download>
+  <!----end download app---->
+
+  </div>
+  
+  <!----start footer---->
+  <app-footer></app-footer>
+  <!----end footer---->
+
+</div>

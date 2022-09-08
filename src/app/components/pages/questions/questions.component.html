@@ -1,0 +1,47 @@
+<div (window:resize)="onResize($event)">
+
+          <div *ngIf="isPC ; else mobileView">
+              <!-------start fixed top menu----
+              <app-top-fix-menu [jobCats1]="categories1"></app-top-fix-menu>
+              <!------end fixed top menu------->
+              
+              <!--------start top menu------
+              <app-top-menu [jobCats1]="categories1" [jobCats2]="categories2" [jobCats3]="categories3" [state]='0'></app-top-menu>-->
+              <!--------end top menu-------->
+              
+              <!--------start job cat menu------
+              <app-job-cat-menu [jobCats1]="categories1"></app-job-cat-menu>-->
+              <!-----end job cat menu-------->
+          </div>
+          <ng-template #mobileView>
+              <!--------start mob top menu------
+              <app-mob-top-menu [jobCats1]="categories1" [jobCats2]="categories2" [jobCats3]="categories3"></app-mob-top-menu>
+              <!--------end mob top menu-------->
+          </ng-template>
+
+<div id="mainDiv" class="contentPadding">
+  <div id="contant">
+    <div>
+      <img src="assets/image/soalatkarbar.jpg" alt="" class="img-fluid">
+    </div>
+    <div *ngFor="let cfaq of clientFAQs; index as i">
+      <div class="row clear">
+        <div class="col-10 col-sm-10 col-md-10 col-lg-11 col-xl-11 clear questionDiv" (click)="toggleState(i)">
+          {{cfaq.id+'. '+cfaq.question}}
+         </div>
+         <div class="col-2 col-sm-2 col-md-2 col-lg-1 col-xl-1 text-left clear chevronDiv" (click)="toggleState(i)">
+          <i [@arrowState]="cfaq.state" class="fas fa-chevron-circle-down"></i>
+         </div>
+      </div>
+      <p [@faqState]="cfaq.state">
+        {{cfaq.response}}
+      </p>
+    </div>
+  </div>
+</div>
+
+<!----start footer---->
+<app-footer></app-footer>
+<!----end footer---->
+
+</div>

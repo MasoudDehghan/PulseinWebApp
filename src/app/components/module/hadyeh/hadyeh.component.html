@@ -1,0 +1,71 @@
+<div id="mainDivGift" style.backgroundImage = "{{'url(' + backgroundImage + ')'}}">
+
+  <div class="row clear">
+    <div class="d-none d-md-block col-md-2 col-lg-2 col-xl-2"></div>
+    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+      <div class="row clear" dir="ltr">
+        <div class="col-8 col-sm-8 col-md-8 col-lg-6 col-xl-6 text-center" style="padding-top: 70px;">
+          
+          <div *ngIf="userType == 'client'">
+            <h3 class="descriptionFontStyle">
+              {{text1ForClient}} 
+            </h3>
+          </div>
+          <div *ngIf="userType == 'worker'">
+            <h3 class="descriptionFontStyle">
+              {{text1ForWorker}} 
+            </h3>
+          </div>
+            <div (click)='showDialog()' style="cursor: pointer;margin: 0 auto;  padding: 7px; padding-top: 10px; width: 250px; background-color: yellow; border-radius: 7px; text-align: center;">
+              <h5 id="textGoToClick">اینجا کلیک کنید</h5>
+            </div>
+          
+        </div>
+        <!--
+        <div class="col-4 col-sm-4 col-md-4 col-lg-6 col-xl-6 text-center" style="padding-top: 70px;">
+          
+          
+            <img src="assets/image/cado.png" alt="هدیه پالسین برای کاربران" 
+               style="cursor: pointer;"
+               [@anim]='state' (click)='showDialog()' class="img-fluid">
+          
+
+        </div>
+        -->
+      </div>
+    </div>
+    <div class="d-none d-md-block col-md-2 col-lg-2 col-xl-2"></div>
+  </div>
+
+</div>
+
+
+<!-----------Modal start-------->
+<p-dialog header="شارژ رایگان" [(visible)]="dialogDisplay" [modal]="true" 
+  [responsive]="true" [width]="350" [minWidth]="200" [minY]="70" 
+  [maximizable]="true" [baseZIndex]="10">
+  <div *ngIf="userType == 'client'" class="textModalDiv">
+    <p>{{text2ForClient}}</p>
+  </div>
+  <div *ngIf="userType == 'worker'" class="textModalDiv">
+    <p>{{text2ForWorker}}</p>
+  </div>
+  <div class="divElemanCenter">
+    <input type="text" placeholder="09***" maxlength="11" [(ngModel)]="mobile" (input)="onChange()">
+  </div>
+  <div *ngIf="msg.code == 0 && showMessage" class="successMsgDiv">
+    <p>{{textSuccessMsg}}</p>
+  </div>
+  <div *ngIf="msgError.code == 4 && showMessage" class="faultMsgDiv">
+    <p>{{textErrorMsg}}</p>
+  </div>
+  <div *ngIf="showTimer" class="timerDiv">
+    <p>{{"تلاش بعدی "+countSecond+" ثانیه دیگر"}}</p>
+  </div>
+  <p-footer>
+    <div class="divElemanCenter">
+        <input type="button" class="btn btn-info" (click)="sendMobile()" value="دریافت لینک دانلود" [disabled]="!activeButton">
+    </div>
+  </p-footer>
+</p-dialog>
+<!----------Modal End------------>

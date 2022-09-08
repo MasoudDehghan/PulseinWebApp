@@ -1,0 +1,11 @@
+<div [ngStyle]="{height: shared.yWindow.value+'px', width: shared.xWindow.value+'px'}" 
+  class="divLoadingPage">
+  <lottie-animation-view
+    [options]="lottieConfig"
+    [width]="300"
+    [height]="300"
+    (animCreated)="handleAnimation($event)">
+  </lottie-animation-view>
+</div>
+
+

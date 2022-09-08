@@ -1,0 +1,23 @@
+.outDivBtnNewRequestHide{
+    position: fixed; 
+    left: 0px; 
+    bottom: 120px; 
+    width: 200px; 
+    height: 90px;
+    z-index: 0; 
+    transform: translateY(400px);
+    transition: all 0.7s ease-in-out;
+}
+
+.outDivBtnNewRequestShow{
+    position: fixed; 
+    left: 0px; 
+    bottom: 120px; 
+    width: 200px; 
+    height: 90px;
+    z-index: 1; 
+    transform: translateY(0px);
+    transition: all 0.7s ease-in-out;
+    cursor: pointer;
+}
+

@@ -1,0 +1,668 @@
+<div *ngIf="tokenExist" [ngStyle]="{'min-height': shared.yWindow.value+'px'}" id="mainDiv">
+    <div style="position: absolute; top:10px; right: 10px; width: 45px; height: 45px; z-index: 1;">
+        <img src="assets/image/game/iqBaz/home.png" 
+        style="outline: none; cursor: pointer; height: 100%; width: 100%;"
+        [routerLink]="['/Home']">
+    </div>
+  <div class="row justify-content-md-center justify-content-lg-center justify-content-xl-center clear" style="height: 100%;">
+    <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 clear" id="divCenterBox">
+
+      <!--start header-->
+      <div *ngIf="shared.xWindow.value > 500" style="width: 100%; text-align: center; overflow: hidden; max-height: 370px;">
+        <img *ngIf="!endGame" src="assets/image/game/iqBaz/headerStart.png" class="img-fluid" style="width: 100%;">
+        <img *ngIf="endGame" src="assets/image/game/iqBaz/headerStartEnding.png" class="img-fluid" style="width: 100%;">
+      </div>
+      <!--end header-->
+      <!--start header-->
+      <div *ngIf="shared.xWindow.value <= 500" style="width: 100%;">
+        <img src="assets/image/game/iqBaz/headerPhone.png" class="img-fluid" style="width: 100%;">
+        <div style="text-align: center;">
+          <img *ngIf="!endGame" src="assets/image/game/iqBaz/16Tir.png" class="img-fluid" style="width: 100%;">
+          <img *ngIf="endGame" src="assets/image/game/iqBaz/endingMobile.png" class="img-fluid" style="width: 100%; max-width: 200px;">
+        </div>
+      </div>
+      <!--end header-->
+
+      <div *ngIf="isLoading">
+        <loading></loading>
+      </div>
+      <div style="width: 100%;" [ngStyle]="{'min-height': shared.yWindow.value-250+'px'}">
+      <!--start content strat game level-->
+
+      <div *ngIf="!isLoading && step == 0" 
+        style="width: 100%; min-height: 200px; padding: 15px 10px; text-align: center; color: black;">
+          <div id="divUserName">
+            <strong>{{firstName + " " + lastName}}</strong> 
+            <strong style="padding-right: 5px; padding-left: 7px;">عزیز</strong>
+            <input *ngIf="storage.deviceType == 3 || storage.osDevice == 'windows'" class="btn" id="btnGifts" [value]="textBtnGift" readonly="true"
+            (click)="onShowGifts()">
+            <input *ngIf="storage.osDevice == 'mac'" class="btn" id="btnGiftsIos" [value]="textBtnGift" readonly="true"
+            (click)="onShowGifts()">
+          </div>
+  
+          <!--start gifts-->
+          <div [ngClass]="styleMainDivGifts()">
+            <div *ngIf="!isLoading">
+              <div class="row clear">
+                <div *ngFor="let bonusItem of bonusList; index as i" 
+                  class="col-4 col-sm-3 colxl-3 col-lg-2 col-xl-2"
+                  style="padding: 3px 2px;">
+                  <div (click)="onthumbnail(i)" 
+                  [ngClass]="setClassForThumbnailGifts(i)">
+                    <img src="{{thumbnailBonus(bonusItem.type)}}" style="width: 100%; max-width: 70px;" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="bonusList[indexSelectedThumbnailGift].type != 0" style="padding: 5px;">
+                  <div class="boxGiftInfo">
+                    <div style="text-align: center; padding: 7px;">
+                      <img src="{{imageBonus(bonusList[indexSelectedThumbnailGift].type)}}" 
+                      style="width: 100%; max-width: 250px; height: 70px;">
+                    </div>
+                    <div style="color: white; font-size: 14px; text-align: center; padding-bottom: 5px;">
+                      <span>{{textBonus(bonusList[indexSelectedThumbnailGift].type)}}</span>
+                    </div>
+                    <div style="color: white; font-size: 14px; text-align: center;">
+                      <span>{{timeLimitBonus(bonusList[indexSelectedThumbnailGift].type)}}</span>
+                    </div>
+    
+                    <div style="color: white; font-size: 16px; text-align: center;">
+                        <span style="padding-left: 5px;">کد تخفیف: </span>
+                        <span>{{bonusList[indexSelectedThumbnailGift].code}}</span>
+                    </div>
+    
+                    <div style="padding: 5px 0px; text-align: center;">
+                      <input type="button" class="btn btn-primary" style="border-radius: 7px;"
+                      value="ثبت درخواست" (click)="onBonus(bonusList[indexSelectedThumbnailGift].type)">
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <!--end gifts-->
+
+          <!--start Aparat--
+          <app-aparat></app-aparat>
+          <!--end Aparat-->
+  
+          <!--start finish game text-->
+          <div *ngIf="!nextValid && remainSeconds == -1 && !endGame" style="width: 100%; padding: 20px 0px; text-align: center;">
+            <strong class="titr" 
+              style="color: white; padding: 7px 15px; border: 2px solid red; border-radius: 7px;">
+              مراحل مسابقه پایان یافته است
+            </strong>
+          </div>
+          <!--end finish game text-->
+  
+          <!--start time or start game-->
+          <div *ngIf="nextValid && remainSeconds > -1 && !endGame" style="padding: 15px 0px;">
+            <input type="button" class="btn" id="btnStart" value="شروع مسـابقه" (click)="onStart()">
+          </div>
+          <!--start timer-->
+          <div *ngIf="!nextValid && remainSeconds > -1 && !endGame" style="width: 100%; padding: 10px 0px; text-align: center;">
+            <strong class="titr">زمان باقیمانده تا فرصت بعدی</strong>
+            <div style="padding-top: 10px;">
+              <div class="divBoxTime">
+                <span class="spanBoxTime">{{sec1text}}</span>
+              </div>
+              <div class="divBoxTime">
+                <span class="spanBoxTime">{{sec10text}}</span>
+              </div>
+              <span id="styleSpanTimeDoubleDot">:</span>
+              <div class="divBoxTime">
+                <span class="spanBoxTime">{{min1txt}}</span>
+              </div>
+              <div class="divBoxTime">
+                <span class="spanBoxTime">{{min10txt}}</span>
+              </div>
+              <span id="styleSpanTimeDoubleDot">:</span>
+              <div class="divBoxTime">
+                <span class="spanBoxTime">{{hour1txt}}</span>
+              </div>
+              <div class="divBoxTime">
+                <span class="spanBoxTime">{{hour10txt}}</span>
+              </div>
+            </div>
+        </div>
+        <!--end timer-->
+          <!--end time or start game-->
+
+
+  <!--start giftCodes-->
+  <div *ngIf="endGame && shwCodes" style="width: 100%; padding: 15px 0px; text-align: center;">
+      <div style="padding-bottom: 15px;">
+        <span *ngIf="showBtnAllCodes" readonly="true" id="spanGiftsCode" (click)="onAllGiftCode()">کدهای شانس شما</span>
+          <span *ngIf="!showBtnAllCodes" readonly="true" id="spanCloseGiftsCode" (click)="onCloseAllGiftCode()">
+            <i class="fas fa-times"></i>
+            <span style="padding-right: 3px;">کدهای شانس شما</span>
+          </span>
+      </div>
+      <div *ngIf="showAllcodes" style="width: 100%; max-width: 700px; padding: 10px 7px; max-height: 300px; overflow: auto; background-color: rgba(244,81,30, 1); border-radius: 7px; margin: 0 auto;">
+        <div class="row justify-content-md-center justify-content-lg-center justify-content-xl-center clear">
+          <div *ngFor="let code of AllCodeList" class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 clear" style="padding: 2px 3px;">
+            <div style="height: 50px; width: 100%; background-color: white; border: 1px solid gray; border-radius: 5px; display: flex; align-items: center; justify-content: center;">
+              <span style="font-size: 16px; font-weight: bold; color: black;">{{code}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div *ngIf="!shwCodes || !endGame" style="width: 100%; padding: 15px 0px; text-align: center;">
+    <strong style="font-size: 20px; color: #2E7D32;">منتظر کدهای شانس خود باشید</strong>
+  </div>
+  <!--end giftCodes-->
+        
+<!--start User rank-->
+<div style="width: 100%; overflow: hidden; padding:0px; text-align: center;">
+  <div style="padding-bottom: 10px;">
+    <strong class="titr">رتبه و امتیاز شما</strong>
+  </div>
+  <div style="width: 100%; max-width: 500px; margin: 0 auto; background-color: white; border: 1px solid yellow; border-radius: 7px;">
+    <div *ngIf="today && round" class="pointTableHeader">
+      <span *ngIf="round == today">
+        <span>شما در تمام ۱۵ مرحله جشنواره شرکت کرده اید</span>
+      </span>
+      <span *ngIf="round != today">
+        <span>شما در </span>
+        <span style="padding-right: 4px;">{{round}}</span>
+        <span>مرحله از </span>
+        <span style="padding: 0px 4px;">{{today}}</span>
+        <span>مرحله جشنواره شرکت کرده اید.</span>
+      </span>
+    </div>
+
+    <div class="pointTableRow">
+      <div class="pointTableColText">
+        <span>رتبه شما</span>
+      </div>
+      <div class="pointTableColScore">
+        <span>{{rank}}</span>
+      </div>
+    </div>
+    
+    <div class="pointTableRow">
+      <div class="pointTableColText">
+        <span>امتیاز پاسخ های درست</span>
+      </div>
+      <div class="pointTableColScore">
+        <span>{{questionScore}}</span>
+      </div>
+    </div>
+
+    <div class="pointTableRow">
+      <div class="pointTableColText">
+        <span>امتیاز دعوت از دوستان</span>
+      </div>
+      <div class="pointTableColScore">
+        <span>{{referalScore}}</span>
+      </div>
+    </div>
+
+    <div class="pointTableRow">
+      <div class="pointTableColText">
+        <span>امتیاز ثبت سفارش</span>
+      </div>
+      <div class="pointTableColScore">
+        <span>{{requestScore}}</span>
+      </div>
+    </div>
+
+    <div *ngIf="linkScore > 0" class="pointTableRow">
+      <div class="pointTableColText">
+        <span>امتیاز بازدید لینک</span>
+      </div>
+      <div class="pointTableColScore">
+        <span>{{linkScore}}</span>
+      </div>
+    </div>
+
+    <div class="pointTableRow" *ngIf="appScore > 0">
+      <div class="pointTableColText">
+        <span>امتیاز نصب اپلیکیشن</span>
+      </div>
+      <div class="pointTableColScore">
+        <span>{{appScore}}</span>
+      </div>
+    </div>
+      
+    <div id="pointTableLastRow">
+      <div class="pointTableColText">
+        <span>امتیاز کل</span>
+      </div>
+      <div class="pointTableColScore">
+        <span>{{totalScore}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--start winnner-->
+<div *ngIf="endGame">
+ <!--start gifts-->
+      <div class="row clear">
+        <div class="col-md-4 col-lg-4 col-xl-4 d-none d-md-block">
+          <img src="assets/image/game/iqBaz/bomb.png" style="width: 150px; height: 150px;">
+        </div>
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 d-none d-md-block">
+          <div style="text-align: center; margin: 0; padding: 0; position: relative; min-height: 150px; display: flex; align-items: flex-end; justify-content: center;">
+            <strong class="textTitr">برندگان جشنواره</strong>
+          </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 d-block d-md-none d-lg-none d-xl-none">
+          <div style="text-align: center; margin: 0; padding: 7px 0px;">
+            <strong class="textTitr">برندگان جشنواره</strong>
+          </div>
+        </div>
+      </div>
+        <div class="row clear" style="width: 100%; max-width: 600px; margin: 0 auto;">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" style="padding: 10px 5px;">
+            <div style="text-align: center;">
+              <img src="assets/image/game/iqBaz/award/ps4.png" style="width: 80%; max-width: 200px;" class="img-fluid">
+            </div>
+            <div style="padding-top: 5px;">
+              <div class="giftBoxWhite">
+                <div style="text-align: center;">
+                  <img src="assets/image/game/iqBaz/prize.png" style="width: 100%; max-width: 200px; border-top-right-radius: 15px; border-top-left-radius: 15px;" class="img-fluid">
+                </div>
+                <div *ngIf="winnerFirstName" style="padding: 10px 5px; font-size: 14px;">
+                  <div style="padding-bottom: 5px; color: tomato; font-size: 14px; font-weight: bold;">
+                    <span>نفر اول</span>
+                  </div>
+                  <div style="padding-bottom: 5px;">
+                    <span style="padding-left: 5px;">نام:</span>
+                    <span style="font-size: 16px; font-weight: bold;">{{winnerFirstName}}</span>
+                  </div>
+                  <div style="padding-bottom: 5px;">
+                    <span style="padding-left: 5px;">نام خانوادگی:</span>
+                    <span style="font-size: 16px; font-weight: bold;">{{winnerLastName}}</span>
+                  </div>
+                  <div>
+                    <span style="padding-left: 5px;"> امتیاز:</span>
+                    <span style="font-size: 16px; font-weight: bold;">{{winnerScore}}</span>
+                  </div>
+                </div>
+                <div *ngIf="!winnerFirstName" style="padding: 10px 5px; padding-top: 30px; font-size: 14px;">
+                  به زودی نفر اول معرفی خواهد شد
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" style="padding: 10px 5px;">
+              <div style="text-align: center;">
+                <img src="assets/image/game/iqBaz/award/tv.png" style="width: 80%; max-width: 200px;" class="img-fluid">
+              </div>
+              <div style="padding-top: 5px;">
+                <div class="giftBoxWhite">
+                    <div style="text-align: center;">
+                      <img src="assets/image/game/iqBaz/prize.png" style="width: 100%; max-width: 200px; border-top-right-radius: 15px; border-top-left-radius: 15px;" class="img-fluid">
+                    </div>
+                    <div *ngIf="winnerFirstName2" style="padding: 10px 5px; font-size: 14px;">
+                      <div style="padding-bottom: 5px; color: tomato; font-size: 14px; font-weight: bold;">
+                        <span>برنده قرعه کشی</span>
+                      </div>
+                      <div style="padding-bottom: 5px;">
+                        <span style="padding-left: 5px;">نام:</span>
+                        <span style="font-size: 16px; font-weight: bold;">{{winnerFirstName2}}</span>
+                      </div>
+                      <div style="padding-bottom: 5px;">
+                        <span style="padding-left: 5px;">نام خانوادگی:</span>
+                        <span style="font-size: 16px; font-weight: bold;">{{winnerLastName2}}</span>
+                      </div>
+                    </div>
+                    <div *ngIf="!winnerFirstName2" style="padding: 10px 5px; padding-top: 30px; font-size: 14px;">
+                      به زودی نتیجه قرعه کشی اعلام خواهد شد
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      <!--end gifts-->
+    </div>
+<!--end winner-->
+
+
+<!--start app download-->
+<div *ngIf="storage.deviceType == 3 && showAppInfo && !endGame">
+    <div style="width: 100%; text-align: center;">
+      <img src="assets/image/game/iqBaz/appAndroid.png" style="width: 100%; max-width: 400px;" class="img-fluid">
+      <div style="padding-top: 5px; text-align: center; width: 100%;">
+        <a [href]="directLink" target="_blank">
+          <img src="assets/image/market/directCu.png" alt="لینک دانلود مستقیم" class="img-fluid" style="border-radius: 7px; border: 1px soild white; width: 180px;">
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--end app download-->
+
+  <!--start go to link-->
+  <div *ngIf="showLink && remainSeconds > -1 && !endGame">
+    <div style="width: 100%; text-align: center;">
+      <img src="assets/image/game/iqBaz/wlink.png" style="width: 100%; max-width: 400px;" class="img-fluid">
+      <div style="padding-top: 5px; text-align: center; width: 100%;">
+        <input type="button" class="btn btnClick" value="اینجا کلیک کنید" (click)="onLink()">
+      </div>
+    </div>
+  </div>
+  <!--end go to link-->
+
+
+<div *ngIf="!endGame" style="width: 100%; padding: 15px 0px; text-align: center;">
+  <div style="padding-bottom: 15px;">
+    <span *ngIf="showBtnAllRes" readonly="true" id="spanResultTable" (click)="onAllresult()">جدول کلی نتایج</span>
+    <span *ngIf="!showBtnAllRes" readonly="true" id="spanCloseResultTable" (click)="onCloseAllresult()">
+      <i class="fas fa-times"></i>
+      <span style="padding-right: 3px;">جدول کلی نتایج</span>
+    </span>
+  </div>
+
+  <div *ngIf="showAllResult" style="background-color: white; width: 100%; max-width: 800px; border-radius: 7px; margin: 0 auto;">
+    <div style="height: 50px; width: 100%; overflow: hidden; max-width: 800px; border-top-left-radius: 7px; border-top-right-radius: 7px; padding: 0px 10px;">
+      <div style="float: right; width: 15%; height: 100%; display: flex; align-items: center; justify-content: center">
+        <strong>رتبه</strong>
+      </div>
+      <div style="float: right; width: 55%; height: 100%; display: flex; align-items: center; justify-content: center">
+        <strong>نام کاربر</strong>
+      </div>
+      <div style="float: right; width: 7%; height: 100%; display: flex; align-items: center; justify-content: center"></div>
+      <div style="float: right; width: 23%; height: 100%; display: flex; align-items: center; justify-content: center">
+        <strong>امتیاز</strong>
+      </div>
+    </div>
+    <div style="width: 100%; max-width: 800px; background-color: white; border-bottom-left-radius: 7px; border-bottom-right-radius: 7px; max-height: 600px; overflow: auto; padding: 0px 10px; padding-bottom: 5px;">
+        <div style="padding-top: 5px;" *ngFor="let item of AllUser">
+          <div style="height: 50px; width: 100%; overflow: hidden; border: 1px solid #CFD8DC;">
+            <div style="float: right; width: 15%; height: 100%; display: flex; align-items: center; justify-content: center">
+              <span class="text-truncate">{{item?.grade}}</span>
+            </div>
+            <div style="float: right; width: 55%; height: 100%; display: flex; align-items: center; justify-content: center">
+              <span class="text-truncate">{{item?.firstName + " " + item?.lastName}}</span>
+            </div>
+            <div style="float: right; width: 10%; height: 100%; display: flex; align-items: center; justify-content: center">
+              <img src="{{gradeIcon(item?.grade)}}" style="width: 30px; height: 30px;">
+            </div>
+            <div style="float: right; width: 20%; height: 100%; display: flex; align-items: center; justify-content: center">
+              <span class="text-truncate">{{item?.totalScore}}</span>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<!--end User rank-->
+
+<div *ngIf="!endGame" style="width: 100%; text-align: center;">
+  <strong class="titr">
+    {{referalTextP1 + " " + pointOfInvite() + " " + referalTextP2}}
+  </strong>
+  <div style="padding: 10px 0px;">
+    <div (click)="onCopy()" id="divReferalLink">
+      <span>{{referalLink}}</span>
+    </div>
+    <div style="display: inline-block; overflow: hidden; height: 40px; padding-right: 3px;">
+      <input type="button" value="کپی" class="btn btn-light" 
+      (click)="onCopy()"
+      style="width: 70px; outline: none; border-radius: 7px;">
+    </div>
+  </div>
+</div>
+
+<!--start points-->
+<div *ngIf="!endGame" class="row clear">
+  <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+    <div style="text-align: center; margin: 0; padding: 0; min-height: 100px; display: flex; align-items: flex-end; justify-content: flex-end;">
+      <strong id="textPoints">امتیازات مسابقه</strong>
+    </div>
+  </div>
+  <div class="col-md-4 col-lg-4 col-xl-4 d-none d-md-block">
+    <img src="assets/image/game/iqBaz/1bomb.png" style="width: 100px; height: 100px;">
+  </div>
+</div>
+<div *ngIf="!endGame" class="row clear justify-content-md-center">
+  <div *ngFor="let item of listPointsTxt; index as i" class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl-2 clear" style="padding: 10px 4px;">
+    <div style="text-align: center; font-size: 14px; font-weight: bold; color: white;">{{item.name}}</div>
+    <div class="gamePointsBoxWhite">
+      <span *ngIf="i != 3" class="gamePoints">{{item.value}}</span>
+      <span *ngIf="i == 3" class="gamePoints">{{pointOfInvite()}}</span>
+      <span>امتیاز</span>
+    </div>
+  </div>
+</div>
+<!--end points-->
+
+<div *ngIf="!endGame" style="width: 90%; padding: 15px 0px; border-bottom: 2px solid white; margin: 0 auto;">
+<div id="btnAddOrder" [routerLink]="['/Home']">
+  <span>سفارش دهید و</span>
+  <span style="padding: 0px 6px; font-size: 24px; font-weight: bold;">۵۰</span>
+  <span>امتیاز بگیرید</span>
+</div>
+</div>
+<!--
+<div style="padding: 10px 5px; width: 100%;">
+<div class="row clear">
+  <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear" style="padding: 2px">
+    <div style="width: 100%; height: 70px; display: flex; align-items: center; justify-content: center;">
+      <img src="assets/image/game/iqBaz/logos/chilivery.png" style="width: 100%; max-width: 250px;">
+    </div>
+  </div>
+
+  <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear" style="padding: 2px">
+    <div style="width: 100%; height: 70px; display: flex; align-items: center; justify-content: center;">
+      <img src="assets/image/game/iqBaz/logos/iranrenter.png" style="width: 100%; max-width: 250px;">
+    </div>
+  </div>
+
+  <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 clear" style="padding: 2px">
+    <div style="width: 100%; height: 70px; display: flex; align-items: center; justify-content: center;">
+      <img src="assets/image/game/iqBaz/logos/tik8.png" style="width: 100%; max-width: 250px;">
+    </div>
+  </div>
+</div>
+</div>
+-->
+
+      </div>
+
+      <!--end content strat game level-->
+
+      <!--start questions-->
+      <div *ngIf="!isLoading && step == 1">
+        <div *ngIf="nextValid">
+          <div class="boxWhiteQuestion">
+            <div class="col-12 col-sm-12 col-md-12; col-lg-12 col-xl-12" style="text-align: center; padding: 10px 0px;">
+              <span style="padding: 10px; color: blue;">
+                <span>امتیاز سوال</span>
+                <span style="padding-right: 5px;">{{questionPoint}}</span>
+              </span>
+            </div>
+            <div class="divMainText">
+              <div style="width: 100%; text-align: center;">
+                <span *ngIf="question && question != ''" id="txtQuestion">{{question}}</span>
+              </div>
+              <img *ngIf="isImageQuestion" 
+                (load)="doLoadImageQ()"
+                src="{{imagePath + imageQuestion}}" 
+                style="width: 100%; max-width: 250px;" class="img-fluid">
+            </div>
+            <div class="row clear" style="padding-top: 10px;">
+              <!--start answer Option 1-->
+              <div *ngIf="opAns1 && opAns1 != ''" 
+                class="col-12 col-sm-12 col-md-12 col-lg-612 col-xl-12 divBoxAnswerOp">
+                <div (click)="onAnswer(1)" class="boxOptionAnswer">
+                  <span class="spanSignStyle">
+                    <i class="fas fa-circle iNotmantion"></i>
+                  </span>
+                  <span>{{opAns1}}</span>
+                </div>
+              </div>
+              <!--end answer Option 1-->
+              <!--start answer Option 2-->
+              <div *ngIf="opAns2 && opAns2 != ''" 
+                class="col-12 col-sm-12 col-md-12 col-lg-612 col-xl-12 divBoxAnswerOp">
+                <div (click)="onAnswer(2)" class="boxOptionAnswer">
+                  <span class="spanSignStyle">
+                    <i class="fas fa-circle iNotmantion"></i>
+                  </span>
+                  <span>{{opAns2}}</span>
+                </div>
+              </div>
+              <!--end answer Option 2-->
+              <!--start answer Option 3-->
+              <div *ngIf="opAns3 && opAns3 != ''" 
+                class="col-12 col-sm-12 col-md-12 col-lg-612 col-xl-12 divBoxAnswerOp">
+                <div (click)="onAnswer(3)" class="boxOptionAnswer">
+                  <span class="spanSignStyle">
+                    <i class="fas fa-circle iNotmantion"></i>
+                  </span>
+                  <span>{{opAns3}}</span>
+                </div>
+              </div>
+              <!--end answer Option 3-->
+              <!--start answer Option 4-->
+              <div *ngIf="opAns4 && opAns4 != ''" 
+                class="col-12 col-sm-12 col-md-12 col-lg-612 col-xl-12 divBoxAnswerOp">
+                <div (click)="onAnswer(4)" class="boxOptionAnswer">
+                  <span class="spanSignStyle">
+                    <i class="fas fa-circle iNotmantion"></i>
+                  </span>
+                  <span>{{opAns4}}</span>
+                </div>
+              </div>
+              <!--end answer Option 4-->
+            </div>
+
+            <div *ngIf="isStart" 
+              class="col-12 col-sm-12 col-md-12; col-lg-12 col-xl-12 clear" 
+              [ngClass]="reSec > 8 ? 'timer20Green' : 'timer20Red'">
+              <div style="position: relative; width: 150px; margin: 0 auto;">
+                <lottie-animation-view
+                  [options]="lottieConfig"
+                  [width]="120"
+                  [height]="120"
+                  (animCreated)="handleAnimation($event)">
+                </lottie-animation-view>
+                <div id="time20">{{reSec}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end questions-->
+
+      <!--start response result for send answer-->
+      <div *ngIf="!isLoading && step == 2" class="boxWhiteQuestion">
+          <!---------------------------------------->
+          <div class="divMainText">
+            <div style="width: 100%; text-align: center;">
+              <span *ngIf="question && question != ''">{{question}}</span>
+            </div>
+            <img *ngIf="isImageQuestion" 
+              src="{{imagePath + imageQuestion}}" 
+              style="width: 100%; max-width: 250px;" class="img-fluid">
+          </div>
+
+          <div *ngIf="noAnswer" style="padding: 10px; text-align: center;">
+            <span style="color: white; font-size: 14px; background-color: tomato; padding: 5px 7px; border-radius: 5px;">
+                زمان پاسخ گویی به این سوال پایان یافت
+            </span>
+          </div>
+
+          <div class="row clear" style="padding-top: 10px;">
+            <!--start answer Option 1-->
+            <div *ngIf="opAns1 && opAns1 != ''" 
+              class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 divBoxAnswerOp">
+              <div *ngIf="resultAnswer.correctAnswerIndex != 1" [ngClass]="boxAnswerStyle(1)">
+                <span class="spanSignStyle">
+                  <i [ngClass]="signAnswer(1)"></i>
+                </span>
+                <span>{{opAns1}}</span>
+              </div>
+              <div *ngIf="resultAnswer.correctAnswerIndex == 1" [ngClass]="isChangeColor ? 'trueAnswer2' : 'trueAnswer1'">
+                <span class="spanSignStyle">
+                  <i [ngClass]="signAnswer(1)"></i>
+                </span>
+                <span>{{opAns1}}</span>
+              </div>
+            </div>
+            <!--end answer Option 1-->
+              <!--start answer Option 2-->
+              <div *ngIf="opAns2 && opAns2 != ''" 
+                class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 divBoxAnswerOp">
+                <div *ngIf="resultAnswer.correctAnswerIndex != 2" [ngClass]="boxAnswerStyle(2)">
+                  <span class="spanSignStyle">
+                    <i [ngClass]="signAnswer(2)"></i>
+                  </span>
+                  <span>{{opAns2}}</span>
+                </div>
+                <div *ngIf="resultAnswer.correctAnswerIndex == 2" [ngClass]="isChangeColor ? 'trueAnswer2' : 'trueAnswer1'">
+                  <span class="spanSignStyle">
+                    <i [ngClass]="signAnswer(2)"></i>
+                  </span>
+                  <span>{{opAns2}}</span>
+                </div>
+              </div>
+              <!--end answer Option 2-->
+              <!--start answer Option 3-->
+              <div *ngIf="opAns3 && opAns3 != ''" 
+                class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 divBoxAnswerOp">
+                <div *ngIf="resultAnswer.correctAnswerIndex != 3" [ngClass]="boxAnswerStyle(3)">
+                  <span class="spanSignStyle">
+                    <i [ngClass]="signAnswer(3)"></i>
+                  </span>
+                  <span>{{opAns3}}</span>
+                </div>
+                <div *ngIf="resultAnswer.correctAnswerIndex == 3" [ngClass]="isChangeColor ? 'trueAnswer2' : 'trueAnswer1'">
+                  <span class="spanSignStyle">
+                    <i [ngClass]="signAnswer(3)"></i>
+                  </span>
+                  <span>{{opAns3}}</span>
+                </div>
+              </div>
+              <!--end answer Option 3-->
+              <!--start answer Option 4-->
+              <div *ngIf="opAns4 && opAns4 != ''" 
+                class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 divBoxAnswerOp">
+                <div *ngIf="resultAnswer.correctAnswerIndex != 4" [ngClass]="boxAnswerStyle(4)">
+                  <span class="spanSignStyle">
+                    <i [ngClass]="signAnswer(4)"></i>
+                  </span>
+                  <span>{{opAns4}}</span>
+                </div>
+                <div *ngIf="resultAnswer.correctAnswerIndex == 4" [ngClass]="isChangeColor ? 'trueAnswer2' : 'trueAnswer1'">
+                  <span class="spanSignStyle">
+                    <i [ngClass]="signAnswer(4)"></i>
+                  </span>
+                  <span>{{opAns4}}</span>
+                </div>
+              </div>
+              <!--end answer Option 4-->
+          </div>
+          <div style="text-align: center; padding: 15px 0px;">
+            <input type="button" [value]="txtNext" (click)="onNextQuestion()"
+            class="btn btn-success" style="border-radius: 7px;">
+          </div>
+          <!---------------------------------------->
+      </div>
+      <!--end response result for send answer-->
+      </div>
+
+    </div>
+  </div>
+  <!----start footer---->
+  <app-footer-iqbaz></app-footer-iqbaz>
+  <!----end footer---->
+</div>
+
+<div *ngIf="stepLoading" 
+  style="z-index: 1000; position: fixed; top: 0; width: 100%; display: flex; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.4);" 
+  [ngStyle]="{height: shared.yWindow.value+'px'}">
+  <div>
+    <lottie-animation-view
+      [options]="lottieConfig"
+      [width]="120"
+      [height]="120"
+      (animCreated)="handleAnimation($event)">
+    </lottie-animation-view>
+  </div>
+</div>

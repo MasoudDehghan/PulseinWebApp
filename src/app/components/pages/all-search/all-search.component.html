@@ -1,0 +1,16 @@
+<div style="width: 70%; margin: 0 auto;">
+  <div style="text-align: center; font-size: 16px; font-weight: bold; color: #1B5E20; padding: 10px 0px;">
+    نتایج جستجو
+  </div>
+  <div *ngFor="let item of searchList" class="divBoxItem">
+    <div style="overflow: hidden; height: 60px; width: 100%;" (click)="onkeySearch(item?.ename, item?.id)">
+      <div style="float: left; height: 100%; width: 70%; text-align: right; padding-top: 20px;">{{item.name}}</div>
+      <div style="float: right; width: 30%; height: 60px; text-align: left; padding-left: 20px;">
+        <img [src]="imagePath + item.icon" [alt]="item.name" style="width: 60px; height: 60px;">
+      </div>
+    </div>
+  </div>
+</div>
+<!----start footer---->
+<app-footer></app-footer>
+<!----end footer---->

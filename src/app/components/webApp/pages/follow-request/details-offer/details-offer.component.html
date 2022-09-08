@@ -1,0 +1,183 @@
+<div *ngIf="isLoading">
+    <app-loading-fullpage-latti></app-loading-fullpage-latti>
+</div>
+<div *ngIf="!isLoading" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+    <div class="row clear">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear" style="padding: 10px; font-size: 14px;">
+            <div class="row clear">
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 clear" style="height: 35px;">
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: flex-start;">
+                        <strong>جزئیات پیشنهاد</strong>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 clear" style="height: 35px;">
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: flex-end;">
+                        <input type="button" value="لیست پیشنهادها" class="btn" (click)="goToListOffer()"
+                        style="width: 130px; font-size: 12px; text-align: center; color: #2196F3; background-color: #E3F2FD; border-radius: 7px; outline: none; cursor: pointer;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-----start right col----->
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-5 clear" style="padding: 0px 10px;">
+            <!----start box accept offer (box 1)---->
+            <div style="padding: 10px 5px; border: 1px solid #C8C8C8; border-radius: 7px; position: relative;">
+                    <div class="row clear">
+                        <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-4 clear">
+                            <div style="width: 100%; padding: 5px; text-align: center;">
+                                <img src="{{workerImg}}" 
+                                style="width: 100%; max-width: 80px; border-radius: 50%;" 
+                                class="img-fluid">
+                            </div>
+                            <div style="width: 100%; text-align: center; font-size: 12px;">
+                                <span>{{workerName}}</span>
+                            </div>
+                            <div style="width: 100%; padding: 10px 0px; text-align: center;">
+                                <div style="direction: ltr; text-align: center; padding: 7px 0px; padding-top: 2px;">
+                                    <span *ngFor="let star of customFunction.makeStarScore(workerTotalScore)">
+                                        <i *ngIf="star == 0" class="far fa-star" style="color: #039BE5"></i>
+                                        <i *ngIf="star == 0.5" class="fas fa-star-half-alt" style="color: #039BE5"></i>
+                                        <i *ngIf="star == 1" class="fas fa-star" style="color: #039BE5"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-8 clear">
+                            <div style="font-size: 12px;padding: 5px; padding-top: 15px; width: 100%;">
+                                <strong>{{workTitle}}</strong>
+                            </div>
+                            <div style="font-size: 12px;padding: 5px; padding-top: 15px; width: 100%;">
+                                <span>{{"قیمت پیشنهادی: "}}</span>
+                                <span>{{price}}</span>
+                            </div>
+                            <div style="font-size: 12px;padding: 5px; padding-top: 15px; width: 100%;">
+                                <span>{{surveyRequiredText}}</span>
+                                <span *ngIf="!surveyRequired">{{"ندارد"}}</span>
+                                <span *ngIf="surveyRequired">{{"دارد"}}</span>
+                            </div>
+                            <div style="font-size: 12px;padding: 5px; padding-top: 15px; width: 100%;">
+                                <span>{{"توضیحات: "}}</span>
+                                <span>{{workerDescription}}</span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+                            <div (click)="onAcceptOffer()" 
+                                style="border-radius: 7px; height: 40px; width: 100%; cursor: pointer; color: white; font-size: 14px; background-color: #039BE5; outline: none; display: flex; align-items: center; justify-content: center;">
+                                <span>قبول پیشنهاد</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="position: absolute; top: 5px; left: 5px;height: 25px; width: 25px; text-align: left;">
+                        <img src="assets/webappPics/x-button2.png" alt="close" 
+                        style="width: 100%; max-width: 25px; cursor: pointer; border-radius: 50%;" 
+                        class="img-fluid"
+                        (click)="closeOffer()">
+                    </div>
+            </div>
+            <!----end box accept offer (box 1)---->
+    
+                <!----start box worker profile (box 2)-->
+                <div style="width: 100%; padding-top: 15px; padding-bottom: 15px; font-size: 12px;">
+                    <div style="padding: 10px 5px; border: 1px solid #C8C8C8; border-radius: 7px;">
+                        <div class="row clear">
+                            <div *ngIf="workerCode && workerCode != ''" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 clear">
+                                <span style="display: inline-block; width: 50%;">{{"کد متخصص: "}}</span>
+                                <span style="direction: ltr; display: inline-block; width: 50%; text-align: left;">{{workerCode}}</span>
+                            </div>
+    
+                            <div *ngIf="workerScore" style="width: 100%; padding: 7px 0px;">
+                                <div>
+                                    <span style="display: inline-block; width: 50%;">{{"قیمت دهی مناسب: "}}</span>
+                                    <div style="direction: ltr; display: inline-block; width: 50%; text-align: left;">
+                                        <span *ngFor="let star of customFunction.makeStarScore(priceScore)">
+                                            <i *ngIf="star == 0" class="far fa-star" style="color: #039BE5"></i>
+                                            <i *ngIf="star == 0.5" class="fas fa-star-half-alt" style="color: #039BE5"></i>
+                                            <i *ngIf="star == 1" class="fas fa-star" style="color: #039BE5"></i>
+                                        </span>
+                                    </div>                              
+                                </div>
+    
+                                <div>
+                                    <span style="display: inline-block; width: 50%;">{{"رضایت مشتری از کار: "}}</span>
+                                    <div style="direction: ltr; display: inline-block; width: 50%; text-align: left;">
+                                        <span *ngFor="let star of customFunction.makeStarScore(satisfactionScore)">
+                                            <i *ngIf="star == 0" class="far fa-star" style="color: #039BE5"></i>
+                                            <i *ngIf="star == 0.5" class="fas fa-star-half-alt" style="color: #039BE5"></i>
+                                            <i *ngIf="star == 1" class="fas fa-star" style="color: #039BE5"></i>
+                                        </span>
+                                    </div>                              
+                                </div>
+                                
+                                <div>
+                                    <span style="display: inline-block; width: 50%;">{{"وقت شناسی متخصص: "}}</span>
+                                    <div style="direction: ltr; display: inline-block; width: 50%; text-align: left;">
+                                        <span *ngFor="let star of customFunction.makeStarScore(timeScore)">
+                                            <i *ngIf="star == 0" class="far fa-star" style="color: #039BE5"></i>
+                                            <i *ngIf="star == 0.5" class="fas fa-star-half-alt" style="color: #039BE5"></i>
+                                            <i *ngIf="star == 1" class="fas fa-star" style="color: #039BE5"></i>
+                                        </span>
+                                    </div>                              
+                                </div>
+                            </div>
+    
+                            <div *ngIf="workerCatalog.length > 0">
+                                <div style=" width: 100%; padding: 7px 0px;">
+                                    <span>نمونه کارها</span>
+                                </div>
+                                <div *ngFor="let item of workerCatalog" style="display: inline-block; padding: 5px; width: 130px;">
+                                    <img src="{{imgPath + item.photo}}" (click)="onPhoto(item.photo)" 
+                                    style="width: 100%; border-radius: 5px;" class="img-fluid">
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+                <!----end box worker profile (box 2)-->
+        </div>
+        <!-----end right col----->
+    
+            <!-----start left col----->
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-7 clear" style="padding: 0px 10px;">
+                <!----start box invoice (box 3)---->
+                <div style="padding: 10px 5px; border: 1px solid #C8C8C8; border-radius: 7px; font-size: 14px;">
+                    <strong>پیش فاکتور</strong>
+                    <div *ngIf="workerInvoice" style="font-size: 12px;">
+                        <table *ngIf="workerInvoice.items.length > 0" style="width: 100%;">
+                            <tr>
+                                <th>نام کالا</th>
+                                <th>تعداد</th>
+                                <th>قیمت واحد (تومان)</th>
+                                <th>قیمت کل (تومان)</th>
+                            </tr>
+                            <tr *ngFor="let item of workerInvoice.items; index as i" 
+                            [ngStyle]="(i % 2 == 0 ) ? {'background-color':'#ECEFF1'} : {'background-color':'#FFFFFF'}">
+                                <td>{{item.title}}</td>
+                                <td>{{customFunction.chanageNumbersToFarsi(item.quantity.toString())}}</td>
+                                <td>{{customFunction.formatAmountMoney(customFunction.chanageNumbersToFarsi(item.unitPrice.toString()))}}</td>
+                                <td>{{customFunction.formatAmountMoney(customFunction.chanageNumbersToFarsi(item.totalPrice.toString()))}}</td>
+                            </tr>
+                        </table>
+                        <div style="padding: 15px 0px;">
+                            <div><span class="styleRowSpanInvoice">{{"هزینه ایاب و ذهاب: " + customFunction.formatAmountMoney(customFunction.chanageNumbersToFarsi(workerInvoice.transfer.toString())) + " تومان"}}</span></div>
+                            <div><span class="styleRowSpanInvoice">{{"دستمزد: " + customFunction.formatAmountMoney(customFunction.chanageNumbersToFarsi(workerInvoice.wage.toString())) + " تومان"}}</span></div>
+                        </div>
+                        <div><span class="styleRowSpanInvoice">{{"قیمت کل: " + customFunction.formatAmountMoney(customFunction.chanageNumbersToFarsi(workerInvoice.totalPrice.toString())) + " تومان"}}</span></div>
+                    </div>
+                    <div *ngIf="!workerInvoice" style="text-align-last: center;">
+                        <span style="padding: 20px 10px; font-size: 14px; color: #CFD8DC;">پیش فاکتور ندارد</span>
+                    </div>
+                </div>
+                <!----end box invoice (box 3)---->
+            </div>
+            <!-----end left col----->
+    
+    </div>
+</div>
+    
+<!--Start modal photo-->
+<div *ngIf="basicData.activeModalPhoto.value">
+    <photoPopup [srcPhoto]="srcPhotoPopUp"></photoPopup>
+</div>
+<!--End modal photo-->
+    
